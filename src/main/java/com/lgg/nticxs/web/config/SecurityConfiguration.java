@@ -13,7 +13,7 @@ import com.lgg.nticxs.web.DAO.RolesDAO;
 import com.lgg.nticxs.web.model.Role;
 
 /**
- * Created by movasim on 08/09/16.
+ * Created by leandro Guzman 22/01/2018.
  */
 @Configuration
 @EnableWebSecurity

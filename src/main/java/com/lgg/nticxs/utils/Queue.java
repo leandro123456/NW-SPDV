@@ -28,8 +28,8 @@ public class Queue {
     
 	private void createRabittMQ() throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setUsername("movasim");
-		factory.setPassword("movasim");
+		factory.setUsername("leandro");
+		factory.setPassword("lguzman");
 	    factory.setHost("localhost");
 	    connection = factory.newConnection();
 	    channel = connection.createChannel();

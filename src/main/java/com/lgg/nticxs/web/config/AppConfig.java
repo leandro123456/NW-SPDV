@@ -18,7 +18,7 @@ import javax.servlet.MultipartConfigElement;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.movasim.ereach.web")
+@ComponentScan(basePackages = "com.lgg.nticxs.web")
 public class AppConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver viewResolver() {
