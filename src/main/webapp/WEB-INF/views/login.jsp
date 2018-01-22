@@ -7,8 +7,10 @@
 	<title>Login V3</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Custom jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	<link href='<c:url value="/resources/nuevo/images/icons/favicon.ico" />' rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/images/nticxs-logo.png" />'>
 	<link href='<c:url value="/resources/nuevo/vendor/bootstrap/css/bootstrap.min.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/fonts/iconic/css/material-design-iconic-font.min.css" />' rel="stylesheet">
@@ -24,7 +26,7 @@
 <body>
 	
 	<div class="limiter">
-		<div class="container-login100" style="background-image: url('/alumnos/resources/images/logo.png');">
+		<div class="container-login100" style="background-image: url('resources/images/casa.jpg');">
 			<div class="wrap-login100">
 				<form class="login100-form validate-form">
 					<span class="login100-form-logo">
@@ -83,11 +85,6 @@
 					</div>
 
 					<div class="contact100-form-checkbox">
-						<!--<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div> -->
  					<p> </p>
                         <a href="<c:url value="/signup" />" id="signup">Sign up</a>
                         <p> </p>
@@ -102,29 +99,25 @@
 						<a class="txt1" href="<c:url value="/signup" />" id="signup">Forgot Password?
 						</a>
 							
-</form>
-					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	
-
 	<div id="dropDownSelect1"></div>
 
    <!-- jQuery -->
     <script src='<c:url value="/resources/js/jquery.js" />'></script>
 
-	
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="vendor/select2/select2.min.js"></script>
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-	<script src="js/main.js"></script>
+	<script src='<c:url value="/resources/nuevo/vendor/jquery/jquery-3.2.1.min.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/animsition/js/animsition.min.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/bootstrap/js/popper.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/bootstrap/js/bootstrap.min.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/select2/select2.min.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/daterangepicker/moment.min.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/daterangepicker/daterangepicker.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/vendor/countdowntime/countdowntime.js" />'></script>
+	<script src='<c:url value="/resources/nuevo/js/main.js" />'></script>
 
 </body>
 </html>

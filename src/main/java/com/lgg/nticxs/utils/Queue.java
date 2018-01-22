@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.lgg.nticxs.utils.Settings;
 
 public class Queue {
 	private static Queue instance = null;
