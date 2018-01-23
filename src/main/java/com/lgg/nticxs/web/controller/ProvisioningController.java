@@ -33,9 +33,7 @@ import com.lgg.nticxs.web.helper.ES1Helper;
 import com.lgg.nticxs.web.helper.SRHelper;
 import com.lgg.nticxs.web.model.SimpleClasificationIPP;
 
-/**
- * Created by movasim on 05/09/16.
- */
+
 @Controller
 public class ProvisioningController {
 //	 private ClasificationIppDAO clasifDao=new ClasificationIppDAO();

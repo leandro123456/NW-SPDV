@@ -195,8 +195,8 @@ public class LoginController{
     	User user = userdao.retrieveByName(auth.getName());
     	
     	if(keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 0)) 
-    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 30000)) 
-    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), -30000))) {
+    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 90000)) 
+    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), -90000))) {
 //    		Muestra el codigo valido para la autenticacion de dos pasos
 //    		System.out.println(TOTPCode.getTOTPCode(key.getKey()));
     		

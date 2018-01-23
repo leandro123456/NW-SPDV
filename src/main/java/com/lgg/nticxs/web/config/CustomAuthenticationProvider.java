@@ -46,15 +46,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 				authorities.add(new SimpleGrantedAuthority("PRE-AUTHENTICATION"));
 				
 				//Devuelvo una autenticacion completa al SecurityCongiguration
-				logger.logger("DEBUG", "SM-WEB", "Login", "Login successfull (parcial)", "", "", "", "", "", "User name = " + user.getName() + " Role: PRE-AUTHENTICATION");
+				System.out.println("Login successfull (parcial)"+ "User name = " + user.getName() + " Role: PRE-AUTHENTICATION");
 				return new UsernamePasswordAuthenticationToken(user.getName(), EncryptorPassword.decrypt(user.getPassword()), authorities);
 			} else {
-				logger.logger("ERROR", "SM-WEB", "Login", "Login failed", "", "", "", "", "", "Invalid date. User name = " + user.getName());
+				System.out.println("Login failed"+ "Invalid date. User name = " + user.getName());
 			}
 		} catch (Exception e) {
-			
-			logger.logger("ERROR", "SM-WEB", "Login", "", "", "authenticate()", "", "", "", "Error to decrypt the password");
-			
+			System.out.println(" Error authenticate()"+ "Error to decrypt the password");
 			e.printStackTrace();
 		}
 		return null;

@@ -40,12 +40,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 	        .antMatchers("/").permitAll()
 	        .antMatchers("/signup").permitAll()
-	        .antMatchers("/randompassword").permitAll()
-	        .antMatchers("/twoauthentication").access(access.substring(0, (access.length() - 4)) + " or hasAuthority('PRE-AUTHENTICATION')")
+//	        .antMatchers("/randompassword").permitAll()
+//	        .antMatchers("/twoauthentication").access(access.substring(0, (access.length() - 4)) + " or hasAuthority('PRE-AUTHENTICATION')")
 	        .antMatchers("/home/").access(access.substring(0, (access.length() - 4)) + " or hasAuthority ('VISITOR') or hasAuthority ('SUPERADMIN')")
 	        .antMatchers("/home/**").access(access.substring(0, (access.length() - 4))  + " or hasAuthority ('SUPERADMIN')")
-	        .and().formLogin().defaultSuccessUrl("/twoauthentication").loginPage("/login")
-	        .usernameParameter("user").passwordParameter("password")
+	        .and().formLogin().defaultSuccessUrl("/home/provisioning").loginPage("/login")
+            .usernameParameter("user").passwordParameter("password")
 	        .and().exceptionHandling().accessDeniedPage ("/logoutsession")
 	        .and().csrf().disable();
     }

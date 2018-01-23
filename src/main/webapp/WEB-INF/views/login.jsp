@@ -4,9 +4,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V3</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Acceso Nticxs</title>
+<!-- 	<meta charset="UTF-8"> -->
+<!-- 	<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<meta charset="utf-8">
+   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
     <!-- Custom jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -34,7 +41,7 @@
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-						Log in
+						
 					</span>
                     <c:if test="${not empty msg1}">
                         <div class="alert alert-warning">
@@ -59,7 +66,7 @@
                         	${msg2}
                     	</div>
                     </c:if>
-                    
+                    </form>
                     <c:if test="${not empty imgQR}">
                     	<div class="alert alert-success" id="imgQRDiv">
     	                	<form action='https://chart.googleapis.com/chart' method='POST' target="_blank">
@@ -75,12 +82,12 @@
 
  				<form action="<c:url value="/login" />" method="post" class="form-signin">
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input input id = "userName"  class="input100" type="text" name="username" placeholder="Username">
+						<input  id = "userName"  class="input100" type="text" name="user" placeholder="Usuario">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input" id = "userPassword" data-validate="Enter password">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+					<div class="wrap-input100 validate-input" id = "Password" data-validate="Enter password">
+						<input class="input100"  name="password" id = "userPassword" type="password" id="inputPassword" placeholder="Contraseña">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -88,23 +95,21 @@
  					<p> </p>
                         <a href="<c:url value="/signup" />" id="signup">Sign up</a>
                         <p> </p>
-
+					</div>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" id="sign">
-							Login
+							Iniciar Sesión
 						</button>
 					</div>
-
+				</form>
 					<div class="text-center p-t-90">
 						<a class="txt1" href="<c:url value="/signup" />" id="signup">Forgot Password?
 						</a>
-							
-				</form>
-			</div>
+				</div>
 		</div>
 	</div>
 	
-	<div id="dropDownSelect1"></div>
+<!-- 	<div id="dropDownSelect1"></div> -->
 
    <!-- jQuery -->
     <script src='<c:url value="/resources/js/jquery.js" />'></script>
