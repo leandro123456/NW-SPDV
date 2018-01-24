@@ -28,7 +28,6 @@
 	<link href='<c:url value="/resources/nuevo/vendor/daterangepicker/daterangepicker.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/css/util.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/css/main.css" />' rel="stylesheet">
-	
 </head>
 <body>
 	
@@ -67,18 +66,19 @@
                     	</div>
                     </c:if>
                     </form>
-                    <c:if test="${not empty imgQR}">
-                    	<div class="alert alert-success" id="imgQRDiv">
-    	                	<form action='https://chart.googleapis.com/chart' method='POST' target="_blank">
-    						  <input type='hidden' name='cht' value='qr' />
-    						  <input type='hidden' name='chs' value='300x300' />
-    						  <input type='hidden' name='chl' value='<c:url value="${imgQR}" />'/>
-    						  <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" id="codeQR">Created QR Code</button>
-    						</form>
-    					</div>
+                    
+<%--                     <c:if test="${not empty imgQR}"> --%>
+<!--                     	<div class="alert alert-success" id="imgQRDiv"> -->
+<!--     	                	<form action='https://chart.googleapis.com/chart' method='POST' target="_blank"> -->
+<!--     						  <input type='hidden' name='cht' value='qr' /> -->
+<!--     						  <input type='hidden' name='chs' value='300x300' /> -->
+<%--     						  <input type='hidden' name='chl' value='<c:url value="${imgQR}" />'/> --%>
+<!--     						  <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" id="codeQR">Created QR Code</button> -->
+<!--     						</form> -->
+<!--     					</div> -->
 
                         <script src='<c:url value="/resources/js/jqueryLogin.js" />'></script>
-                    </c:if>
+<%--                     </c:if> --%>
 
  				<form action="<c:url value="/login" />" method="post" class="form-signin">
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
@@ -93,7 +93,7 @@
 
 					<div class="contact100-form-checkbox">
  					<p> </p>
-                        <a href="<c:url value="/signup" />" id="signup">Sign up</a>
+                        <a href="<c:url value="/signup" />" id="signup"> Crear cuenta</a>
                         <p> </p>
 					</div>
 					<div class="container-login100-form-btn">
@@ -103,7 +103,7 @@
 					</div>
 				</form>
 					<div class="text-center p-t-90">
-						<a class="txt1" href="<c:url value="/signup" />" id="signup">Forgot Password?
+						<a class="txt1" href="<c:url value="/signup" />" id="signup">Olvidaste tu contraseña?
 						</a>
 				</div>
 		</div>

@@ -7,12 +7,12 @@ $(document).ready(function() {
 
 	$("#userPassword").hide();
 
-	$("#codeQR").click(function(){
-		$("#sign").show();
-		$("#userName").show();
-		$("#userPassword").show();
-
-		$("#msg2Div").hide();
-		$("#imgQRDiv").hide();
-	});
+//	$("#codeQR").click(function(){
+//		$("#sign").show();
+//		$("#userName").show();
+//		$("#userPassword").show();
+//
+//		$("#msg2Div").hide();
+//		$("#imgQRDiv").hide();
+//	});
 });
