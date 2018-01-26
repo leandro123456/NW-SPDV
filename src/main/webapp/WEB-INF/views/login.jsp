@@ -77,7 +77,7 @@
 <!--     						</form> -->
 <!--     					</div> -->
 
-                        <script src='<c:url value="/resources/js/jqueryLogin.js" />'></script>
+<%--                         <script src='<c:url value="/resources/js/jqueryLogin.js" />'></script> --%>
 <%--                     </c:if> --%>
 
  				<form action="<c:url value="/login" />" method="post" class="form-signin">

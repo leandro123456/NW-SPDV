@@ -30,14 +30,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by movasim on 05/09/16.
- */
+
 @Controller
 public class LoginController{
 	
-	private static WSLogger logger = new WSLogger();
-	
+
     @GetMapping("/")
     public String redirect(Model model) {
         return "redirect:login";
@@ -70,7 +67,6 @@ public class LoginController{
     	if (action.compareTo("save") == 0) {
     		
     		if(name.isEmpty()) {
-        		logger.logger("ERROR", "SM-WEB", "User", "", "", "addNewUser()", "", "", name, "Incorrect name, is empty");
     			model.addAttribute("msg1", "Error ... incorrect name, is empty");
     			return "signup";
         	}
@@ -127,7 +123,6 @@ public class LoginController{
     					
     					//Guardo el nuevo usuario en DB
     					userdao.create(user);
-    					logger.logger("DEBUG", "WEB", "User", "", "Signup", "addNewUser()", "", "", "", "New user created with name: " + user.getName());
     					
     					model.addAttribute("msg2", "User update successfully completed");
     			    	String barCodeData = TOTPCode.getGoogleAuthenticatorBarCode(user.getKeyTSA(), user.getName(), "eReach");
@@ -135,19 +130,16 @@ public class LoginController{
     			    	return "login";
     			    	
     				} else {
-    					logger.logger("ERROR", "SM-WEB", "User", "", "", "addNewUser()", "", "", "", "Password does not accomplish the requirements of security");
     					model.addAttribute("msg1", "Error ... Password must meet security requirements");
     					return "signup";
     				}
 
     			} else {
-    				logger.logger("ERROR", "SM-WEB", "User", "", "", "addNewUser()", "", "", "", "Password do not match");
     				model.addAttribute("msg1", "Error ... password do not match");
     				return "signup";
     			}
     			
     		} else {
-    			logger.logger("ERROR", "SM-WEB", "User", "", "", "addNewUser()", "", "", name, "Incorrect name, already exists");
     			model.addAttribute("msg1", "Error ... incorrect name, already exists");
     			return "signup";
     		}
@@ -204,12 +196,9 @@ public class LoginController{
             authorities.add(new SimpleGrantedAuthority(user.getRole()));
             Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), authorities);
             SecurityContextHolder.getContext().setAuthentication(newAuth);
-            logger.logger("DEBUG", "SM-WEB", "Login", "", "Two step authentication", "twoAuthentication()", "", "", "", "Google authenticator verification code correct");
-            logger.logger("DEBUG", "SM-WEB", "Login", "", "Login successfull (complete)", "", "", "", "", "User name = " + user.getName() + ", Role: " + user.getRole());
             return "redirect:home/";
     	}
     	
-    	logger.logger("ERROR", "SM-WEB", "Login", "", "Two step authentication", "twoAuthentication()", "", "", "", "Google authenticator verification code incorrect");
     	model.addAttribute("msg1", "Google authenticator verification code incorrect");
     	return "login";
     }
@@ -220,7 +209,6 @@ public class LoginController{
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         
         if (auth != null){
-        	logger.logger("INFO", "SM-WEB", "Login", "", "", "logout()", "", "", auth.getName(), "Log out and destroy session of: " + auth.getName());
         	
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }

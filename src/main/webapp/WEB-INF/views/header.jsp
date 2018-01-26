@@ -92,37 +92,19 @@
 		            <li id="ippExplorer">
 		                <a href="<c:url value='/home/ipp/explorer' />"><i class="fa fa-fw fa-expand" data-toggle="tooltip" title="IPP administration tool"></i> IPP Explorer</a>
 		            </li>
-                    
-
-                    <li id="euiccSearch">
-                        <a href="<c:url value='/home/euicc/search' />"><i class="fa fa-fw fa-credit-card"></i> eUICC Manager</a>
-                    </li>
-
 
                     <li id="amdDP">
                         <a href="<c:url value='/home/amddp' />"><i class="fa fa-fw fa-arrows-alt"  data-toggle="tooltip" title="SM-SRs"></i> AMD DP</a>
                     </li>
 
-
-                    <li id="amdSR">
-				        <a href="<c:url value='/home/amdsr' />"><i class="fa fa-fw fa-arrows-alt"  data-toggle="tooltip" title="SM-SRs"></i> AMD SR</a>
-		            </li>
-
 		            <li id="generalConfiguration">
 		                <a href="<c:url value='/home/general/configuration' />" data-toggle="tooltip" title="General settings"><i class="fa fa-fw fa-cogs"></i> General Configuration</a>
 		            </li>
-
-	                <li id="viewLogs" class="disabled">
-	                    <a href="#" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-eye"></i> View Logs</a>
-	                </li>
 	                	
                     <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script>
                     
                     <c:if test="${not empty pageContext.request.userPrincipal}">
                         <c:if test="${pageContext.request.isUserInRole('SUPERADMIN')}">
-	                         <li>
-		                        <a href="<c:url value='/home/view-logs' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-eye"></i> View Logs</a>
-		                    </li>
                             <li>
                                 <a href="<c:url value='/home/send/command' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-paper-plane-o"></i> Send Command</a>
                             </li>   

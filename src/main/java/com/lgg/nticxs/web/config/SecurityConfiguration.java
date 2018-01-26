@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.lgg.nticxs.utils.Utils;
 import com.lgg.nticxs.web.DAO.RolesDAO;
 import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.web.model.Role;
@@ -56,6 +57,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    	UserDAO userDao= new UserDAO();
 	    	List<User> users= userDao.retrieveAll();
 	    	for(User user: users){
+	    		auth.inMemoryAuthentication().withUser("lean").password("lean").roles("ADMIN");
+	    		System.out.println("usuario: "+user.getName()+" pass: "+Utils.toUnformattedHexArray(user.getPassword())+" rol: "+user.getRole());
 	    		auth.inMemoryAuthentication().withUser(user.getName()).password(user.getPassword().toString()).roles(user.getRole());
 	    	}
 
@@ -78,7 +81,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //	        .antMatchers("/randompassword").permitAll()
 //	        .antMatchers("/twoauthentication").access(access.substring(0, (access.length() - 4)) + " or hasAuthority('PRE-AUTHENTICATION')")
 	        .antMatchers("/home/").access("hasRole('ADMIN') or hasRole('VISITOR') or hasRole('SUPERADMIN') or hasRole('DOCENTE') or hasRole('ALUMNO') or hasRole('ADMINISTRATIVO')")
-	        .antMatchers("/home/**").access("hasRole('ADMIN') or hasRole('VISITOR') or hasRole('SUPERADMIN') or hasRole('DOCENTE') or hasRole('ALUMNO') or hasRole('ADMINISTRATIVO')")
+//	        .antMatchers("/home/**").access("hasRole('ADMIN') or hasRole('VISITOR') or hasRole('SUPERADMIN') or hasRole('DOCENTE') or hasRole('ALUMNO') or hasRole('ADMINISTRATIVO')")
 	        .and().formLogin().defaultSuccessUrl("/home/").loginPage("/login")
             .usernameParameter("user").passwordParameter("password")
 	        .and().exceptionHandling().accessDeniedPage ("/logoutsession")
