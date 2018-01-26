@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-      
+     
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link href='<c:url value="/resources/assets/css/bootstrap.min.css"/>' rel="stylesheet">
         <!--For Plugins external css-->
@@ -42,20 +43,64 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="/resources/assets/images/logo.png" alt="" /></a>
+<!--                     <a class="navbar-brand" href="index.html"><img src="/resources/assets/images/logo.png" alt="" /></a> -->
+                    <a class="navbar-brand" href="<c:url value='/home/' />"><img alt="Nticxs" width="50%" src='<c:url value="/resources/images/nticxs-logo.png" />'></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                    <ul class="nav navbar-right top-nav">
+                            <li class="dropdown">
+                                <c:set var = "roleAndNameComplete" value="${pageContext.request.userPrincipal.authorities}"/>
+                                <c:set var = "roleAndNameCompleteSubA" value="${fn:substringAfter(roleAndNameComplete, '[')}"/>
+                                <c:set var = "roleAndNameCompleteSubB" value="${fn:substringBefore(roleAndNameCompleteSubA, ']')}"/>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                                ${pageContext.request.userPrincipal.name}
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="<c:url value="/logoutsession" />"><i class="fa fa-fw fa-power-off"></i> Salir</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+
                     <ul class="nav navbar-nav navbar-right">
 
-                        <li class="active"><a href="#home">Inicio</a></li>
-                        <li><a href="#blog">Clases</a></li>
-                        <li><a href="#about">Foro</a></li>
-                        <li><a href="#project">Notas</a></li>
-                        <li><a href="#team">Faltas</a></li>
-                        <li><a href="#contact">Contacto</a></li>
+<!--                         <li class="active"><a href="#home">Inicio</a></li> -->
+<!--                         <li><a href="#blog">Clases</a></li> -->
+<!--                         <li><a href="#about">Foro</a></li> -->
+<!--                         <li><a href="#project">Notas</a></li> -->
+<!--                         <li><a href="#team">Faltas</a></li> -->
+<!--                         <li><a href="#contact">Contacto</a></li> -->
 
+	                    <li id="provisioning">
+                            <a href="<c:url value='/home/provisioning' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-plus-square-o"></i> Provisioning</a>
+                        </li>
+
+    		            <li id="templateExplorer">
+    		                <a href="<c:url value='/home/template/explorer' />" data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Template Explorer</a>
+    		            </li>
+
+    		            <li id="ippGeneration">
+    		                <a href="<c:url value='/home/ipp/generation' />" title="Generate new IPPs" ><i class="fa fa-fw fa-lightbulb-o"></i> IPP Generation</a>
+    		            </li>
+
+    		            <li id="ippExplorer">
+    		                <a href="<c:url value='/home/ipp/explorer' />"><i class="fa fa-fw fa-expand" data-toggle="tooltip" title="IPP administration tool"></i> IPP Explorer</a>
+    		            </li>
+
+                        <li id="amdDP">
+                            <a href="<c:url value='/home/amddp' />"><i class="fa fa-fw fa-arrows-alt"  data-toggle="tooltip" title="SM-SRs"></i> AMD DP</a>
+                        </li>
+
+    		            <li id="generalConfiguration">
+    		                <a href="<c:url value='/home/general/configuration' />" data-toggle="tooltip" title="General settings"><i class="fa fa-fw fa-cogs"></i> General Configuration</a>
+    		            </li>
+	                	
+                 <!--   <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script> -->        
+                        
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -769,7 +814,9 @@
 <!-- 			</div> -->
 <!-- 		</div>		 -->
 <!-- 	</footer> -->
+    
 
+    <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script>
     <script src='<c:url value="/resources/assets/js/vendor/jquery-1.11.2.min.js" />'></script>
     <script src='<c:url value="/resources/assets/js/vendor/bootstrap.min.js" />'></script>
     <script src='<c:url value="/resources/assets/js/jquery.easypiechart.min.js" />'></script>
@@ -777,6 +824,31 @@
     <script src='<c:url value="/resources/assets/js/modernizr.js" />'></script>
     <script src='<c:url value="/resources/assets/js/main.js" />'></script>
    
+           <script type="text/javascript">
+            // Check login
+            var notEmptyUser = ${not empty pageContext.request.userPrincipal};
+
+            // Load administrator category
+
+            var roleAdmin = ${roleAdmin};
+            var roleAdminDP = ${roleAdminDP};
+            var roleAdminDPPlus = ${roleAdminDPPlus};
+            var roleAdminSR = ${roleAdminSR};
+
+            // Load operetor category
+            var roleOper = ${roleOper};
+            var roleOperDP = ${roleOperDP};
+            var roleOperDPPlus = ${roleOperDPPlus};
+            var roleOperSR = ${roleOperSR};
+
+            // Load user category
+            var roleUser = ${roleUser};
+            var roleUserDP = ${roleUserDP};
+            var roleUserDPPlus = ${roleUserDPPlus};
+            var roleUserSR = ${roleUserSR};
+        </script>
+
+
 </body>
 <jsp:include page="footer.jsp" />
 </html>
