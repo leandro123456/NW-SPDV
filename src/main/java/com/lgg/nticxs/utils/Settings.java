@@ -58,7 +58,7 @@ public class Settings {
     public void load() {
         propertiesWEB = new Properties();
         try {
-            propertiesWEB.load(new FileInputStream("/var/movasim/web.properties"));
+            propertiesWEB.load(new FileInputStream("/var/movasim/nticxs-web.properties"));
             this.FILE_UPLOAD_PATH_CARDS = propertiesWEB.getProperty("uploadCards");
             this.FILE_UPLOAD_PATH_IPP = propertiesWEB.getProperty("uploadIpp");
             this.FILE_UPLOAD_PATH_TEMPLATE_IPP = propertiesWEB.getProperty("uploadTemplate");

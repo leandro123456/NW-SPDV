@@ -14,7 +14,6 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Mensaje {
 	
-	@GeneratedValue
 	@Field(name = "_id")
 	private String id;
 	

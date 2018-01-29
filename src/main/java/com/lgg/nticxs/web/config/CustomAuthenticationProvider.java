@@ -19,34 +19,27 @@ import com.lgg.nticxs.web.model.User;
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 	
-	private static WSLoggerPreLogin logger = new WSLoggerPreLogin();
-	
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
 		UserDAO userdao = new UserDAO();
-		
-		//Tomo los nombres de la autenticacion que se carga al loguearse
+
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
-
-		//Busco en la DB el usuario que coincida con el nombre que ingrese
-		//si no se encuentra devuelve un null
+		System.out.println("valores ingresados: "+ name +" "+password);
 		User user = new User();
 		user = userdao.retrieveByName(name);
-		
-		//Se usa try por el decrypt de la password
+		System.out.println("usuario en la base de datos. "+ user);
 		try {
-			//Busco si coinciden todos los datos con el usuario que se encontro y pido que se encuentre un usuario
 			if (name.equals(user.getName()) && password.equals(EncryptorPassword.decrypt(user.getPassword())) && user != null) {
+				System.out.println("los valores se corresponden ");
 				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-				
-				//Es necesario que la autoridad del usuario simpre sea la que se especifica a continuacion
-				//debido a que sino hay incongruencias con la autenticacion de dos pasos
-				authorities.add(new SimpleGrantedAuthority("PRE-AUTHENTICATION"));
-				
-				//Devuelvo una autenticacion completa al SecurityCongiguration
-				System.out.println("Login successfull (parcial)"+ "User name = " + user.getName() + " Role: PRE-AUTHENTICATION");
+				authorities.add(new SimpleGrantedAuthority(user.getRole()));
+				System.out.println("autoridades: "+ authorities.size());
+				System.out.println("autoridades: "+authorities.get(0).getAuthority());
+				System.out.println("Login successfull"+ "User name = " + user.getName() +" rol: "+user.getRole());
+				System.out.println("retorna esto: "+ user.getName()+" "+ EncryptorPassword.decrypt(user.getPassword())+" "+ authorities);
 				return new UsernamePasswordAuthenticationToken(user.getName(), EncryptorPassword.decrypt(user.getPassword()), authorities);
 			} else {
 				System.out.println("Login failed"+ "Invalid date. User name = " + user.getName());
