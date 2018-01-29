@@ -4,38 +4,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
- <head>
+
+<head>
  	<title>Pantalla Principal</title>
 	<meta charset="utf-8">
    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-     
+    
+    
+    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link href='<c:url value="/resources/assets/css/bootstrap.min.css"/>' rel="stylesheet">
-        <!--For Plugins external css-->
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/plugins.css" />'>
-
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/raleway-webfont.css" />'>
-
-        <!--Theme custom css -->
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/style.css"/>'>
-
-        <!--Theme Responsive css-->
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/responsive.css" />'>
+        <script src='<c:url value="/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" />'></script>    
+</head>
 
-        <script src='<c:url value="/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" />'></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-		
-		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+<body>
+  <div class='preloader'><div class='loaded'>&nbsp;</div></div>
+    <script src="../resources/vendor/jquery/jquery.min.js"></script>
+    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
         <nav class="navbar navbar-default navbar-fixed-top">
+                
+
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
+
+
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -43,70 +46,89 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-<!--                     <a class="navbar-brand" href="index.html"><img src="/resources/assets/images/logo.png" alt="" /></a> -->
-                    <a class="navbar-brand" href="<c:url value='/home/' />"><img alt="Nticxs" width="50%" src='<c:url value="/resources/images/nticxs-logo.png" />'></a>
+                    <a class="navbar-brand" href="<c:url value='/home/' />"><img alt="Nticxs" width="50%" 
+                    src='<c:url value="/resources/images/nticxs-logo.png" />'></a>
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
+
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">                      
 
-                    <ul class="nav navbar-right top-nav">
-                            <li class="dropdown">
-                                <c:set var = "roleAndNameComplete" value="${pageContext.request.userPrincipal.authorities}"/>
-                                <c:set var = "roleAndNameCompleteSubA" value="${fn:substringAfter(roleAndNameComplete, '[')}"/>
-                                <c:set var = "roleAndNameCompleteSubB" value="${fn:substringBefore(roleAndNameCompleteSubA, ']')}"/>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                                ${pageContext.request.userPrincipal.name}
-                                <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="<c:url value="/logoutsession" />"><i class="fa fa-fw fa-power-off"></i> Salir</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-
-<!--                         <li class="active"><a href="#home">Inicio</a></li> -->
-<!--                         <li><a href="#blog">Clases</a></li> -->
-<!--                         <li><a href="#about">Foro</a></li> -->
-<!--                         <li><a href="#project">Notas</a></li> -->
-<!--                         <li><a href="#team">Faltas</a></li> -->
-<!--                         <li><a href="#contact">Contacto</a></li> -->
-
-	                    <li id="provisioning">
-                            <a href="<c:url value='/home/provisioning' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-plus-square-o"></i> Provisioning</a>
+                        <li><a href="#home">Inicio</a></li>
+                        <li class="active" id="provisioning">
+                            <a href="<c:url value='/home/provisioning'/>" data-toggle="tooltip" title="Profile templates and output files upload">Clases</a>
                         </li>
 
-    		            <li id="templateExplorer">
-    		                <a href="<c:url value='/home/template/explorer' />" data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Template Explorer</a>
-    		            </li>
+                        <li id="templateExplorer">
+                            <a href="<c:url value='/home/template/explorer'/>" data-toggle="tooltip" title="Edit template parameters">Foro</a>
+                        </li>
 
-    		            <li id="ippGeneration">
-    		                <a href="<c:url value='/home/ipp/generation' />" title="Generate new IPPs" ><i class="fa fa-fw fa-lightbulb-o"></i> IPP Generation</a>
-    		            </li>
+                        <li id="ippGeneration">
+                            <a href="<c:url value='/home/ipp/generation'/>" title="Generate new IPPs">Notas</a>
+                        </li>
 
-    		            <li id="ippExplorer">
-    		                <a href="<c:url value='/home/ipp/explorer' />"><i class="fa fa-fw fa-expand" data-toggle="tooltip" title="IPP administration tool"></i> IPP Explorer</a>
-    		            </li>
+                        <li id="ippExplorer">
+                            <a href="<c:url value='/home/ipp/explorer'/>">Faltas</a>
+                        </li>
 
                         <li id="amdDP">
-                            <a href="<c:url value='/home/amddp' />"><i class="fa fa-fw fa-arrows-alt"  data-toggle="tooltip" title="SM-SRs"></i> AMD DP</a>
-                        </li>
-
-    		            <li id="generalConfiguration">
-    		                <a href="<c:url value='/home/general/configuration' />" data-toggle="tooltip" title="General settings"><i class="fa fa-fw fa-cogs"></i> General Configuration</a>
-    		            </li>
-	                	
-                 <!--   <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script> -->        
-                        
+                            <a href="<c:url value='/home/amddp' />">Contacto </a>
+                        </li>                                    
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+
+                
+
+           <ul class="navbar-top-links navbar-right"> 
+                <li class="navbar-top-links navbar-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope fa-fw"></i> Mensajes <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>DE quien vino</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Dia</em>
+                                    </span>
+                                </div>
+                                <div>Contenido del mail</div>
+                            </a>
+                        </li>
+                       
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Leer todos los mensajes</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="navbar-top-links navbar-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-user"></i>   ${pageContext.request.userPrincipal.name} <i class="fa fa-caret-down"></i>
+					</a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                        </li>
+                        <li><a href="<c:url value='/home/general/configuration' />" data-toggle="tooltip" title="General settings"><i class="fa fa-gear fa-fw"></i> Configuracion</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                        	 <a href="<c:url value="/logoutsession" />"><i class="fa fa-fw fa-power-off"></i>Salir</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+                
+            </div>
+
         </nav>
 
-        <!--Home page style-->
         <header id="home" class="home">
             <div class="overlay-img">
                 <div class="container">
@@ -114,21 +136,17 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="home-content">
-
-                                <h5>Grab Your Copy Of</h5>
-                                <h1>The <span>Premium</span> Quality PSD Template For <span>free</span></h1>
-
-                                <a target="_blank" href="#"><button class="btn btn-default btn-home">Download<span><i class="fa fa-download"></i></span></button></a>
-
+                                <h1>Materia <span>NTICXs</span></h1>
+                                <h4>Ser Piero Da Vinci</h4>
+                                <h5>Curso  <span>4to</span></h5>
+                                <h6>Docente Guzman Leandro</h6>      
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>	
         </header>
 
-        <!-- Sections -->
         <section id="about" class="sections">
 
             <div class="heading-content text-center">
