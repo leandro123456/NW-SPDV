@@ -2,6 +2,7 @@ package com.lgg.nticxs.web.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,6 +46,14 @@ public class User {
 	
 	@Field (name = "delete")
 	private Boolean delete;
+	
+	@ElementCollection
+	@Field(name="notas")
+	private List<Nota> notas;
+	
+	@ElementCollection
+	@Field(name="mensajes")
+	private List<Mensaje> mensajes;
 
 	
 	public String getId() {
