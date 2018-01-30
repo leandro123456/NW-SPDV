@@ -55,25 +55,11 @@
                     <ul class="nav navbar-nav navbar-right">                      
 
                         <li><a href="#home">Inicio</a></li>
-                        <li class="active" id="provisioning">
-                            <a href="<c:url value='/home/provisioning'/>" data-toggle="tooltip" title="Profile templates and output files upload">Clases</a>
-                        </li>
-
-                        <li id="templateExplorer">
-                            <a href="<c:url value='/home/template/explorer'/>" data-toggle="tooltip" title="Edit template parameters">Foro</a>
-                        </li>
-
-                        <li id="ippGeneration">
-                            <a href="<c:url value='/home/ipp/generation'/>" title="Generate new IPPs">Notas</a>
-                        </li>
-
-                        <li id="ippExplorer">
-                            <a href="<c:url value='/home/ipp/explorer'/>">Faltas</a>
-                        </li>
-
-                        <li id="amdDP">
-                            <a href="<c:url value='/home/amddp' />">Contacto </a>
-                        </li>                                    
+                        <li><a href="#about">Clases</a></li>
+                        <li><a href="#project">Foro</a></li>
+                        <li><a href="#team">Notas</a></li>
+                        <li><a href="#blog">Faltas</a></li>
+                        <li><a href="#contact">Contacto</a></li>                                 
                     </ul>
                 </div>
 
@@ -151,11 +137,11 @@
 
             <div class="heading-content text-center">
 
-                <h3>Know About Us</h3>
+                <h3>Clases</h3>
 
                 <div class="separator"></div>
 
-                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim </p>
+                <p>En este seccion se agregaran notas y documentacion correspondientes a las clases</p>
 
             </div>
 
@@ -188,124 +174,17 @@
 
         </section>
 
-        <!-- Sections -->
-        <section id="service" class="sections">
-            <div class="container text-center">
-                <div class="heading-content2">
 
-                    <h4>Services We provide</h4>
-
-                    <p>
-                        Volutpat wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo 
-                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu 
-                        feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent  
-                    </p>
-
-                </div>
-                <!-- Example row of columns -->
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="service-content">
-                            <i class="fa fa-users"></i>
-                            <h5>Consultancy</h5>
-                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="service-content">
-                            <i class="fa fa-camera"></i>
-                            <h5>Marketing</h5>
-                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12 col-xs-12">
-                        <div class="service-content">
-                            <i class="fa fa-database"></i>
-                            <h5>Research</h5>
-                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div> <!-- /container -->       
-        </section>
-
-        <!-- Sections -->
-        <section id="our-skills" class=" skills skill-bg">
-            <div class="overlay-img">
-                <div class="container sections text-center">
-                    <div class="skill-heading">
-
-                        <h4>Our Skills</h4>
-
-                    </div>
-                    <!-- Example row of columns -->
-                    <div class="row">
-                            <div class="col-sm-3 text-center">
-								<div class="main-skill">
-									<div class="chart-round">
-										<div class="chart" data-percent="86">
-											<span class="percent"></span>
-										</div>
-									</div>
-									<div class="skills-text">Marketing</div>
-								</div>
-                            </div>
-							
-                            <div class="col-sm-3 text-center">
-								<div class="main-skill">
-									<div class="chart-round">
-										<div class="chart" data-percent="86">
-											<span class="percent"></span>
-										</div>
-									</div>
-									<div class="skills-text">Marketing</div>
-								</div>
-                            </div>
-							
-                            <div class="col-sm-3 text-center">
-								<div class="main-skill">
-									<div class="chart-round">
-										<div class="chart" data-percent="86">
-											<span class="percent"></span>
-										</div>
-									</div>
-									<div class="skills-text">Marketing</div>
-								</div>
-                            </div>
-							
-                            <div class="col-sm-3 text-center">
-								<div class="main-skill">
-									<div class="chart-round">
-										<div class="chart" data-percent="86">
-											<span class="percent"></span>
-										</div>
-									</div>
-									<div class="skills-text">Marketing</div>
-								</div>
-                            </div>
-
-                        </div> 
-
-                </div>
-            </div> <!-- /container -->  
-        </div>		
-    </section>
-
-
-    <!-- Sections -->
     <section id="project" class="sections">
         <div class="container text-center">
 
             <div class="heading-content text-center">
 
-                <h3>Some Recent Project</h3>
+                <h3>Foro</h3>
 
                 <div class="separator"></div>
 
-                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim </p>
+                <p>Esta seccion permite cargar preguntas y respuestas de temas relacionadoas a la materia</p>
 
             </div>
             <!-- Example row of columns -->
@@ -318,7 +197,7 @@
 					
 						<div class="project-overlay"></div>
 						<div class="project-content">
-							<h5>PaperClips</h5>
+							<h5>Tema</h5>
 							<div class="project-separator"></div>
 							<h6>Branding</h6>
 						</div>
@@ -425,40 +304,20 @@
 
         </div> <!-- /container -->       
     </section>
-
-    <!-- Sections -->
-    <section id="twitter" class="sections different-bg">
-        <div class="container text-center">
-
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                    <div class="twitter-content">
-                        <h5>LATEST FROM TWITTER</h5>
-                        <p>Trying out velositey - a simple website building extension for Photoshop.</p>
-                        <a target="_blank" href="#">buff.ly/NC8gog</a>
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div> <!-- /container -->       
-    </section>
-
-    <!-- Sections -->
+    
+        
+        
     <section id="team" class="sections lightbg">
         <div class="container text-center">
             <div class="heading-content text-center">
 
-                <h3>Our Team Members</h3>
+                <h3>Notas</h3>
 
                 <div class="separator"></div>
 
-                <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim </p>
+                <p>En esta seccion se muestran las notas de cada alumno</p>
 
             </div>
-            <!-- Example row of columns -->
             <div class="row">
                 <div class="col-md-4 col-sm-6 col-xs-12">
 					<div class="main-team">
@@ -532,6 +391,237 @@
             </div>
         </div> <!-- /container -->       
     </section>
+    
+    <section id="blog" class="sections">
+
+        <div class="heading-content text-center">
+                <div class="heading-title">
+                    <h3>Faltas</h3>
+					<div class="separator"></div>
+                </div>
+
+                <div class="heading-separator"></div>
+
+                <div class="heading-details">
+                    <p>En esta seccion se muestran las notas de cada alumno</p>
+                </div>
+        </div>
+
+
+		<div id="cd-timeline" class="cd-container">
+
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img cd-location">
+                </div> <!-- cd-timeline-img -->
+
+                <div class="cd-timeline-content">
+					<p>10 January, 2016</p>
+                    <h2>Typi non habent claritatem insitam</h2>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
+                    <a href="#0" class="cd-read-more">Read more</a>
+                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                </div> <!-- cd-timeline-content -->
+            </div> <!-- cd-timeline-block -->
+            
+            <div class="container">
+			  <h2>Basic Table</h2>
+			  <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th>Fecha</th>
+			        <th>Tipo de Nota</th>
+			        <th>Descripcion</th>
+			        <th>Valor</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr>
+			        <td>John</td>
+			        <td>Doe</td>
+			        <td>Doe</td>
+			        <td>john@example.com</td>
+			      </tr>
+			      <tr>
+			        <td>Mary</td>
+			        <td>Moe</td>
+			        <td>Doe</td>
+			        <td>mary@example.com</td>
+			      </tr>
+			      <tr>
+			        <td>July</td>
+			        <td>Dooley</td>
+			        <td>Doe</td>
+			        <td>july@example.com</td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+
+
+
+
+            <div class="cd-timeline-block">
+                <div class="cd-timeline-img cd-location">
+                </div> <!-- cd-timeline-img -->
+
+                <div class="cd-timeline-content">
+					<p>10 January, 2016</p>
+                    <h2>Typi non habent claritatem insitam</h2>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
+                    <a href="#0" class="cd-read-more">Read more</a>
+                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                </div> <!-- cd-timeline-content -->
+            </div> <!-- cd-timeline-block -->
+			
+			<div class="cd-timeline-block">
+                <div class="cd-timeline-img cd-location">
+                </div> <!-- cd-timeline-img -->
+
+                <div class="cd-timeline-content">
+                    <p>10 January, 2016</p>
+                    <h2>Typi non habent claritatem insitam</h2>
+                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
+                    <a href="#0" class="cd-read-more">Read more</a>
+                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                </div> <!-- cd-timeline-content -->
+            </div> <!-- cd-timeline-block -->
+
+           
+        </div> <!-- cd-timeline -->
+
+    </section>
+    
+        <section id="service" class="sections">
+            <div class="container text-center">
+                <div class="heading-content2">
+
+                    <h4>Services We provide</h4>
+
+                    <p>
+                        Volutpat wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo 
+                        consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu 
+                        feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent  
+                    </p>
+
+                </div>
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="service-content">
+                            <i class="fa fa-users"></i>
+                            <h5>Consultancy</h5>
+                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="service-content">
+                            <i class="fa fa-camera"></i>
+                            <h5>Marketing</h5>
+                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="service-content">
+                            <i class="fa fa-database"></i>
+                            <h5>Research</h5>
+                            <p>Caritas aritas est etiam processus dynaicus qui sequitur mutationem consuetudium lectorum. Mirum est notare quam </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div> <!-- /container -->       
+        </section>
+
+        <!-- Sections -->
+        <section id="our-skills" class=" skills skill-bg">
+            <div class="overlay-img">
+                <div class="container sections text-center">
+                    <div class="skill-heading">
+
+                        <h4>Our Skills</h4>
+
+                    </div>
+                    <!-- Example row of columns -->
+                    <div class="row">
+                            <div class="col-sm-3 text-center">
+								<div class="main-skill">
+									<div class="chart-round">
+										<div class="chart" data-percent="86">
+											<span class="percent"></span>
+										</div>
+									</div>
+									<div class="skills-text">Marketing</div>
+								</div>
+                            </div>
+							
+                            <div class="col-sm-3 text-center">
+								<div class="main-skill">
+									<div class="chart-round">
+										<div class="chart" data-percent="86">
+											<span class="percent"></span>
+										</div>
+									</div>
+									<div class="skills-text">Marketing</div>
+								</div>
+                            </div>
+							
+                            <div class="col-sm-3 text-center">
+								<div class="main-skill">
+									<div class="chart-round">
+										<div class="chart" data-percent="86">
+											<span class="percent"></span>
+										</div>
+									</div>
+									<div class="skills-text">Marketing</div>
+								</div>
+                            </div>
+							
+                            <div class="col-sm-3 text-center">
+								<div class="main-skill">
+									<div class="chart-round">
+										<div class="chart" data-percent="86">
+											<span class="percent"></span>
+										</div>
+									</div>
+									<div class="skills-text">Marketing</div>
+								</div>
+                            </div>
+
+                        </div> 
+
+                </div>
+            </div> <!-- /container -->  
+        </div>		
+    </section>
+
+
+    
+
+    <!-- Sections -->
+    <section id="twitter" class="sections different-bg">
+        <div class="container text-center">
+
+            <!-- Example row of columns -->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                    <div class="twitter-content">
+                        <h5>LATEST FROM TWITTER</h5>
+                        <p>Trying out velositey - a simple website building extension for Photoshop.</p>
+                        <a target="_blank" href="#">buff.ly/NC8gog</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!-- /container -->       
+    </section>
+
+    <!-- Sections -->
+    
 
 
     <!-- Sections -->
@@ -619,74 +709,14 @@
         </div> <!-- /container -->       
     </section>
 
-    <section id="blog" class="sections">
-
-        <div class="heading-content text-center">
-                <div class="heading-title">
-                    <h3>Our Blog</h3>
-					<div class="separator"></div>
-                </div>
-
-                <div class="heading-separator"></div>
-
-                <div class="heading-details">
-                    <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim </p>
-                </div>
-        </div>
-
-
-		<div id="cd-timeline" class="cd-container">
-
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div> <!-- cd-timeline-img -->
-
-                <div class="cd-timeline-content">
-					<p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
-                </div> <!-- cd-timeline-content -->
-            </div> <!-- cd-timeline-block -->
-
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div> <!-- cd-timeline-img -->
-
-                <div class="cd-timeline-content">
-					<p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
-                </div> <!-- cd-timeline-content -->
-            </div> <!-- cd-timeline-block -->
-			
-			<div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div> <!-- cd-timeline-img -->
-
-                <div class="cd-timeline-content">
-                    <p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
-                </div> <!-- cd-timeline-content -->
-            </div> <!-- cd-timeline-block -->
-
-           
-        </div> <!-- cd-timeline -->
-
-    </section>
+    
 
     <section id="contact" class="sections lightbg">
         <div class="container">
 
             <div class="heading-content text-center">
                 <div class="heading-title">
-                    <h3>Contact</h3>
+                    <h3>Contacto</h3>
                 </div>
 
             </div>
@@ -842,29 +872,29 @@
     <script src='<c:url value="/resources/assets/js/modernizr.js" />'></script>
     <script src='<c:url value="/resources/assets/js/main.js" />'></script>
    
-           <script type="text/javascript">
-            // Check login
-            var notEmptyUser = ${not empty pageContext.request.userPrincipal};
+<!--            <script type="text/javascript"> -->
+//             Check login
+//             var notEmptyUser = ${not empty pageContext.request.userPrincipal};
 
-            // Load administrator category
+//             Load administrator category
 
-            var roleAdmin = ${roleAdmin};
-            var roleAdminDP = ${roleAdminDP};
-            var roleAdminDPPlus = ${roleAdminDPPlus};
-            var roleAdminSR = ${roleAdminSR};
+//             var roleAdmin = ${roleAdmin};
+//             var roleAdminDP = ${roleAdminDP};
+//             var roleAdminDPPlus = ${roleAdminDPPlus};
+//             var roleAdminSR = ${roleAdminSR};
 
-            // Load operetor category
-            var roleOper = ${roleOper};
-            var roleOperDP = ${roleOperDP};
-            var roleOperDPPlus = ${roleOperDPPlus};
-            var roleOperSR = ${roleOperSR};
+//             // Load operetor category
+//             var roleOper = ${roleOper};
+//             var roleOperDP = ${roleOperDP};
+//             var roleOperDPPlus = ${roleOperDPPlus};
+//             var roleOperSR = ${roleOperSR};
 
-            // Load user category
-            var roleUser = ${roleUser};
-            var roleUserDP = ${roleUserDP};
-            var roleUserDPPlus = ${roleUserDPPlus};
-            var roleUserSR = ${roleUserSR};
-        </script>
+//             // Load user category
+//             var roleUser = ${roleUser};
+//             var roleUserDP = ${roleUserDP};
+//             var roleUserDPPlus = ${roleUserDPPlus};
+//             var roleUserSR = ${roleUserSR};
+<!--         </script> -->
 
 
 </body>
