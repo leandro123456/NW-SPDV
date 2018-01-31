@@ -57,9 +57,8 @@
                         <li><a href="#home">Inicio</a></li>
                         <li><a href="#clases">Clases</a></li>
                         <li><a href="#foro">Foro</a></li>
-                         <li><a href="#foro1">Foro1</a></li>
                         <li><a href="#notas">Notas</a></li>
-                        <li><a href="#fastas">Faltas</a></li>
+                        <li><a href="#faltas">Faltas</a></li>
                         <li><a href="#contacto">Contacto</a></li>                                 
                     </ul>
                 </div>
@@ -112,7 +111,7 @@
                 </li>
             </ul>
                 
-            </div>
+        </div>
 
         </nav>
 
@@ -524,44 +523,44 @@
     </section>
     
     
-    <section id="faltas" class="sections">
+<!--     <section id="faltas" class="sections"> -->
 
-            <div class="heading-content text-center">
+<!--             <div class="heading-content text-center"> -->
 
-                <h3>Faltas</h3>
+<!--                 <h3>Faltas</h3> -->
 
-                <div class="separator"></div>
-					<p>En esta seccion se muestran las notas de cada alumno</p>
+<!--                 <div class="separator"></div> -->
+<!-- 					<p>En esta seccion se muestran las notas de cada alumno</p> -->
 
-            </div>
+<!--             </div> -->
 
-            <div class="about-bg">
-                <div class="container">
+<!--             <div class="about-bg"> -->
+<!--                 <div class="container"> -->
 
-                    <!-- Example row of columns -->
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="about-content">
+<!--                     Example row of columns -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-md-6 col-sm-6 col-xs-6"> -->
+<!--                             <div class="about-content"> -->
 
-                                <h3>We Are the best</h3>
-                                <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat </p>
-                                <p>Volutpat wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum </p>
+<!--                                 <h3>We Are the best</h3> -->
+<!--                                 <p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat </p> -->
+<!--                                 <p>Volutpat wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum </p> -->
 
 
-                                <a target="_blank" href="#"><button class="btn btn-default abt-btn">Read More<span><i class="fa fa-long-arrow-right"></i></span></button></a>
-                            </div>
-                        </div>
+<!--                                 <a target="_blank" href="#"><button class="btn btn-default abt-btn">Read More<span><i class="fa fa-long-arrow-right"></i></span></button></a> -->
+<!--                             </div> -->
+<!--                         </div> -->
 
-                        <div class="col-md-6 col-sm-6 col-xs-6">
-                            <div class="about-img">
-                                <img src="/resources/assets/images/about-img.jpg" alt="" />
-                            </div>
-                        </div>
+<!--                         <div class="col-md-6 col-sm-6 col-xs-6"> -->
+<!--                             <div class="about-img"> -->
+<!--                                 <img src="/resources/assets/images/about-img.jpg" alt="" /> -->
+<!--                             </div> -->
+<!--                         </div> -->
 
-                    </div>
-                </div> <!-- /container -->   
-            </div>
-        </section>
+<!--                     </div> -->
+<!--                 </div> /container    -->
+<!--             </div> -->
+<!--         </section> -->
     
     
     
@@ -610,13 +609,18 @@
 <!--         </section> -->
 
 
-		<section id="our-skills" class=" skills skill-bg">
+		<section id="faltas" class=" skills skill-bg">
             <div class="overlay-img">
                 <div class="container sections text-center">
-                    <div class="skill-heading">
-                        <h4>Faltas</h4>
-                    </div>
-                    <!-- Example row of columns -->
+<!--                     <div class="skill-heading"> -->
+<!--                         <h4>Faltas</h4> -->
+<!--                     </div> -->
+                    
+                    <div class="heading-content text-center">
+                		<h3>Faltas</h3>
+                		<div class="separator"></div>
+						<p>En esta seccion se muestran las notas de cada alumno</p>
+            		</div>
                     <div class="row">
                             <div class="col-sm-3 text-center">
 								<div class="main-skill">
@@ -662,30 +666,30 @@
 								</div>
                             </div>
                             
-							<div class="container">
-						  		<h2>Basic Table</h2>
-							  	<p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>            
-							  	<table class="table">
-							    	<thead>
-							      		<tr>
-									        <th>Fecha</th>
-									        <th>Tipo de Nota</th>
-									        <th>Descripcion</th>
-									        <th>Valor</th>
-							      		</tr>
-						    		</thead>
-							    	<tbody>
-							    		<c:forEach items="${notas}" var="nota">
-											<tr>
-												<td>${nota.fecha}</td>
-												<td>${nota.tipo}</td>
-												<td>${nota.descripcion}</td>
-												<td>${nota.valor}</td>
-											</tr>
-										</c:forEach>
-							    	</tbody>
-							  	</table>
-							</div>
+<!-- 							<div class="container"> -->
+<!-- 						  		<h2>Basic Table</h2> -->
+<!-- 							  	<p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>             -->
+<!-- 							  	<table class="table"> -->
+<!-- 							    	<thead> -->
+<!-- 							      		<tr> -->
+<!-- 									        <th>Fecha</th> -->
+<!-- 									        <th>Tipo de Nota</th> -->
+<!-- 									        <th>Descripcion</th> -->
+<!-- 									        <th>Valor</th> -->
+<!-- 							      		</tr> -->
+<!-- 						    		</thead> -->
+<!-- 							    	<tbody> -->
+<%-- 							    		<c:forEach items="${notas}" var="nota"> --%>
+<!-- 											<tr> -->
+<%-- 												<td>${nota.fecha}</td> --%>
+<%-- 												<td>${nota.tipo}</td> --%>
+<%-- 												<td>${nota.descripcion}</td> --%>
+<%-- 												<td>${nota.valor}</td> --%>
+<!-- 											</tr> -->
+<%-- 										</c:forEach> --%>
+<!-- 							    	</tbody> -->
+<!-- 							  	</table> -->
+<!-- 							</div> -->
                         </div> 
               	</div>
         	</div>
