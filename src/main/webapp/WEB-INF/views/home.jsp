@@ -2,9 +2,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
  	<title>Pantalla Principal</title>
 	<meta charset="utf-8">
@@ -14,10 +11,7 @@
     <meta name="author" content="">
     
     
-    <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../resources/dist/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    
+
     
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link href='<c:url value="/resources/assets/css/bootstrap.min.css"/>' rel="stylesheet">
@@ -26,18 +20,25 @@
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/style.css"/>'>
         <link rel="stylesheet" type="text/css" href='<c:url value="/resources/assets/css/responsive.css" />'>
         <script src='<c:url value="/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js" />'></script>    
+		<script src='<c:url value="/resources/vendor/jquery/jquery.min.js" />'></script>
+
+    	<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <link href="../resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+        <link href="../resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <script src="../resources/vendor/jquery/jquery.min.js"></script>
+        <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
   <div class='preloader'><div class='loaded'>&nbsp;</div></div>
-    <script src="../resources/vendor/jquery/jquery.min.js"></script>
-    <script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+    
 
         <nav class="navbar navbar-default navbar-fixed-top">
                 
-
             <div class="container">
 
+                
 
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -54,7 +55,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">                      
 
-                        <li><a href="#home">Inicio</a></li>
+                        <li class="active"><a href="#home">Inicio</a></li>
                         <li><a href="#clases">Clases</a></li>
                         <li><a href="#foro">Foro</a></li>
                         <li><a href="#notas">Notas</a></li>
@@ -470,7 +471,7 @@
 					<div class="main-team">
 						<div class="team-details">
 
-						  <img src="/resources/assets/images/team-img.jpg" alt="" />
+						  <img src='<c:url value="/resources/assets/images/team-img.jpg"/>' alt="" />
 							<div class="team-overlay"></div>
 							
 							<div class="social">
@@ -492,7 +493,7 @@
 					<div class="main-team">
 						<div class="team-details">
 
-						  <img src="/resources/assets/images/team-img.jpg" alt="" />
+						  <img src='<c:url value="/resources/assets/images/team-img.jpg"/>' alt="" />
 							<div class="team-overlay"></div>
 							
 							<div class="social">
@@ -737,7 +738,7 @@
 	</div>
     
 
-    <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script>
+   <!-- <script src='<c:url value="/resources/js/jqueryHeader.js" />'></script> -->
     <script src='<c:url value="/resources/assets/js/vendor/jquery-1.11.2.min.js" />'></script>
     <script src='<c:url value="/resources/assets/js/vendor/bootstrap.min.js" />'></script>
     <script src='<c:url value="/resources/assets/js/jquery.easypiechart.min.js" />'></script>
@@ -747,5 +748,4 @@
    
 </body>
 <jsp:include page="footer.jsp" /> 
-</html>
  
