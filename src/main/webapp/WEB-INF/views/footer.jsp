@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="footer-first-content">
-                        <div class="logo"><img src="/resources/assets/images/footer-logo.png" alt="Company Logo" /></div>
+                        <div class="logo"><img src='<c:url value="/resources/assets/images/footer-logo.png" />' alt="Company Logo" /></div>
                         <p>Gestion de alumnos V. Beta</p>
                     </div>
                 </div>
@@ -88,3 +88,4 @@
 </body>
 
 </html>
+

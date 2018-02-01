@@ -161,7 +161,7 @@
                     <h2>Typi non habent claritatem insitam</h2>
                     <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
                     <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
                 </div> <!-- cd-timeline-content -->
             </div> <!-- cd-timeline-block -->
             
@@ -174,7 +174,7 @@
                     <h2>Typi non habent claritatem insitam</h2>
                     <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
                     <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
                 </div> <!-- cd-timeline-content -->
             </div> <!-- cd-timeline-block -->
 			
@@ -187,7 +187,7 @@
                     <h2>Typi non habent claritatem insitam</h2>
                     <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
                     <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src="/resources/assets/images/timeline/timeline.png" alt="timeline" /></span>
+                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
                 </div> <!-- cd-timeline-content -->
             </div> <!-- cd-timeline-block -->
 
@@ -202,84 +202,79 @@
 
 
 
-        <section id="foro" class="sections different-bg">
+    <section id="foro" class="sections different-bg">
         <div class="container text-center">
-
-            <!-- Example row of columns -->
             <div class="row">
 		        <div class="container text-center">
 		            <div class="row">
 		                <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-		                    <div class="twitter-content">
-		                        <h5>Foro</h5>
-		                        <p>Esta seccion permite cargar preguntas y respuestas de temas relacionadoas a la materia.</p>
-		                        <a target="_blank" href="#">buff.ly/NC8gog</a>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-                <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <div class="carousel-inner" role="listbox">
-
-                            <div class="item active">
-                                <div class="client-content">
-                                    <h3>What Our Clients are saying</h3>
-                                    <p>
-                                        “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                        He worked very hard to satisfy our requirements and the communication was great.”
-                                    </p>
-
-                                    <div class="client-basicinfo">
-                                        <h6>John Doe</h6>
-                                        <a href="#">www.yourwebsite.zt</a>
-                                    </div>
-
+                            <div class="heading-title">
+                                <h3>Foro</h3>
+                                <div class="separator"></div>
+                            </div>
+                            <div class="heading-separator"></div>
+                            <div class="heading-details">
+                                <p>Esta seccion permite cargar preguntas y respuestas de temas relacionadoas a la materia.</p>
+                            </div>
+                        </div>
+                    </div>
+	            </div>
+	        </div>
+            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="client-content">
+                                <h3>What Our Clients are saying</h3>
+                                <p>
+                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
+                                    He worked very hard to satisfy our requirements and the communication was great.”
+                                </p>
+                                <div class="client-basicinfo">
+                                    <h6>John Doe</h6>
+                                    <a href="#">www.yourwebsite.zt</a>
                                 </div>
                             </div>
-                            
-                            <div class="item">
-                                <div class="client-content">
-                                    <h3>What Our Clients are saying</h3>
-                                    <p>
-                                        “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                        He worked very hard to satisfy our requirements and the communication was great.”
-                                        
-                                    </p>
+                        </div>     
+                        <div class="item">
+                            <div class="client-content">
+                                <h3>What Our Clients are saying</h3>
+                                <p>
+                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
+                                    He worked very hard to satisfy our requirements and the communication was great.”
+                                    
+                                </p>
 
-                                    <div class="client-basicinfo">
-                                        <h6>John Doe</h6>
-                                        <a href="#">www.yourwebsite.zt</a>
-                                    </div>
-
+                                <div class="client-basicinfo">
+                                    <h6>John Doe</h6>
+                                    <a href="#">www.yourwebsite.zt</a>
                                 </div>
+
                             </div>
-                            
-                            <div class="item">
-                                <div class="client-content">
-                                    <h3>What Our Clients are saying</h3>
-                                    <p>
-                                        “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                        He worked very hard to satisfy our requirements and the communication was great.”
-                                    </p>
+                        </div>
+                        <div class="item">
+                            <div class="client-content">
+                                <h3>What Our Clients are saying</h3>
+                                <p>
+                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
+                                    He worked very hard to satisfy our requirements and the communication was great.”
+                                </p>
 
-                                    <div class="client-basicinfo">
-                                        <h6>John Doe</h6>
-                                        <a href="#">www.yourwebsite.zt</a>
-                                    </div>
-
+                                <div class="client-basicinfo">
+                                    <h6>John Doe</h6>
+                                    <a href="#">www.yourwebsite.zt</a>
                                 </div>
                             </div>
                         </div>
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
                     </div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
                 </div>
             </div>
-        </div>       
+        </div>     
     </section>
 
 
@@ -453,7 +448,7 @@
 					<div class="main-team">
 						<div class="team-details">
 
-						  <img src="/resources/assets/images/team-img.jpg" alt="" />
+						  <img src='<c:url value="/resources/assets/images/about-img.jpg" />' alt="" />
 							<div class="team-overlay"></div>
 							
 							<div class="social">
@@ -612,10 +607,6 @@
 		<section id="faltas" class=" skills skill-bg">
             <div class="overlay-img">
                 <div class="container sections text-center">
-<!--                     <div class="skill-heading"> -->
-<!--                         <h4>Faltas</h4> -->
-<!--                     </div> -->
-                    
                     <div class="heading-content text-center">
                 		<h3>Faltas</h3>
                 		<div class="separator"></div>
@@ -755,5 +746,6 @@
     <script src='<c:url value="/resources/assets/js/main.js" />'></script>
    
 </body>
-<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp" /> 
 </html>
+ 
