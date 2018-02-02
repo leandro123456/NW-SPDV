@@ -55,6 +55,10 @@ public class User {
 	@Field(name="mensajes")
 	private List<Mensaje> mensajes;
 
+	@ElementCollection
+	@Field(name="asistencia")
+	private List<Asistencia> asistencia;
+
 	
 	public String getId() {
 		return id;
