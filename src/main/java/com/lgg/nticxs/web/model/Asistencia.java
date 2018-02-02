@@ -1,14 +1,16 @@
 package com.lgg.nticxs.web.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.Date;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
 import org.eclipse.persistence.nosql.annotations.NoSql;
 
-@Entity
+@Embeddable
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Asistencia {
 
@@ -36,11 +38,11 @@ public class Asistencia {
 		this.id = id;
 	}
 
-	public String getTipo() {
+	public Integer getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
 	}
 
@@ -52,15 +54,7 @@ public class Asistencia {
 		this.fecha = fecha;
 	}
 
-	public Integer getValor() {
-		return valor;
-	}
-
-	public void setValor(Integer valor) {
-		this.valor = valor;
-	}
-
-	public String getDescripcion() {
+		public String getDescripcion() {
 		return descripcion;
 	}
 

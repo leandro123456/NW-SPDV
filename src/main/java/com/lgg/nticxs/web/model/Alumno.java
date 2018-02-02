@@ -2,6 +2,7 @@ package com.lgg.nticxs.web.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 
 @Entity
 @NoSql(dataFormat=DataFormatType.MAPPED)
-public class User {
+public class Alumno {
 	
 	@Id
 	@GeneratedValue
@@ -22,17 +23,23 @@ public class User {
 	@Field (name = "name")
 	private String name;
 	
-	@Field (name = "password")
-	private byte[] password;
-	
-	@Field (name = "historyPassword")
-	private List<byte[]> historyPassword;
-	
 	@Field (name = "role")
 	private String role;
 	
 	@Field (name = "delete")
 	private Boolean delete;
+	
+	@ElementCollection
+	@Field(name="notas")
+	private List<Nota> notas;
+	
+	@ElementCollection
+	@Field(name="mensajes")
+	private List<Mensaje> mensajes;
+
+	@ElementCollection
+	@Field(name="asistencia")
+	private List<Asistencia> asistencia;
 
 	
 	public String getId() {
@@ -49,22 +56,6 @@ public class User {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public byte[] getPassword() {
-		return password;
-	}
-
-	public void setPassword(byte[] password) {
-		this.password = password;
-	}
-
-	public List<byte[]> getHistoryPassword() {
-		return historyPassword;
-	}
-
-	public void setHistoryPassword(List<byte[]> historyPassword) {
-		this.historyPassword = historyPassword;
 	}
 
 	public String getRole() {

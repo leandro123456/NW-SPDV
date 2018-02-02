@@ -1,10 +1,6 @@
 package com.lgg.nticxs.web.controller;
 
-import org.ietf.tools.TOTPCode;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -13,10 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lgg.nticxs.web.model.ListCardLotsUser;
-import com.lgg.nticxs.web.model.ListLotsUser;
 import com.lgg.nticxs.utils.EncryptorPassword;
-import com.lgg.nticxs.utils.WSLogger;
 import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.web.model.User;
 
@@ -94,30 +87,22 @@ public class LoginController{
     					user.setHistoryPassword(list);
     					
     					//Creo la key TSA y la seteo
-    					user.setKeyTSA(TOTPCode.getRandomSecretKey());
+    					//user.setKeyTSA(TOTPCode.getRandomSecretKey());
     					
     					//Creo al usuario con el rol VISITOR por defecto 
     					//(por medidas de seguridad) y lo seteo 
-    					user.setRole("VISITOR");
+    					user.setRole(role);
     					
     					//Creo una lista de lotes vacia y la seteo
-    					ListLotsUser listLotsUser = new ListLotsUser();
-    					
-    					List<String> listEmpty = new ArrayList<>();
-    					listLotsUser.setListEdit(listEmpty);
-    					listLotsUser.setListView(listEmpty);
-    					
-    					user.setListLots(listLotsUser);
-    					
-    					//Creo una lista de lotes de tarjetas vacias y la seteo
-    					ListCardLotsUser listCardLotsUser = new ListCardLotsUser();
-    					
-    					List<String> listCardLotsUserEmpty = new ArrayList<>();
-    					listCardLotsUser.setListLotsCardsEdit(listCardLotsUserEmpty);
-    					listCardLotsUser.setListLotsCardsView(listCardLotsUserEmpty);
-    					
-    					user.setListCardLots(listCardLotsUser);
-    					
+//    					ListLotsUser listLotsUser = new ListLotsUser();
+//    					
+//    					List<String> listEmpty = new ArrayList<>();
+//    					listLotsUser.setListEdit(listEmpty);
+//    					listLotsUser.setListView(listEmpty);
+//    					
+//    					user.setListLots(listLotsUser);
+//    					
+   					
     					//Seteo false el parametro delete
     					user.setDelete(false);
     					
@@ -125,8 +110,8 @@ public class LoginController{
     					userdao.create(user);
     					
     					model.addAttribute("msg2", "User update successfully completed");
-    			    	String barCodeData = TOTPCode.getGoogleAuthenticatorBarCode(user.getKeyTSA(), user.getName(), "eReach");
-    			    	model.addAttribute("imgQR", barCodeData);
+//    			    	String barCodeData = TOTPCode.getGoogleAuthenticatorBarCode(user.getKeyTSA(), user.getName(), "eReach");
+//    			    	model.addAttribute("imgQR", barCodeData);
     			    	return "login";
     			    	
     				} else {
@@ -180,26 +165,26 @@ public class LoginController{
     
     @PostMapping("/twoauthentication")
     public String twoAuthentication(Model model, @RequestParam("sixKey") String keyTSASend) {
-    	UserDAO userdao = new UserDAO();
+//    	UserDAO userdao = new UserDAO();
+//    	
+//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//    	
+    //	User user = userdao.retrieveByName(auth.getName());
     	
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	
-    	User user = userdao.retrieveByName(auth.getName());
-    	
-    	if(keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 0)) 
-    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 90000)) 
-    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), -90000))) {
+//    	if(keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 0)) 
+//    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), 90000)) 
+//    			|| keyTSASend.equals(TOTPCode.getTOTPCode(user.getKeyTSA(), -90000))) {
 //    		Muestra el codigo valido para la autenticacion de dos pasos
 //    		System.out.println(TOTPCode.getTOTPCode(key.getKey()));
     		
-    		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-            authorities.add(new SimpleGrantedAuthority(user.getRole()));
-            Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), authorities);
-            SecurityContextHolder.getContext().setAuthentication(newAuth);
-            return "redirect:home/";
-    	}
-    	
-    	model.addAttribute("msg1", "Google authenticator verification code incorrect");
+//    		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//            authorities.add(new SimpleGrantedAuthority(user.getRole()));
+//            Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), authorities);
+//            SecurityContextHolder.getContext().setAuthentication(newAuth);
+//            return "redirect:home/";
+//    	}
+//    	
+//    	model.addAttribute("msg1", "Google authenticator verification code incorrect");
     	return "login";
     }
 

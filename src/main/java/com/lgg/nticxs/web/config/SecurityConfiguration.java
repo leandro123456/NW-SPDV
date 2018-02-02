@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.lgg.nticxs.utils.Utils;
 import com.lgg.nticxs.web.DAO.RolesDAO;
@@ -26,6 +28,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationProvider authProvider;
 	
+	@Autowired
+	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	String currentPrincipalName = authentication.getName();
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
 		auth.authenticationProvider(authProvider);
@@ -34,6 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	    @Override
 	    public void configure(HttpSecurity http) throws Exception {
+	    	
+	    	
 	    	RolesDAO roledao = new RolesDAO();
 	    	List<Role> listRole = roledao.retrieveAll();
 	    	String access = "";
@@ -44,8 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        http.authorizeRequests()
 	        .antMatchers("/").permitAll()
 	        .antMatchers("/signup").permitAll()
-	        .antMatchers("/home/").access(access.substring(0, (access.length() - 4)) + " or hasAuthority('ADMIN') or hasAuthority('VISITOR') or hasAuthority('SUPERADMIN') or hasAuthority('DOCENTE') or hasAuthority('ALUMNO') or hasAuthority('ADMINISTRATIVO')")
-	        .and().formLogin().defaultSuccessUrl("/home/").loginPage("/login")
+	        .antMatchers("/home/").access(access.substring(0, (access.length() - 4)))
+	        .and().formLogin().defaultSuccessUrl("/home/"+currentPrincipalName).loginPage("/login")
             .usernameParameter("user").passwordParameter("password")
 	        .and().exceptionHandling().accessDeniedPage ("/logoutsession")
 	        .and().csrf().disable();
