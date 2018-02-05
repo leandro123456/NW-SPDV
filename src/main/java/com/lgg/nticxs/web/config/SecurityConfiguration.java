@@ -28,10 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationProvider authProvider;
 	
-	@Autowired
-	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	String currentPrincipalName = authentication.getName();
-	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
 		auth.authenticationProvider(authProvider);
@@ -53,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	        .antMatchers("/").permitAll()
 	        .antMatchers("/signup").permitAll()
 	        .antMatchers("/home/").access(access.substring(0, (access.length() - 4)))
-	        .and().formLogin().defaultSuccessUrl("/home/"+currentPrincipalName).loginPage("/login")
+	        .and().formLogin().defaultSuccessUrl("/home/").loginPage("/login")
             .usernameParameter("user").passwordParameter("password")
 	        .and().exceptionHandling().accessDeniedPage ("/logoutsession")
 	        .and().csrf().disable();
