@@ -1,5 +1,6 @@
 package com.lgg.nticxs.web.controller;
 
+import java.util.Collection;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -9,19 +10,32 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.JOptionPane;
+import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
-	@GetMapping("home/{role}")
-    public String pageLoad(Model model , @PathVariable String role) {
-		if(role.equals("ADMINISTRATIVO"))
+	@GetMapping("home/")
+    public String pageLoad(HttpServletRequest request, Model model, HttpServletRequest request1) {
+		String role= "";
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
+		    for (GrantedAuthority grantedAuthority : authorities) {
+		    	role=grantedAuthority.getAuthority();	
+		    	System.out.println("rol: "+role);
+		    }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE"))
 			return "home2";
 		else
 			return "home";
