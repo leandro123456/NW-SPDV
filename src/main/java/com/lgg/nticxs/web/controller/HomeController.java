@@ -1,5 +1,6 @@
 package com.lgg.nticxs.web.controller;
 
+
 import java.util.Collection;
 import java.util.Properties;
 
@@ -27,6 +28,7 @@ public class HomeController {
 		String role= "";
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			@SuppressWarnings("unchecked")
 			Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
 		    for (GrantedAuthority grantedAuthority : authorities) {
 		    	role=grantedAuthority.getAuthority();	
