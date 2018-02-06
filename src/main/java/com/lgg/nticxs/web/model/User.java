@@ -13,6 +13,11 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 @Entity
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class User {
+	static final public String ROLE_ADMIN = "ADMIN";
+	static final public String ROLE_ADMINISTRATIVO = "ADMINISTRATIVO";
+	static final public String ROLE_DOCENTE = "DOCENTE";
+	static final public String ROLE_ALUMNO = "ALUMNO";
+	static final public String ROLE_PADRE = "PADRE";
 	
 	@Id
 	@GeneratedValue
@@ -28,12 +33,12 @@ public class User {
 	@Field (name = "historyPassword")
 	private List<byte[]> historyPassword;
 	
-	@Field (name = "role")
-	private String role;
-	
 	@Field (name = "delete")
 	private Boolean delete;
 
+	@Field (name = "role")
+	private String role;
+	
 	
 	public String getId() {
 		return id;

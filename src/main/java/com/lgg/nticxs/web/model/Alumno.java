@@ -13,21 +13,7 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 
 @Entity
 @NoSql(dataFormat=DataFormatType.MAPPED)
-public class Alumno {
-	
-	@Id
-	@GeneratedValue
-	@Field(name = "_id")
-	private String id;
-	
-	@Field (name = "name")
-	private String name;
-	
-	@Field (name = "role")
-	private String role;
-	
-	@Field (name = "delete")
-	private Boolean delete;
+public class Alumno extends User{
 	
 	@ElementCollection
 	@Field(name="notas")
@@ -41,36 +27,46 @@ public class Alumno {
 	@Field(name="asistencia")
 	private List<Asistencia> asistencia;
 
+	@Field (name = "cuenta_iniciada")
+	private Boolean cuenta_iniciada;
 	
-	public String getId() {
-		return id;
+	public Alumno(){
+		this.setRole(ROLE_ALUMNO);
+		cuenta_iniciada=false;
+	}
+	
+	public List<Nota> getNotas() {
+		return notas;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
 	}
 
-	public String getName() {
-		return name;
+	public List<Mensaje> getMensajes() {
+		return mensajes;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
 	}
 
-	public String getRole() {
-		return role;
+	public List<Asistencia> getAsistencia() {
+		return asistencia;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setAsistencia(List<Asistencia> asistencia) {
+		this.asistencia = asistencia;
 	}
 
-	public Boolean getDelete() {
-		return delete;
+	public Boolean getCuenta_iniciada() {
+		return cuenta_iniciada;
 	}
 
-	public void setDelete(Boolean delete) {
-		this.delete = delete;
+	public void setCuenta_iniciada(Boolean cuenta_iniciada) {
+		this.cuenta_iniciada = cuenta_iniciada;
 	}
+	
+	
+	
 }

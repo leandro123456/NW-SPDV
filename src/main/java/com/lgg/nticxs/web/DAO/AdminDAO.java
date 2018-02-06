@@ -10,7 +10,14 @@ import javax.persistence.Query;
 import com.lgg.nticxs.web.jpa.JPADAO;
 import com.lgg.nticxs.web.model.User;
 
-public class UserDAO extends JPADAO<User>{
+public class AdminDAO extends JPADAO<User>{
+//	@SuppressWarnings("unchecked")
+//	public List<User> retrieve(){
+//		String sql = "SELECT u FROM User u";
+//		Query query = getEntityManager().createQuery(sql);
+//		query.setHint(QueryHints.REFRESH, HintValues.TRUE);
+//		return query.getResultList();
+//	}
 
 	@SuppressWarnings("unchecked")
 	public List<User> retrieveAll() {
