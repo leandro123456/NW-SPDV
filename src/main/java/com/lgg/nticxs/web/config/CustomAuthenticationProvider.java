@@ -12,8 +12,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import com.lgg.nticxs.utils.EncryptorPassword;
-import com.lgg.nticxs.web.DAO.UserDAO;
-import com.lgg.nticxs.web.model.User;
+import com.lgg.nticxs.web.DAO.AlumnoDAO;
+import com.lgg.nticxs.web.model.Alumno;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
@@ -22,12 +22,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		
-		UserDAO userdao = new UserDAO();
+		AlumnoDAO alumdao = new AlumnoDAO();
 
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		User user = new User();
-		user = userdao.retrieveByName(name);
+		Alumno user = new Alumno();
+		user = alumdao.retrieveByName(name);
 		try {
 			if (name.equals(user.getName()) && password.equals(EncryptorPassword.decrypt(user.getPassword())) && user != null) {
 				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

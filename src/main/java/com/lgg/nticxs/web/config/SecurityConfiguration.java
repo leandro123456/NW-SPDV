@@ -8,14 +8,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.lgg.nticxs.utils.Utils;
 import com.lgg.nticxs.web.DAO.RolesDAO;
-import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.web.model.Role;
-import com.lgg.nticxs.web.model.User;
 import com.lgg.nticxs.web.config.CustomAuthenticationProvider;
 
 /**

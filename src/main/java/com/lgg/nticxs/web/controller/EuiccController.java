@@ -2,17 +2,13 @@ package com.lgg.nticxs.web.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.util.StreamReaderDelegate;
 
@@ -37,28 +33,7 @@ import com.lgg.nticxs.web.helper.SRHelper;
 import com.lgg.nticxs.web.model.LotCard;
 import com.lgg.nticxs.web.model.SimpleCard;
 
-//import com.movasim.dp.DAO.PresetCommandDAO;
-//import com.movasim.dp.model.PresetCommand;
-//import com.movasim.dp.utils.Utils;
-//import com.movasim.dp.ws.generated.POL2RuleActionType;
-//import com.movasim.dp.ws.generated.POL2RuleQualificationType;
-//import com.movasim.dp.ws.generated.POL2RuleSubjectType;
-//import com.movasim.dp.ws.generated.POL2RuleType;
-//
-//import com.movasim.sr.DAO.CampaignDAO;
-//import com.movasim.sr.DAO.CardDAO;
-//import com.movasim.sr.DAO.SRDAO;
-//import com.movasim.sr.model.Campaign;
-//import com.movasim.sr.model.Card;
-//import com.movasim.sr.model.CardProfile;
-//import com.movasim.sr.model.SR;
-//import com.movasim.sr.ws.generated.EISType;
-//import com.movasim.sr.ws.generated.EISType.AdditionalProperties;
-//import com.movasim.sr.ws.generated.PropertyType;
 
-
-import com.lgg.nticxs.web.model.SimpleProfileCard;
-import com.lgg.nticxs.web.model.User;
 
 /**
  * Created by movasim on 05/09/16.

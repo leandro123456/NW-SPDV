@@ -23,8 +23,7 @@ import com.lgg.nticxs.web.model.LotCard;
 import com.lgg.nticxs.web.model.Role;
 import com.lgg.nticxs.web.model.SimpleCard;
 import com.lgg.nticxs.web.model.SimpleIpp;
-import com.lgg.nticxs.web.model.SimpleUser;
-import com.lgg.nticxs.web.model.User;
+
 
 
 import nl.flotsam.xeger.Xeger;
