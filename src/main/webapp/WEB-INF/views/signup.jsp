@@ -71,7 +71,7 @@
 				<!-- Page Heading -->
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">eReach - User</h1>
+						<h1 class="page-header">Creacion de Usuarios</h1>
 					</div>
 				</div>
 				<div class="row">
@@ -80,20 +80,22 @@
 							<div class="alert alert-warning">${msg1}</div>
 						</c:if>
 						<div class="panel-heading">
-							<h3 class="panel-title">User Details</h3>
+							<h3 class="panel-title">Detalles del Usuario</h3>
 						</div>
 						<div class="panel-body">
 							<form role="form" action="<c:url value='signup'/>" method="post" enctype="multipart/form-data" autocomplete="off">
 								<div class="form-group">
 
-									<label>Name</label>
+									<label>Nombre</label>
 									<input name="newName" class="form-control" placeholder="User">
 									<p></p>
 									<label>Remember to talk to an administrator to change the role of your account</label>
 									<p></p>
-									<label>Role</label> 
-									<select name="role" class="form-control" disabled>
-										<option>VISITOR</option>
+									<label>Rol</label> 
+									<select name="role" class="form-control">
+										<option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+										<option value="PADRE">PADRE</option>
+										<option value="ALUMNO">ALUMNO</option>
 									</select>
 									<p></p>
 

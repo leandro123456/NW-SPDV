@@ -10,8 +10,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lgg.nticxs.utils.EncryptorPassword;
-import com.lgg.nticxs.web.DAO.UserDAO;
-import com.lgg.nticxs.web.model.User;
+import com.lgg.nticxs.web.DAO.AdminDAO;
+import com.lgg.nticxs.web.DAO.AdministrativoDAO;
+import com.lgg.nticxs.web.DAO.AlumnoDAO;
+import com.lgg.nticxs.web.DAO.DocenteDAO;
+import com.lgg.nticxs.web.DAO.PadreDAO;
+import com.lgg.nticxs.web.model.Admin;
+import com.lgg.nticxs.web.model.Administrativo;
+import com.lgg.nticxs.web.model.Alumno;
+import com.lgg.nticxs.web.model.Docente;
+import com.lgg.nticxs.web.model.Padre;
 
 import nl.flotsam.xeger.Xeger;
 
@@ -26,7 +34,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class LoginController{
-	
+	private AdminDAO admindao = new AdminDAO();
+	private AdministrativoDAO adminstrativodao = new AdministrativoDAO();
+	private DocenteDAO docentedao  = new DocenteDAO();
+	private AlumnoDAO alumnodao  = new AlumnoDAO();
+	private PadreDAO padredao = new PadreDAO();
 
     @GetMapping("/")
     public String redirect(Model model) {
@@ -51,12 +63,7 @@ public class LoginController{
     		@RequestParam(name="role", required=false) String role,
     		@RequestParam(name="newPass", required=false) String pass, 
     		@RequestParam(name="newPass2", required=false) String pass2) throws Exception{
-
-    	//Verifico en la DB si hay algun usuario con el nombre
-    	//del nuevo usuario que quiero crear
-    	UserDAO userdao = new UserDAO();
-    	User verifyUserName = userdao.retrieveByName(name);
-    	
+    	String returnValue = null;
     	if (action.compareTo("save") == 0) {
     		
     		if(name.isEmpty()) {
@@ -64,76 +71,252 @@ public class LoginController{
     			return "signup";
         	}
     		
-    		//Si no hay ningun usuario con el nombre que quiero usar
-    		//se procede a la creacion del usuario
-    		if(verifyUserName==null) {
-    			//Verificacion de password
-    			if(pass.equals(pass2)){
+        	switch (role) {
+    		case "ADMIN":
+    			returnValue = createAdmin(model, name, role,pass, pass2);
+    			break;
+    		case "ADMINISTRATIVO":
+    			returnValue = createAdministrativo(model, name, role,pass, pass2);
+    			break;
+    		case "DOCENTE":
+    			returnValue = createDocente(model, name, role,pass, pass2);
+    			break;
+    		case "ALUMNO":
+    			returnValue = createAlumno(model, name, role,pass, pass2);
+    			break;
+    		case "PADRE":
+    			returnValue = createPadre(model, name, role,pass, pass2);
+    			break;
 
-    				//Verificacion de seguridad de la clave
-    				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
-    					
-    					User user = new User();
-    	    			
-    	    			user.setName(name);
-
-    	    			//Encripto y seteo la password
-    	    			byte[] password = EncryptorPassword.encrypt(pass);
-    					user.setPassword(password);
-    					
-    					//Creo una lista vacia para el historial de claves, agrego la clave y la seteo 
-    					List<byte[]> list = new ArrayList<byte[]>();
-    					list.add(password);
-    					user.setHistoryPassword(list);
-    					
-    					//Creo la key TSA y la seteo
-    					//user.setKeyTSA(TOTPCode.getRandomSecretKey());
-    					
-    					//Creo al usuario con el rol VISITOR por defecto 
-    					//(por medidas de seguridad) y lo seteo 
-    					user.setRole(role);
-    					
-    					//Creo una lista de lotes vacia y la seteo
-//    					ListLotsUser listLotsUser = new ListLotsUser();
-//    					
-//    					List<String> listEmpty = new ArrayList<>();
-//    					listLotsUser.setListEdit(listEmpty);
-//    					listLotsUser.setListView(listEmpty);
-//    					
-//    					user.setListLots(listLotsUser);
-//    					
-   					
-    					//Seteo false el parametro delete
-    					user.setDelete(false);
-    					
-    					//Guardo el nuevo usuario en DB
-    					userdao.create(user);
-    					
-    					model.addAttribute("msg2", "User update successfully completed");
-//    			    	String barCodeData = TOTPCode.getGoogleAuthenticatorBarCode(user.getKeyTSA(), user.getName(), "eReach");
-//    			    	model.addAttribute("imgQR", barCodeData);
-    			    	return "login";
-    			    	
-    				} else {
-    					model.addAttribute("msg1", "Error ... Password must meet security requirements");
-    					return "signup";
-    				}
-
-    			} else {
-    				model.addAttribute("msg1", "Error ... password do not match");
-    				return "signup";
-    			}
-    			
-    		} else {
-    			model.addAttribute("msg1", "Error ... incorrect name, already exists");
-    			return "signup";
+    		default:
+    			break;
     		}
     	} 
     
-    	return "login";
+    	return returnValue;
     }
-    
-    @GetMapping("/randompassword")
+
+
+
+	private String createPadre(Model model, String name, String role, String pass, String pass2) {
+		if(!existName(name,role)) {
+			if(pass.equals(pass2)){
+				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+					Padre admin = new Padre();
+	    			admin.setName(name);
+	    			try {
+	    				byte[] password = EncryptorPassword.encrypt(pass);
+						admin.setPassword(password);
+						List<byte[]> list = new ArrayList<byte[]>();
+						list.add(password);
+						admin.setHistoryPassword(list);
+					} catch (Exception e) {
+						System.out.println("error en la generacion del pass");
+						e.printStackTrace();
+					}
+					admin.setRole(role);
+					admin.setDelete(false);
+					padredao.create(admin);
+					model.addAttribute("msg2", "User update successfully completed");
+			    	return "login";
+				} else {
+					model.addAttribute("msg1", "Error ... Password must meet security requirements");
+					return "signup";
+				}
+			} else {
+				model.addAttribute("msg1", "Error ... password do not match");
+				return "signup";
+			}
+		}else {
+			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+			return "signup";
+		}
+		
+	}
+
+
+	private String createAlumno(Model model, String name, String role, String pass, String pass2) {
+		if(!existName(name,role)) {
+			if(pass.equals(pass2)){
+				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+					Alumno admin = new Alumno();
+	    			admin.setName(name);
+	    			try {
+	    				byte[] password = EncryptorPassword.encrypt(pass);
+						admin.setPassword(password);
+						List<byte[]> list = new ArrayList<byte[]>();
+						list.add(password);
+						admin.setHistoryPassword(list);
+					} catch (Exception e) {
+						System.out.println("error en la generacion del pass");
+						e.printStackTrace();
+					}
+					admin.setRole(role);
+					admin.setDelete(false);
+					alumnodao.create(admin);
+					model.addAttribute("msg2", "User update successfully completed");
+			    	return "login";
+				} else {
+					model.addAttribute("msg1", "Error ... Password must meet security requirements");
+					return "signup";
+				}
+			} else {
+				model.addAttribute("msg1", "Error ... password do not match");
+				return "signup";
+			}
+		}else {
+			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+			return "signup";
+		}
+		
+	}
+
+
+	private String createDocente(Model model, String name, String role, String pass, String pass2) {
+		if(!existName(name,role)) {
+			if(pass.equals(pass2)){
+				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+					Docente admin = new Docente();
+	    			admin.setName(name);
+	    			try {
+	    				byte[] password = EncryptorPassword.encrypt(pass);
+						admin.setPassword(password);
+						List<byte[]> list = new ArrayList<byte[]>();
+						list.add(password);
+						admin.setHistoryPassword(list);
+					} catch (Exception e) {
+						System.out.println("error en la generacion del pass");
+						e.printStackTrace();
+					}
+					admin.setRole(role);
+					admin.setDelete(false);
+					docentedao.create(admin);
+					model.addAttribute("msg2", "User update successfully completed");
+			    	return "login";
+				} else {
+					model.addAttribute("msg1", "Error ... Password must meet security requirements");
+					return "signup";
+				}
+			} else {
+				model.addAttribute("msg1", "Error ... password do not match");
+				return "signup";
+			}
+		}else {
+			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+			return "signup";
+		}
+		
+	}
+
+
+	private String createAdministrativo(Model model, String name, String role, String pass, String pass2) {
+		if(!existName(name,role)) {
+			if(pass.equals(pass2)){
+				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+					Administrativo admin = new Administrativo();
+	    			admin.setName(name);
+	    			try {
+	    				byte[] password = EncryptorPassword.encrypt(pass);
+						admin.setPassword(password);
+						List<byte[]> list = new ArrayList<byte[]>();
+						list.add(password);
+						admin.setHistoryPassword(list);
+					} catch (Exception e) {
+						System.out.println("error en la generacion del pass");
+						e.printStackTrace();
+					}
+					admin.setRole(role);
+					admin.setDelete(false);
+					adminstrativodao.create(admin);
+					model.addAttribute("msg2", "User update successfully completed");
+			    	return "login";
+				} else {
+					model.addAttribute("msg1", "Error ... Password must meet security requirements");
+					return "signup";
+				}
+			} else {
+				model.addAttribute("msg1", "Error ... password do not match");
+				return "signup";
+			}
+		}else {
+			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+			return "signup";
+		}
+		
+	}
+
+
+	private String createAdmin(Model model, String name, String role, String pass, String pass2){
+		if(!existName(name,role)) {
+			if(pass.equals(pass2)){
+				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+					Admin admin = new Admin();
+	    			admin.setName(name);
+	    			try {
+	    				byte[] password = EncryptorPassword.encrypt(pass);
+						admin.setPassword(password);
+						List<byte[]> list = new ArrayList<byte[]>();
+						list.add(password);
+						admin.setHistoryPassword(list);
+					} catch (Exception e) {
+						System.out.println("error en la generacion del pass");
+						e.printStackTrace();
+					}
+					admin.setRole(role);
+					admin.setDelete(false);
+					admindao.create(admin);
+					model.addAttribute("msg2", "User update successfully completed");
+			    	return "login";
+				} else {
+					model.addAttribute("msg1", "Error ... Password must meet security requirements");
+					return "signup";
+				}
+			} else {
+				model.addAttribute("msg1", "Error ... password do not match");
+				return "signup";
+			}
+		}else {
+			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+			return "signup";
+		}	
+	}
+
+
+	private boolean existName(String name, String role) {
+    	switch (role) {
+		case "ADMIN":
+			Admin admin = admindao.retrieveByName(name);
+			if(admin != null)
+				return true;
+			break;
+		case "ADMINISTRATIVO":
+			Administrativo administrativo = adminstrativodao.retrieveByName(name);
+			if(administrativo != null)
+				return true;
+			break;
+		case "DOCENTE":
+			Docente docente = docentedao.retrieveByName(name);
+			if(docente != null)
+				return true;
+			break;
+		case "ALUMNO":
+			Alumno alumno = alumnodao.retrieveByName(name);
+			if(alumno != null)
+				return true;
+			break;
+		case "PADRE":
+			Padre padre = padredao.retrieveByName(name);
+			if(padre != null)
+				return true;
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
+
+
+	@GetMapping("/randompassword")
     public void randompassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  	    
  	   	String result = null;

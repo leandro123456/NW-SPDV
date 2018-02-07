@@ -28,6 +28,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String password = authentication.getCredentials().toString();
 		Alumno user = new Alumno();
 		user = alumdao.retrieveByName(name);
+		System.out.println("name" + user);
 		try {
 			if (name.equals(user.getName()) && password.equals(EncryptorPassword.decrypt(user.getPassword())) && user != null) {
 				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

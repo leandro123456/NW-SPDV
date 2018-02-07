@@ -1,13 +1,9 @@
 package com.lgg.nticxs.web.controller;
 
 
-import com.lgg.nticxs.web.DAO.LotDAO;
-import com.lgg.nticxs.web.DAO.UserDAO;
-import com.lgg.nticxs.web.model.Lot;
 import com.lgg.nticxs.web.model.SimpleClasificationIPP;
 import com.lgg.nticxs.web.model.SimpleTemplate;
 import com.lgg.nticxs.web.model.TemplateSearch;
-import com.lgg.nticxs.web.model.User;
 import com.lgg.nticxs.utils.Settings;
 import com.lgg.nticxs.utils.WSLogger;
 
@@ -40,8 +36,6 @@ public class TemplateController {
 	
 //	TemplateIppDAO templatedao = new TemplateIppDAO();
 	
-	UserDAO userdao = new UserDAO();
-	LotDAO lotdao = new LotDAO();
 	
 	private static WSLogger logger = new WSLogger();
 
@@ -66,7 +60,6 @@ public class TemplateController {
     		@RequestParam("searchText") String searchText, 
     		@RequestParam("searchBy") String searchBy) {
     	
-        User user = userdao.retrieveByName(auth.getName());
         
 //        List<TemplateIpp> templates = null;
 //
@@ -235,9 +228,7 @@ public class TemplateController {
     public String addLotsTemplateGet(Model model,
     		@PathVariable String id) {
     	
-    	List<Lot> listLots = lotdao.retrieveAll();
     	
-    	model.addAttribute("loteFound", listLots);
     	model.addAttribute("id", id);
     	
     	logger.logger("INFO", "SM-WEB", "Template", "", "Add lot", "addLotsTemplateGet()", "", "", 
@@ -251,9 +242,7 @@ public class TemplateController {
     public String deleteLotsTemplateGet(Model model,
     		@PathVariable String id) {
     	
-    	List<Lot> listLots = lotdao.retrieveAll();
     	
-    	model.addAttribute("loteFound", listLots);
     	model.addAttribute("id", id);
     	
     	logger.logger("INFO", "SM-WEB", "Template", "", "Delete lot", "deleteLotsTemplateGet()", "", "", 
