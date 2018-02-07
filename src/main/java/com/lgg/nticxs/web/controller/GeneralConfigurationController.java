@@ -10,16 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lgg.nticxs.web.model.ListLotsUser;
-import com.lgg.nticxs.web.model.ListCardLotsUser;
-import com.lgg.nticxs.web.DAO.LotCardDAO;
-import com.lgg.nticxs.web.DAO.LotDAO;
+
 import com.lgg.nticxs.web.DAO.RolesDAO;
 import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.utils.EncryptorPassword;
 import com.lgg.nticxs.utils.WSLogger;
-import com.lgg.nticxs.web.model.Lot;
-import com.lgg.nticxs.web.model.LotCard;
+
 import com.lgg.nticxs.web.model.Role;
 import com.lgg.nticxs.web.model.SimpleCard;
 import com.lgg.nticxs.web.model.SimpleIpp;
@@ -47,8 +43,7 @@ public class GeneralConfigurationController {
 	/*				WEB DB					*/
     UserDAO userdao = new UserDAO();
     RolesDAO rolesdao = new RolesDAO();
-    LotDAO lotdao = new LotDAO();
-    LotCardDAO lotcarddao = new LotCardDAO();
+    
     
     /*				DP DB					*/
 //    TemplateIppDAO templatedao = new TemplateIppDAO();
@@ -301,11 +296,9 @@ public class GeneralConfigurationController {
 	   
 	   if(action.equals("add")) {
 		   User user = userdao.retrieveById(idUser);
-		   List<Lot> listLot = lotdao.retrieveAll();
 		   SimpleUser simpleUser = new SimpleUser(user);
 		   
 		   model.addAttribute("user", simpleUser);
-		   model.addAttribute("listLot", listLot);
 		   model.addAttribute("nameAction", "Add");
 		   model.addAttribute("action", "add");
 		   
@@ -318,11 +311,9 @@ public class GeneralConfigurationController {
 	   
 	   if(action.equals("delete")) {
 		   User user = userdao.retrieveById(idUser);
-		   List<Lot> listLot = lotdao.retrieveAll();
 		   SimpleUser simpleUser = new SimpleUser(user);
 		   
 		   model.addAttribute("user", simpleUser);
-		   model.addAttribute("listLot", listLot);
 		   model.addAttribute("nameAction", "Delete");
 		   model.addAttribute("action", "delete");
 		   
@@ -350,78 +341,77 @@ public class GeneralConfigurationController {
 	   
 	   if(action.compareTo("save") == 0) {
 		   User user = userdao.retrieveById(idUser);
-		   List<Lot> listLot = lotdao.retrieveAll();
 		   
-		   for (Lot lot : listLot) {
-			   
-			   if(request.getParameter("edit_" + lot.getNameOfLote()).equals("true")) {
-				   
-				   Boolean repeated = false;
-				   Boolean repeatedInView = false;
-				   
-//				   for (int i = 0; i < user.getListLots().getListEdit().size(); i++) {
-//					   if(user.getListLots().getListEdit().get(i).equals(lot.getNameOfLote())) {
-//						   repeated = true;
-//						   listOfMsgEditRepeated.add("The lot " + lot.getNameOfLote() + " for edit already this has the user " + user.getName());
-//						   
-//						   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
-//						   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(),
-//						   "This user has the lot what are you trying to add");
-//						   
-//						   break;
-//					   }
-//				   }
+//		   for (Lot lot : listLot) {
+//			   
+//			   if(request.getParameter("edit_" + lot.getNameOfLote()).equals("true")) {
 //				   
-//				   for (int i = 0; i < user.getListLots().getListView().size(); i++) {
-//					   if(user.getListLots().getListView().get(i).equals(lot.getNameOfLote())) {
-//						   repeatedInView = true;
-//					   }
-//				   }
+//				   Boolean repeated = false;
+//				   Boolean repeatedInView = false;
 //				   
-//				   if(!repeated) {
-//					   user.getListLots().getListEdit().add(lot.getNameOfLote());
-//					   
-//					   if(!repeatedInView) {
-//						   user.getListLots().getListView().add(lot.getNameOfLote());
-//					   }
-//					   
-//					   userdao.update(user);
-//					   listOfMsgEdit.add("Add lot " + lot.getNameOfLote() + " for edit to user " + user.getName());
-//					   
-//					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
-//					   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(), 
-//					   "Successfully added the lot for edit to user");
-//				   }
-			   }
-			   
-			   if(request.getParameter("view_" + lot.getNameOfLote()).equals("true")) {
-				   
-				   Boolean repeated = false;
-				   
-//				   for (int i = 0; i < user.getListLots().getListView().size(); i++) {
-//					   if(user.getListLots().getListView().get(i).equals(lot.getNameOfLote())) {
-//						   repeated = true;
-//						   listOfMsgViewRepeated.add("The lot " + lot.getNameOfLote() + " for view already this has the user " + user.getName());
-//						   
-//						   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
-//						   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(), 
-//						   "This user has the lot what are you trying to add");
-//						   
-//						   break;
-//					   }
-//				   }
-				   
-//				   if(!repeated) {
-//					   user.getListLots().getListView().add(lot.getNameOfLote());
-//					   userdao.update(user);
-//					   listOfMsgView.add("Add lot " + lot.getNameOfLote() + " for view to user " + user.getName());
-//					   
-//					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
-//					   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(),
-//					   "Successfully added the lot for view to template");
-//				   }
-			   }
-		   }
+////				   for (int i = 0; i < user.getListLots().getListEdit().size(); i++) {
+////					   if(user.getListLots().getListEdit().get(i).equals(lot.getNameOfLote())) {
+////						   repeated = true;
+////						   listOfMsgEditRepeated.add("The lot " + lot.getNameOfLote() + " for edit already this has the user " + user.getName());
+////						   
+////						   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
+////						   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(),
+////						   "This user has the lot what are you trying to add");
+////						   
+////						   break;
+////					   }
+////				   }
+////				   
+////				   for (int i = 0; i < user.getListLots().getListView().size(); i++) {
+////					   if(user.getListLots().getListView().get(i).equals(lot.getNameOfLote())) {
+////						   repeatedInView = true;
+////					   }
+////				   }
+////				   
+////				   if(!repeated) {
+////					   user.getListLots().getListEdit().add(lot.getNameOfLote());
+////					   
+////					   if(!repeatedInView) {
+////						   user.getListLots().getListView().add(lot.getNameOfLote());
+////					   }
+////					   
+////					   userdao.update(user);
+////					   listOfMsgEdit.add("Add lot " + lot.getNameOfLote() + " for edit to user " + user.getName());
+////					   
+////					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
+////					   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(), 
+////					   "Successfully added the lot for edit to user");
+////				   }
+//			   }
+//			   
+//			   if(request.getParameter("view_" + lot.getNameOfLote()).equals("true")) {
+//				   
+//				   Boolean repeated = false;
+//				   
+////				   for (int i = 0; i < user.getListLots().getListView().size(); i++) {
+////					   if(user.getListLots().getListView().get(i).equals(lot.getNameOfLote())) {
+////						   repeated = true;
+////						   listOfMsgViewRepeated.add("The lot " + lot.getNameOfLote() + " for view already this has the user " + user.getName());
+////						   
+////						   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
+////						   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(), 
+////						   "This user has the lot what are you trying to add");
+////						   
+////						   break;
+////					   }
+////				   }
+//				   
+////				   if(!repeated) {
+////					   user.getListLots().getListView().add(lot.getNameOfLote());
+////					   userdao.update(user);
+////					   listOfMsgView.add("Add lot " + lot.getNameOfLote() + " for view to user " + user.getName());
+////					   
+////					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Lot", "addLotsPost()", "", "", 
+////					   "ID User: " + idUser + ", Name lot: " + lot.getNameOfLote(),
+////					   "Successfully added the lot for view to template");
+////				   }
+//			   }
+//		   }
 		   
 			model.addAttribute("msgEdit", listOfMsgEdit);
 			model.addAttribute("msgView", listOfMsgView);
@@ -590,9 +580,7 @@ public class GeneralConfigurationController {
 		   @PathVariable String idUser) {
 	   
 	   if (action.equals("add")) {
-		   List<LotCard> listCardLot = lotcarddao.retrieveAll();
-		   model.addAttribute("listCardLot", listCardLot);
-		   
+	   
 		   User user = userdao.retrieveById(idUser);
 		   SimpleUser simpleUser = new SimpleUser(user);
 		   model.addAttribute("user", simpleUser);
@@ -607,23 +595,23 @@ public class GeneralConfigurationController {
 		   return "user_action_card_lot";
 	   }
 	   
-	   if (action.equals("delete")) {
-		   List<LotCard> listCardLot = lotcarddao.retrieveAll();
-		   model.addAttribute("listCardLot", listCardLot);
-		   
-		   User user = userdao.retrieveById(idUser);
-		   SimpleUser simpleUser = new SimpleUser(user);
-		   model.addAttribute("user", simpleUser);
-		   
-		   model.addAttribute("nameAction", "Delete");
-		   model.addAttribute("action", "delete");
-		   
-		   logger.logger("INFO", "SM-WEB", "General Configuration", "", "Delete Card Lot", "actionCardLotsGet()", "", "", 
-				   "ID User: " + idUser, 
-				   "A screen opens where shows all card lots for delete them to a user specific");
-		   
-		   return "user_action_card_lot";
-	   }
+//	   if (action.equals("delete")) {
+//		   List<LotCard> listCardLot = lotcarddao.retrieveAll();
+//		   model.addAttribute("listCardLot", listCardLot);
+//		   
+//		   User user = userdao.retrieveById(idUser);
+//		   SimpleUser simpleUser = new SimpleUser(user);
+//		   model.addAttribute("user", simpleUser);
+//		   
+//		   model.addAttribute("nameAction", "Delete");
+//		   model.addAttribute("action", "delete");
+//		   
+//		   logger.logger("INFO", "SM-WEB", "General Configuration", "", "Delete Card Lot", "actionCardLotsGet()", "", "", 
+//				   "ID User: " + idUser, 
+//				   "A screen opens where shows all card lots for delete them to a user specific");
+//		   
+//		   return "user_action_card_lot";
+//	   }
 	   
 	   loadPage(model);
 	   return "general_configuration";
@@ -641,227 +629,227 @@ public class GeneralConfigurationController {
 		List<String> listOfMsgViewRepeated = new ArrayList<>();
 
 
-		if (action.compareTo("save") == 0) {
-			User user = userdao.retrieveById(idUser);
-
-			List<LotCard> listLotCard = lotcarddao.retrieveAll();
-
-			for (LotCard lotCard : listLotCard) {
-
-//				if (request.getParameter("edit_" + lotCard.getNameLot()).equals("true")) {
-//					List<String> newListCardLotEdit = user.getListCardLots().getListLotsCardsEdit();
-//					List<String> newListCardLotView = user.getListCardLots().getListLotsCardsView();
+//		if (action.compareTo("save") == 0) {
+//			User user = userdao.retrieveById(idUser);
 //
-//					Boolean lotCardEditRepeated = false;
-//					Boolean lotCardViewRepeated = false;
+//			List<LotCard> listLotCard = lotcarddao.retrieveAll();
 //
-//					for (int i = 0; i < newListCardLotEdit.size(); i++) {
-//						if (newListCardLotEdit.get(i).equals(lotCard.getNameLot())) {
-//							lotCardEditRepeated = true;
+//			for (LotCard lotCard : listLotCard) {
 //
-//							listOfMsgEditRepeated.add("The card lot " + lotCard.getNameLot() + " for edit already this has the user " + user.getName());
-//							
-//							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(),
-//									   "This user has the card lot what are you trying to add");
-//						}
-//					}
+////				if (request.getParameter("edit_" + lotCard.getNameLot()).equals("true")) {
+////					List<String> newListCardLotEdit = user.getListCardLots().getListLotsCardsEdit();
+////					List<String> newListCardLotView = user.getListCardLots().getListLotsCardsView();
+////
+////					Boolean lotCardEditRepeated = false;
+////					Boolean lotCardViewRepeated = false;
+////
+////					for (int i = 0; i < newListCardLotEdit.size(); i++) {
+////						if (newListCardLotEdit.get(i).equals(lotCard.getNameLot())) {
+////							lotCardEditRepeated = true;
+////
+////							listOfMsgEditRepeated.add("The card lot " + lotCard.getNameLot() + " for edit already this has the user " + user.getName());
+////							
+////							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Lot", "addCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(),
+////									   "This user has the card lot what are you trying to add");
+////						}
+////					}
+////
+////					for (int i = 0; i < newListCardLotView.size(); i++) {
+////						if (newListCardLotView.get(i).equals(lotCard.getNameLot())) {
+////							lotCardViewRepeated = true;
+////						}
+////					}
+////
+////					if (!lotCardEditRepeated) {
+////						ListCardLotsUser newList = new ListCardLotsUser();
+////
+////						newListCardLotEdit.add(lotCard.getNameLot());
+////
+////						if (!lotCardViewRepeated) {
+////							newListCardLotView.add(lotCard.getNameLot());
+////						}
+////
+////						newList.setListLotsCardsEdit(newListCardLotEdit);
+////						newList.setListLotsCardsView(newListCardLotView);
+////
+////						user.setListCardLots(newList);
+////						userdao.update(user);
+////						
+////						logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
+////								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////								   "Successfully added the lot for edit to user");
+////
+////						listOfMsgEdit.add("Add card lot " + lotCard.getNameLot() + " for edit to user " + user.getName());
+////					}
+////				}
 //
-//					for (int i = 0; i < newListCardLotView.size(); i++) {
-//						if (newListCardLotView.get(i).equals(lotCard.getNameLot())) {
-//							lotCardViewRepeated = true;
-//						}
-//					}
-//
-//					if (!lotCardEditRepeated) {
-//						ListCardLotsUser newList = new ListCardLotsUser();
-//
-//						newListCardLotEdit.add(lotCard.getNameLot());
-//
-//						if (!lotCardViewRepeated) {
-//							newListCardLotView.add(lotCard.getNameLot());
-//						}
-//
-//						newList.setListLotsCardsEdit(newListCardLotEdit);
-//						newList.setListLotsCardsView(newListCardLotView);
-//
-//						user.setListCardLots(newList);
-//						userdao.update(user);
-//						
-//						logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
-//								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//								   "Successfully added the lot for edit to user");
-//
-//						listOfMsgEdit.add("Add card lot " + lotCard.getNameLot() + " for edit to user " + user.getName());
-//					}
-//				}
-
-//				if (request.getParameter("view_" + lotCard.getNameLot()).equals("true")) {
-//					List<String> newListCardLotView = user.getListCardLots().getListLotsCardsView();
-//
-//					Boolean lotCardViewRepeated = false;
-//
-//					for (int i = 0; i < newListCardLotView.size(); i++) {
-//						if (newListCardLotView.get(i).equals(lotCard.getNameLot())) {
-//							lotCardViewRepeated = true;
-//							listOfMsgViewRepeated.add("The card lot " + lotCard.getNameLot() + " for view already this has the user " + user.getName());
-//							
-//							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//									   "This user has the card lot what are you trying to add");
-//							
-//							break;
-//						}
-//					}
-//
-//					if (!lotCardViewRepeated) {
-//						newListCardLotView.add(lotCard.getNameLot());
-//						user.getListCardLots().setListLotsCardsView(newListCardLotView);
-//						userdao.update(user);
-//						
-//						logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
-//								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(),
-//								   "Successfully added the lot for view to template");
-//						
-//						listOfMsgView.add("Add card lot " + lotCard.getNameLot() + " for view to user " + user.getName());
-//					}
-//				}
-			}
-			
-			model.addAttribute("msgEdit", listOfMsgEdit);
-        	model.addAttribute("msgView", listOfMsgView);
-        	
-			model.addAttribute("msgEditRepeated", listOfMsgEditRepeated);
-			model.addAttribute("msgViewRepeated", listOfMsgViewRepeated);
-			
-			loadPage(model);
-			return "general_configuration";
-		}
+////				if (request.getParameter("view_" + lotCard.getNameLot()).equals("true")) {
+////					List<String> newListCardLotView = user.getListCardLots().getListLotsCardsView();
+////
+////					Boolean lotCardViewRepeated = false;
+////
+////					for (int i = 0; i < newListCardLotView.size(); i++) {
+////						if (newListCardLotView.get(i).equals(lotCard.getNameLot())) {
+////							lotCardViewRepeated = true;
+////							listOfMsgViewRepeated.add("The card lot " + lotCard.getNameLot() + " for view already this has the user " + user.getName());
+////							
+////							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////									   "This user has the card lot what are you trying to add");
+////							
+////							break;
+////						}
+////					}
+////
+////					if (!lotCardViewRepeated) {
+////						newListCardLotView.add(lotCard.getNameLot());
+////						user.getListCardLots().setListLotsCardsView(newListCardLotView);
+////						userdao.update(user);
+////						
+////						logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Add Card Lot", "addCardLotsPost()", "", "", 
+////								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(),
+////								   "Successfully added the lot for view to template");
+////						
+////						listOfMsgView.add("Add card lot " + lotCard.getNameLot() + " for view to user " + user.getName());
+////					}
+////				}
+//			}
+//			
+//			model.addAttribute("msgEdit", listOfMsgEdit);
+//        	model.addAttribute("msgView", listOfMsgView);
+//        	
+//			model.addAttribute("msgEditRepeated", listOfMsgEditRepeated);
+//			model.addAttribute("msgViewRepeated", listOfMsgViewRepeated);
+//			
+//			loadPage(model);
+//			return "general_configuration";
+//		}
 
 		loadPage(model);
 		return "general_configuration";
 	}
 	
-	@PostMapping("home/general/configuration/user/lots/card/delete/{idUser}")
-	public String deleteCardLotsPost(Model model, HttpServletRequest request,
-			@PathVariable String idUser,
-			@RequestParam (name = "action") String action) {
-		
-		User user = userdao.retrieveById(idUser);
-		List<LotCard> listLotCard = lotcarddao.retrieveAll();
-		
-		List<String> deleteLotsEdit = new ArrayList<>();
-		List<String> deleteLotsView = new ArrayList<>();
-
-		List<String> neverDeleteEdit = new ArrayList<>();
-		List<String> neverDeleteView = new ArrayList<>();
-		
-		if(action.compareTo("save") == 0) {
-			
-			for (LotCard lotCard : listLotCard) {
-				
-//				if(request.getParameter("edit_" + lotCard.getNameLot()).equals("true")) {
-//					
-//					Boolean delete = false;
-//					
-//					for (int i = 0; i < user.getListCardLots().getListLotsCardsEdit().size(); i++) {
-//						if(user.getListCardLots().getListLotsCardsEdit().get(i).equals(lotCard.getNameLot())) {
-//							user.getListCardLots().getListLotsCardsEdit().remove(i);
-//							deleteLotsEdit.add("Delete card lot " + lotCard.getNameLot() + " for edit in the user " + user.getName());
-//							
-//							logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//									   "Successfully deleted the card lot for edit in the user");
-//							
-//							delete = true;
-//							break;
-//						}
-//					}
-//					
-//					for (int i = 0; i < user.getListCardLots().getListLotsCardsView().size(); i++) {
-//						if(user.getListCardLots().getListLotsCardsView().get(i).equals(lotCard.getNameLot()) && delete) {
-//							user.getListCardLots().getListLotsCardsView().remove(i);
-//							deleteLotsView.add("Delete card lot " + lotCard.getNameLot() + " for view in the user " + user.getName());
-//							
-//							logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//									   "Successfully deleted the card lot for view in the user");
-//							
-//							break;
-//						}
-//					}
-//					
-//					if(delete) {
-//						userdao.update(user);
-//					} else {
-//						neverDeleteEdit.add("Impossible delete card lot " + lotCard.getNameLot() + " for edit, the user " + user.getName() + " dont have this card lot");
-//					
-//						logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//								   "Could not delete the lot for edit because the user hasn't this card lot");
-//					}
-//				}
-				
-//				if(request.getParameter("view_" + lotCard.getNameLot()).equals("true")) {
-//					
-//					Boolean delete = false;
-//					Boolean inEdit = false;
-//					
-//					for (int i = 0; i < user.getListCardLots().getListLotsCardsEdit().size(); i++) {
-//						if(user.getListCardLots().getListLotsCardsEdit().get(i).equals(lotCard.getNameLot())) {
-//							inEdit = true;
-//							neverDeleteView.add("Impossible delete card lot " + lotCard.getNameLot() + " for view, the user " + user.getName() + " have this card lot for edit");
-//							
-//							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//									   "Could not delete the card lot for view because the user has this card lot for edit");
-//							
-//							break;
-//						}
-//					}
-//					
-//					if (!inEdit) {
-//						
-//						for (int i = 0; i < user.getListCardLots().getListLotsCardsView().size(); i++) {
-//							if (user.getListCardLots().getListLotsCardsView().get(i).equals(lotCard.getNameLot())) {
-//								user.getListCardLots().getListLotsCardsView().remove(i);
-//								deleteLotsView.add("Delete card lot " + lotCard.getNameLot() + " for view in the user " + user.getName());
-//								
-//								logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//										   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//										   "Successfully delete the card lot for view in the user");
-//								
-//								delete = true;
-//								break;
-//							}
-//						}
-//						
-//						if (delete) {
-//							userdao.update(user);
-//						} else {
-//							neverDeleteView.add("Impossible delete card lot " + lotCard.getNameLot() + " for view, the user " + user.getName() + " dont have this card lot");
-//						
-//							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
-//									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
-//									   "Could not delete the card lot for view because the user hasn't this card lot");
-//						}
-//					}
-//				}
-			}
-		
-			model.addAttribute("deleteLotsEdit", deleteLotsEdit);
-    		model.addAttribute("deleteLotsView", deleteLotsView);
-    		
-    		model.addAttribute("neverDeleteEdit", neverDeleteEdit);
-    		model.addAttribute("neverDeleteView", neverDeleteView);
-			
-			loadPage(model);
-			return "general_configuration";
-		}
-
-		loadPage(model);
-		return "general_configuration";
-	}
+//	@PostMapping("home/general/configuration/user/lots/card/delete/{idUser}")
+//	public String deleteCardLotsPost(Model model, HttpServletRequest request,
+//			@PathVariable String idUser,
+//			@RequestParam (name = "action") String action) {
+//		
+//		User user = userdao.retrieveById(idUser);
+//		List<LotCard> listLotCard = lotcarddao.retrieveAll();
+//		
+//		List<String> deleteLotsEdit = new ArrayList<>();
+//		List<String> deleteLotsView = new ArrayList<>();
+//
+//		List<String> neverDeleteEdit = new ArrayList<>();
+//		List<String> neverDeleteView = new ArrayList<>();
+//		
+//		if(action.compareTo("save") == 0) {
+//			
+//			for (LotCard lotCard : listLotCard) {
+//				
+////				if(request.getParameter("edit_" + lotCard.getNameLot()).equals("true")) {
+////					
+////					Boolean delete = false;
+////					
+////					for (int i = 0; i < user.getListCardLots().getListLotsCardsEdit().size(); i++) {
+////						if(user.getListCardLots().getListLotsCardsEdit().get(i).equals(lotCard.getNameLot())) {
+////							user.getListCardLots().getListLotsCardsEdit().remove(i);
+////							deleteLotsEdit.add("Delete card lot " + lotCard.getNameLot() + " for edit in the user " + user.getName());
+////							
+////							logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////									   "Successfully deleted the card lot for edit in the user");
+////							
+////							delete = true;
+////							break;
+////						}
+////					}
+////					
+////					for (int i = 0; i < user.getListCardLots().getListLotsCardsView().size(); i++) {
+////						if(user.getListCardLots().getListLotsCardsView().get(i).equals(lotCard.getNameLot()) && delete) {
+////							user.getListCardLots().getListLotsCardsView().remove(i);
+////							deleteLotsView.add("Delete card lot " + lotCard.getNameLot() + " for view in the user " + user.getName());
+////							
+////							logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////									   "Successfully deleted the card lot for view in the user");
+////							
+////							break;
+////						}
+////					}
+////					
+////					if(delete) {
+////						userdao.update(user);
+////					} else {
+////						neverDeleteEdit.add("Impossible delete card lot " + lotCard.getNameLot() + " for edit, the user " + user.getName() + " dont have this card lot");
+////					
+////						logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////								   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////								   "Could not delete the lot for edit because the user hasn't this card lot");
+////					}
+////				}
+//				
+////				if(request.getParameter("view_" + lotCard.getNameLot()).equals("true")) {
+////					
+////					Boolean delete = false;
+////					Boolean inEdit = false;
+////					
+////					for (int i = 0; i < user.getListCardLots().getListLotsCardsEdit().size(); i++) {
+////						if(user.getListCardLots().getListLotsCardsEdit().get(i).equals(lotCard.getNameLot())) {
+////							inEdit = true;
+////							neverDeleteView.add("Impossible delete card lot " + lotCard.getNameLot() + " for view, the user " + user.getName() + " have this card lot for edit");
+////							
+////							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////									   "Could not delete the card lot for view because the user has this card lot for edit");
+////							
+////							break;
+////						}
+////					}
+////					
+////					if (!inEdit) {
+////						
+////						for (int i = 0; i < user.getListCardLots().getListLotsCardsView().size(); i++) {
+////							if (user.getListCardLots().getListLotsCardsView().get(i).equals(lotCard.getNameLot())) {
+////								user.getListCardLots().getListLotsCardsView().remove(i);
+////								deleteLotsView.add("Delete card lot " + lotCard.getNameLot() + " for view in the user " + user.getName());
+////								
+////								logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////										   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////										   "Successfully delete the card lot for view in the user");
+////								
+////								delete = true;
+////								break;
+////							}
+////						}
+////						
+////						if (delete) {
+////							userdao.update(user);
+////						} else {
+////							neverDeleteView.add("Impossible delete card lot " + lotCard.getNameLot() + " for view, the user " + user.getName() + " dont have this card lot");
+////						
+////							logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Delete Card Lot", "deleteCardLotsPost()", "", "", 
+////									   "ID User: " + idUser + ", Name lot: " + lotCard.getNameLot(), 
+////									   "Could not delete the card lot for view because the user hasn't this card lot");
+////						}
+////					}
+////				}
+//			}
+//		
+//			model.addAttribute("deleteLotsEdit", deleteLotsEdit);
+//    		model.addAttribute("deleteLotsView", deleteLotsView);
+//    		
+//    		model.addAttribute("neverDeleteEdit", neverDeleteEdit);
+//    		model.addAttribute("neverDeleteView", neverDeleteView);
+//			
+//			loadPage(model);
+//			return "general_configuration";
+//		}
+//
+//		loadPage(model);
+//		return "general_configuration";
+//	}
 	
 	@GetMapping("home/general/configuration/user/lots/card/view/{userId}")
 	public String viewCardLotsGet(Model model,
@@ -984,23 +972,22 @@ public class GeneralConfigurationController {
 	   if (action.compareTo("save") == 0) {
 		   if (!(name.equals(""))) {
 			   
-			   Lot nameLote = lotdao.retrieveByNameLote(name);
 			   
-			   if (nameLote == null) {
-				   if (action.compareTo("save") == 0) {
-					   Lot lote = new Lot();
-					   lote.setNameOfLote(name);
-					   lotdao.create(lote);
-					   
-					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Lot creation", "lotAddPost()", "", "", 
-							   "Name lot: " + name, 
-							   "Lot created successfully");
-					   
-					   model.addAttribute("msg1", "Lot created successfully");
-					   loadPage(model);
-					   return "general_configuration";
-				   }
-			   } else {
+//			   if (nameLote == null) {
+//				   if (action.compareTo("save") == 0) {
+//					   Lot lote = new Lot();
+//					   lote.setNameOfLote(name);
+//					   lotdao.create(lote);
+//					   
+//					   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Lot creation", "lotAddPost()", "", "", 
+//							   "Name lot: " + name, 
+//							   "Lot created successfully");
+//					   
+//					   model.addAttribute("msg1", "Lot created successfully");
+//					   loadPage(model);
+//					   return "general_configuration";
+//				   }
+//			   } else {
 				   model.addAttribute("msg1", "Lot name already exists");
 				   
 				   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Lot creation", "lotAddPost()", "", "", 
@@ -1018,8 +1005,7 @@ public class GeneralConfigurationController {
 			   
 			   return "lote_add";
 		   }
-	   }
-	   loadPage(model);
+//	   }
 	   return "general_configuration";
    }
    
@@ -1040,44 +1026,44 @@ public class GeneralConfigurationController {
 	   
 	   name = name.toUpperCase();
 	   
-	   if (action.compareTo("save") == 0) {
-		   
-		   LotCard verifyNameLot = lotcarddao.retrieveByNameLotCard(name);
-		   
-		   if(name.equals("")) {
-			   model.addAttribute("msg1", "Card lot name is empty");
-			   
-			   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
-					   "Name card lot: " + name, 
-					   "Card lot name is empty");
-			   
-			   return "lot_card_add";
-		   }
-		   
-		   if (verifyNameLot == null) {
-			   LotCard lotCard = new LotCard();
-			   
-			   lotCard.setNameLot(name);
-			   lotcarddao.create(lotCard);
-			   
-			   model.addAttribute("msg1", "Card lot created successfully");
-			   
-			   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
-					   "Name card lot: " + name, 
-					   "Card lot created successfully");
-			   
-			   loadPage(model);
-			   return "general_configuration";
-		   } else {
-			   model.addAttribute("msg1", "Card lot name already exists");
-			   
-			   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
-					   "Name card lot: " + name, 
-					   "Card lot name already exists");
-			   
-			   return "lot_card_add";
-		   }
-	   }
+//	   if (action.compareTo("save") == 0) {
+//		   
+//		   LotCard verifyNameLot = lotcarddao.retrieveByNameLotCard(name);
+//		   
+//		   if(name.equals("")) {
+//			   model.addAttribute("msg1", "Card lot name is empty");
+//			   
+//			   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
+//					   "Name card lot: " + name, 
+//					   "Card lot name is empty");
+//			   
+//			   return "lot_card_add";
+//		   }
+//		   
+//		   if (verifyNameLot == null) {
+//			   LotCard lotCard = new LotCard();
+//			   
+//			   lotCard.setNameLot(name);
+//			   lotcarddao.create(lotCard);
+//			   
+//			   model.addAttribute("msg1", "Card lot created successfully");
+//			   
+//			   logger.logger("DEBUG", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
+//					   "Name card lot: " + name, 
+//					   "Card lot created successfully");
+//			   
+//			   loadPage(model);
+//			   return "general_configuration";
+//		   } else {
+//			   model.addAttribute("msg1", "Card lot name already exists");
+//			   
+//			   logger.logger("WARNING", "SM-WEB", "General Configuration", "", "Card lot creation", "lotCardAddGet()", "", "", 
+//					   "Name card lot: " + name, 
+//					   "Card lot name already exists");
+//			   
+//			   return "lot_card_add";
+//		   }
+//	   }
 	   
 	   loadPage(model);
 	   return "general_configuration";
@@ -1124,7 +1110,6 @@ public class GeneralConfigurationController {
 
 		if (action.compareTo("save") == 0) {
 
-			Lot lot = lotdao.retrieveByNameLote(nameLote);
 			List<User> listOfUser = userdao.retrieveAll();
 
 			List<String> listOfMsgEdit = new ArrayList<>();
@@ -1226,9 +1211,7 @@ public class GeneralConfigurationController {
    public String lotDeleteToUserPost(Model model, HttpServletRequest request,
 		   @PathVariable String nameLote,
 		   @RequestParam("action") String action) {
-	   
-	   Lot lot = lotdao.retrieveByNameLote(nameLote);
-	   
+	   	   
 	   List<String> deleteLotsEdit = new ArrayList<>();
 		List<String> deleteLotsView = new ArrayList<>();
 
@@ -1906,7 +1889,6 @@ public class GeneralConfigurationController {
 		   @RequestParam (name = "action") String action) {
 	   
 		if (action.compareTo("save") == 0) {
-			LotCard lotCard = lotcarddao.retrieveByNameLotCard(nameLotCard);
 			List<User> listUser = userdao.retrieveAll();
 
 			List<String> listOfMsgEdit = new ArrayList<>();
@@ -2147,7 +2129,6 @@ public class GeneralConfigurationController {
 			@PathVariable ("action") String action,
 			@PathVariable ("nameCardLot") String nameCardLot) {
 		
-		LotCard lotCard = lotcarddao.retrieveByNameLotCard(nameCardLot);
 		
 //		if(action.equals("add")) {
 //			List<Card> listCard = carddao.retrieve();
@@ -2423,15 +2404,15 @@ public class GeneralConfigurationController {
         return listRoles;
     }
     
-    public List<Lot> addLots(){
-        List<Lot> listLotes = lotdao.retrieveAll();
-        return listLotes;
-    }
-    
-    public List<LotCard> addCardLots() {
-    	List<LotCard> listLotsCards = lotcarddao.retrieveAll();
-    	return listLotsCards;
-    }
+//    public List<Lot> addLots(){
+//        List<Lot> listLotes = lotdao.retrieveAll();
+//        return listLotes;
+//    }
+//    
+//    public List<LotCard> addCardLots() {
+//    	List<LotCard> listLotsCards = lotcarddao.retrieveAll();
+//    	return listLotsCards;
+//    }
     
     private List<SimpleUser> addUser() {
         List<SimpleUser> listUsers = new ArrayList<>();
@@ -2448,10 +2429,6 @@ public class GeneralConfigurationController {
         model.addAttribute("user", user);
         List<Role> roles = addRoles();
         model.addAttribute("roleFound",roles);
-        List<Lot> lotes = addLots();
-        model.addAttribute("loteFound", lotes);
-        List<LotCard> lotsCard = addCardLots();
-        model.addAttribute("lotsCardsFound" , lotsCard);
     }
     
     final protected static char[] hexArray = "0123456789ABCDEF".toCharArray();

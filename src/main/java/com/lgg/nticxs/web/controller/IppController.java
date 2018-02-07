@@ -1,7 +1,6 @@
 package com.lgg.nticxs.web.controller;
 
 import com.lgg.nticxs.utils.WSLogger;
-import com.lgg.nticxs.web.DAO.LotDAO;
 import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.web.model.*;
 
@@ -30,7 +29,6 @@ public class IppController {
 //	PresetCommandDAO presetcommanddao = new PresetCommandDAO();
 //	
 	UserDAO userdao = new UserDAO();
-	LotDAO lotdao = new LotDAO();
 	
 	private static WSLogger logger = new WSLogger();
 
@@ -520,10 +518,7 @@ public class IppController {
     @GetMapping("home/ipp/add/lots/{id}")
     public String addLotsToIppGet(Model model, 
     		@PathVariable String id) {
-    	List<Lot> listLots = lotdao.retrieveAll();
-    	
-    	model.addAttribute("loteFound", listLots);
-    	model.addAttribute("id", id);
+    	    	model.addAttribute("id", id);
     	
     	logger.logger("INFO", "SM-WEB", "IPP", "", "Add lot", "addLotsToIppGet()", "", "", 
     			"ID IPP: " + id, 
@@ -635,9 +630,7 @@ public class IppController {
     @GetMapping("home/ipp/delete/lots/{id}")
     public String deleteLotsToIppGet(Model model, 
     		@PathVariable String id) {
-    	List<Lot> listLots = lotdao.retrieveAll();
     	
-    	model.addAttribute("loteFound", listLots);
     	model.addAttribute("id", id);
     	
     	logger.logger("INFO", "SM-WEB", "IPP", "", "Delete lot", "deleteLotsToIppGet()", "", "", 

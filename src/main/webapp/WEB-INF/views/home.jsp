@@ -75,7 +75,7 @@
                     </li>
                     <li class="navbar-top-links navbar-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i>   ${pageContext.request.userPrincipal.name} <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user"></i>${usuario}<i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="#"><i class="fa fa-user fa-fw"></i> Perfil</a>

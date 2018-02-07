@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 	@GetMapping("home/")
-    public String pageLoad(HttpServletRequest request, Model model, HttpServletRequest request1) {
+    public String pageLoad(HttpServletRequest request, Model model) {
 		String role= "";
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -37,13 +37,24 @@ public class HomeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE"))
-			return "home2";
-		else
-			return "home";
+		try {
+			System.out.println("nombre: "+ request.getLocalAddr());
+			System.out.println("nombre: "+ request.getRemoteUser());
+			System.out.println("nombre: "+ request.getUserPrincipal().getName());
+			model.addAttribute("usuario", request.getLocalName());
+		} catch (Exception e) {
+			System.out.println("error");
+		}
 		
+		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE")) {
+			return "home2";
+		
+		}else {
+			loadPageUser(model);
+			return "home";
+		}	
     }
-	
+
 	@PostMapping("home/")
 	public String sendMail(Model model, String Mensaje) {
 		Properties props = new Properties();
@@ -77,5 +88,10 @@ public class HomeController {
 			throw new RuntimeException(e);
 		}
 		return "home";
+	}
+	
+	private void loadPageUser(Model model) {
+		
+		
 	}
 }

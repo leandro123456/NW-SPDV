@@ -29,12 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lgg.nticxs.utils.Settings;
 import com.lgg.nticxs.utils.WSLogger;
-import com.lgg.nticxs.web.DAO.LotCardDAO;
 import com.lgg.nticxs.web.DAO.UserDAO;
 import com.lgg.nticxs.web.helper.ES3Helper;
 import com.lgg.nticxs.web.helper.ES4Helper;
 import com.lgg.nticxs.web.helper.SRHelper;
-import com.lgg.nticxs.web.model.LotCard;
 import com.lgg.nticxs.web.model.SimpleCard;
 
 //import com.movasim.dp.DAO.PresetCommandDAO;
@@ -70,7 +68,6 @@ public class EuiccController {
 	private SRHelper srHelper= new SRHelper();
 //	private CardDAO cardao=new CardDAO();
 //	private SRDAO srdao=new SRDAO();
-	private LotCardDAO lotcarddao = new LotCardDAO();
 	private UserDAO userdao = new UserDAO();
 	
 	private static WSLogger logger = new WSLogger();
@@ -1180,11 +1177,7 @@ public class EuiccController {
 //    	}
     }
     
-    public List<LotCard> addLotes(){
-        List<LotCard> listLotes = lotcarddao.retrieveAll();
-        return listLotes;
-    }
-    
+   
     /**
      * 
      * @param user: Usuario a verificar
