@@ -90,6 +90,16 @@
 						<input class="input100"  name="password" id = "userPassword" type="password" id="inputPassword" placeholder="Contraseña">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
+					
+					<div>
+						<label>Rol</label> 
+						<select name="role" class="form-control">
+						<option value="ALUMNO">ALUMNO</option>
+							<option value="PADRE">PADRE</option>
+							<option value="ALUMNO">DOCENTE</option>
+							<option value="ALUMNO">ADMINISTRATIVO</option>
+						</select>
+					</div>
 
 					<div class="contact100-form-checkbox">
  					<p> </p>
