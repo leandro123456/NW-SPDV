@@ -31,8 +31,7 @@ public class HomeController {
 			@SuppressWarnings("unchecked")
 			Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
 		    for (GrantedAuthority grantedAuthority : authorities) {
-		    	role=grantedAuthority.getAuthority();	
-		    	System.out.println("rol: "+role);
+		    	role=grantedAuthority.getAuthority();
 		    }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -41,7 +40,7 @@ public class HomeController {
 			System.out.println("nombre: "+ request.getLocalAddr());
 			System.out.println("nombre: "+ request.getRemoteUser());
 			System.out.println("nombre: "+ request.getUserPrincipal().getName());
-			model.addAttribute("usuario", request.getLocalName());
+			model.addAttribute("usuario", request.getUserPrincipal().getName());
 		} catch (Exception e) {
 			System.out.println("error");
 		}

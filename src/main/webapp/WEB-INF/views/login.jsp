@@ -90,22 +90,18 @@
 						<input class="input100"  name="password" id = "userPassword" type="password" id="inputPassword" placeholder="Contraseña">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
-					
-					<div>
-						<label>Rol</label> 
-						<select name="role" class="form-control">
-						<option value="ALUMNO">ALUMNO</option>
-							<option value="PADRE">PADRE</option>
-							<option value="ALUMNO">DOCENTE</option>
-							<option value="ALUMNO">ADMINISTRATIVO</option>
-						</select>
-					</div>
 
 					<div class="contact100-form-checkbox">
  					<p> </p>
-                        <a href="<c:url value="/signup" />" id="signup"> Crear cuenta</a>
+                        <a href="<c:url value="/signup" />" id="signup"> Crear cuenta Alumno/Padre</a>
                         <p> </p>
 					</div>
+					<div class="contact100-form-checkbox">
+ 					<p> </p>
+                        <a href="<c:url value="/signupPass" />" id="signup"> Crear cuenta Administrativo/Docente</a>
+                        <p> </p>
+					</div>
+					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" type="submit" id="sign">
 							Iniciar Sesión

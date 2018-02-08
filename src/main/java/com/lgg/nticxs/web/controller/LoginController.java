@@ -70,6 +70,63 @@ public class LoginController{
     			model.addAttribute("msg1", "Error ... incorrect name, is empty");
     			return "signup";
         	}
+        	switch (role) {
+    		case "ALUMNO":
+    			returnValue = createAlumno(model, name, role,pass, pass2);
+    			break;
+    		case "PADRE":
+    			returnValue = createPadre(model, name, role,pass, pass2);
+    			break;
+
+    		default:
+    			break;
+    		}
+    	} 
+    
+    	return returnValue;
+    }
+    
+    
+    @GetMapping("/signupPass")
+    public String signupPass(Model model) {
+        return "twoAuthentication";
+    }
+    
+    @PostMapping("/signupPass")
+    public String signupPass(Model model,
+    		@RequestParam("action") String action,
+    		@RequestParam(name="pass", required=false) String pass) throws Exception{
+    	if (action.compareTo("save") == 0) {
+    		if(pass.equals("KFsck32/dF$5sd8"))
+    				return "signup2";
+    		else{
+    			model.addAttribute("msg1", "Error ... contraseña incorrecta");
+    			return "twoAuthentication";
+    		}
+    	} 
+    	return "signup";
+    }
+    
+    
+    @GetMapping("/signupPass2")
+    public String signupPass2(Model model) {
+        return "signup";
+    }
+    
+    @PostMapping("/signupPass2")
+    public String signupPass2(Model model,
+    		@RequestParam("action") String action,
+    		@RequestParam(name="newName", required=false) String name,
+    		@RequestParam(name="role", required=false) String role,
+    		@RequestParam(name="newPass", required=false) String pass, 
+    		@RequestParam(name="newPass2", required=false) String pass2) throws Exception{
+    	String returnValue = null;
+    	if (action.compareTo("save") == 0) {
+    		
+    		if(name.isEmpty()) {
+    			model.addAttribute("msg1", "Error ... incorrect name, is empty");
+    			return "signup";
+        	}
     		
         	switch (role) {
     		case "ADMIN":
@@ -81,13 +138,6 @@ public class LoginController{
     		case "DOCENTE":
     			returnValue = createDocente(model, name, role,pass, pass2);
     			break;
-    		case "ALUMNO":
-    			returnValue = createAlumno(model, name, role,pass, pass2);
-    			break;
-    		case "PADRE":
-    			returnValue = createPadre(model, name, role,pass, pass2);
-    			break;
-
     		default:
     			break;
     		}

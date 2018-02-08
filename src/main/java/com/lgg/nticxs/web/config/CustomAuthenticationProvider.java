@@ -1,7 +1,6 @@
 package com.lgg.nticxs.web.config;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -26,11 +25,11 @@ import com.lgg.nticxs.web.model.Padre;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-	
+
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		
+
 		AlumnoDAO alumdao = new AlumnoDAO();
 		PadreDAO padredao = new PadreDAO();
 		AdminDAO admindao = new AdminDAO();
@@ -39,54 +38,89 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		
-		System.out.println("valor autenticacion credenciales: "+ authentication.getCredentials());
-		System.out.println("valor autenticacion tamaño: "+ authentication.getAuthorities().size());
-		System.out.println("valor autenticacion detalles: "+ authentication.getDetails());
-		System.out.println("valor autenticacion principal: "+ authentication.getPrincipal());
-		Collection<GrantedAuthority> authorities1 = (Collection<GrantedAuthority>) authentication.getAuthorities();
-	    String role="";
-		for (GrantedAuthority grantedAuthority : authorities1) {
-	    	role=grantedAuthority.getAuthority();	
-	    	System.out.println("rol: "+role);
-	    }		
-		
-		
+
 		Alumno alumno = alumdao.retrieveByName(name);
-		if(alumno != null)
-			System.out.println("es alumno");
-		Padre padre = padredao.retrieveByName(name);
-		if(padre != null)
-			System.out.println("es padre");
-		Admin admin = admindao.retrieveByName(name);
-		if(admin != null)
-			System.out.println("es admin");
-		Administrativo administrativo = administrativodao.retrieveByName(name);
-		if (administrativo != null)
-			System.out.println("es administrativo");
-		Docente docente = docentedao.retrieveByName(name);
-		if (docente != null)
-			System.out.println("es docente");
-		
-		
-		try {
-			if (name.equals(user.getName()) && password.equals(EncryptorPassword.decrypt(user.getPassword())) && user != null) {
-				List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-				authorities.add(new SimpleGrantedAuthority(user.getRole()));
-				return new UsernamePasswordAuthenticationToken(user.getName(), EncryptorPassword.decrypt(user.getPassword()), authorities);
-			} else {
-				System.out.println("Login failed"+ "Invalid date. User name = " + user.getName());
+		if(alumno != null){
+			try {
+				if (name.equals(alumno.getName()) && password.equals(EncryptorPassword.decrypt(alumno.getPassword())) && alumno.getRole().equals(alumno.ROLE_ALUMNO)) {
+					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+					authorities.add(new SimpleGrantedAuthority(alumno.getRole()));
+					return new UsernamePasswordAuthenticationToken(alumno.getName(),alumno.getPassword(), authorities);
+				} else {
+					System.out.println("Login failed"+ "Invalid date. User name = " + alumno.getName());
+				}
+			} catch (Exception e) {
+				System.out.println(" Error authenticate()"+ "Error to decrypt the password");
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			System.out.println(" Error authenticate()"+ "Error to decrypt the password");
-			e.printStackTrace();
 		}
+		Padre padre = padredao.retrieveByName(name);
+		if(padre != null){
+			try {
+				if (name.equals(padre.getName()) && password.equals(EncryptorPassword.decrypt(padre.getPassword()))) {
+					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+					authorities.add(new SimpleGrantedAuthority(padre.getRole()));
+					return new UsernamePasswordAuthenticationToken(padre.getName(),padre.getPassword(), authorities);
+				} else {
+					System.out.println("Login failed"+ "Invalid date. User name = " + padre.getName());
+				}
+			} catch (Exception e) {
+				System.out.println(" Error authenticate()"+ "Error to decrypt the password");
+				e.printStackTrace();
+			}
+		}
+		Admin admin = admindao.retrieveByName(name);
+		if(admin != null){
+			try {
+				if (name.equals(admin.getName()) && password.equals(EncryptorPassword.decrypt(admin.getPassword()))) {
+					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+					authorities.add(new SimpleGrantedAuthority(admin.getRole()));
+					return new UsernamePasswordAuthenticationToken(admin.getName(),admin.getPassword(), authorities);
+				} else {
+					System.out.println("Login failed"+ "Invalid date. User name = " + admin.getName());
+				}
+			} catch (Exception e) {
+				System.out.println(" Error authenticate()"+ "Error to decrypt the password");
+				e.printStackTrace();
+			}
+		}
+		Administrativo administrativo = administrativodao.retrieveByName(name);
+		if (administrativo != null){
+			try {
+				if (name.equals(administrativo.getName()) && password.equals(EncryptorPassword.decrypt(administrativo.getPassword()))) {
+					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+					authorities.add(new SimpleGrantedAuthority(administrativo.getRole()));
+					return new UsernamePasswordAuthenticationToken(administrativo.getName(),administrativo.getPassword(), authorities);
+				} else {
+					System.out.println("Login failed"+ "Invalid date. User name = " + administrativo.getName());
+				}
+			} catch (Exception e) {
+				System.out.println(" Error authenticate()"+ "Error to decrypt the password");
+				e.printStackTrace();
+			}
+		}
+		Docente docente = docentedao.retrieveByName(name);
+		if (docente != null){
+			try {
+				if (name.equals(docente.getName()) && password.equals(EncryptorPassword.decrypt(docente.getPassword()))) {
+					List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+					authorities.add(new SimpleGrantedAuthority(docente.getRole()));
+					return new UsernamePasswordAuthenticationToken(docente.getName(),docente.getPassword(), authorities);
+				} else {
+					System.out.println("Login failed"+ "Invalid date. User name = " + docente.getName());
+				}
+			} catch (Exception e) {
+				System.out.println(" Error authenticate()"+ "Error to decrypt the password");
+				e.printStackTrace();
+			}
+		}
+
 		return null;
 	}
-	
+
 	@Override
-    public boolean supports(Class<?> authentication) {
-        return authentication.equals(
-          UsernamePasswordAuthenticationToken.class);
-    }
+	public boolean supports(Class<?> authentication) {
+		return authentication.equals(
+				UsernamePasswordAuthenticationToken.class);
+	}
 }
