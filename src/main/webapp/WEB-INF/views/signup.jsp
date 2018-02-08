@@ -93,8 +93,15 @@
 									<p></p>
 									<label>Rol</label> 
 									<select name="role" class="form-control">
-									<option value="ALUMNO">ALUMNO</option>
-										<option value="PADRE">PADRE</option>
+										<option value="ALUMNO">ALUMNO</option>
+										<option onclick="enableSons()" value="PADRE">PADRE</option>
+									</select>
+									<p></p>
+									
+									<select id="relacion" name="relaciona" class="form-control"
+									style="display: none">
+										<option value="pablo">pablo</option>
+										<option value="marcos">marcos</option>
 									</select>
 									<p></p>
 
@@ -152,3 +159,9 @@
 				</div>
 
 <jsp:include page="footer.jsp" />
+<script type="text/javascript">
+    function enableSons()
+    {
+        document.getElementById('relacion').style.display = 'inline';
+    }
+</script>

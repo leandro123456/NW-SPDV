@@ -95,7 +95,7 @@ public class LoginController{
     @PostMapping("/signupPass")
     public String signupPass(Model model,
     		@RequestParam("action") String action,
-    		@RequestParam(name="pass", required=false) String pass) throws Exception{
+    		@RequestParam(name="pass", required=true) String pass) throws Exception{
     	if (action.compareTo("save") == 0) {
     		if(pass.equals("KFsck32/dF$5sd8"))
     				return "signup2";
@@ -110,7 +110,7 @@ public class LoginController{
     
     @GetMapping("/signupPass2")
     public String signupPass2(Model model) {
-        return "signup";
+        return "signup2";
     }
     
     @PostMapping("/signupPass2")
@@ -122,7 +122,6 @@ public class LoginController{
     		@RequestParam(name="newPass2", required=false) String pass2) throws Exception{
     	String returnValue = null;
     	if (action.compareTo("save") == 0) {
-    		
     		if(name.isEmpty()) {
     			model.addAttribute("msg1", "Error ... incorrect name, is empty");
     			return "signup";

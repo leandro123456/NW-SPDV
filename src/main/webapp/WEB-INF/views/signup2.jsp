@@ -93,8 +93,8 @@
 									<p></p>
 									<label>Rol</label> 
 									<select name="role" class="form-control">
-									<option value="ALUMNO">ALUMNO</option>
-										<option value="PADRE">PADRE</option>
+										<option value="DOCENTE">DOCENTE</option>
+										<option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
 									</select>
 									<p></p>
 
