@@ -85,25 +85,40 @@
 						<div class="panel-body">
 							<form role="form" action="<c:url value='signup'/>" method="post" enctype="multipart/form-data" autocomplete="off">
 								<div class="form-group">
-
-									<label>Nombre</label>
-									<input name="newName" class="form-control" placeholder="User">
-									<p></p>
-									<label>Remember to talk to an administrator to change the role of your account</label>
-									<p></p>
-									<label>Rol</label> 
+									<label>Rol del Usuario</label> 
 									<select id="roles" name="role" class="form-control"  onchange="enableSons()">
+										<option value="none">Select</option>
 										<option value="ALUMNO">ALUMNO</option>
 										<option value="PADRE">PADRE</option>
 									</select>
 									<p></p>
 									
-									<select id="relacion" name="relaciona" class="form-control"
+									<label id = "tituloRelacion" style="display: none">Vincular con alumno</label>
+									<select id="relacion" name="relacion" class="form-control"
 									style="display: none">
-										<option value="pablo">pablo</option>
-										<option value="marcos">marcos</option>
+										<option value="none">Seleccionar Alumno</option>
+										<c:forEach items="${alumnos}" var="alumno">
+											<option value="${alumno}">${alumno}</option>
+										</c:forEach>
 									</select>
 									<p></p>
+									
+									<label>Nombre de Usuario</label>
+									<input id="insertname" name="insertName" class="form-control" placeholder="Ingrese el nombre de Usuario" style="display: none">
+									<select id="selectName" name="selectName" class="form-control"
+									style="display: none">
+										<option value="none">Seleccionar Alumno</option>
+										<c:forEach items="${alumnos}" var="alumno">
+											<option value="${alumno}">${alumno}</option>
+										</c:forEach>
+									</select>
+									<p></p>
+									<label>Remember to talk to an administrator to change the role of your account</label>
+									<p></p>
+									
+									
+									
+									
 									<div class="row">
 										<div class="col-lg-2"></div>
 										<div class="col-lg-8">
@@ -159,13 +174,25 @@
 
 <jsp:include page="footer.jsp" />
 <script type="text/javascript">
-    function enableSons()
-    {
-        var seleccion=document.getElementById('roles');
+    function enableSons(){
+    	var seleccion=document.getElementById('roles');
         var valueRol = seleccion.options[seleccion.selectedIndex].value;
-  		if(valueRol == "PADRE")
+  		if(valueRol == "PADRE"){
   			document.getElementById('relacion').style.display = 'inline';
-  		else
+  			document.getElementById('insertname').style.display = 'inline';
+  			document.getElementById('selectName').style.display = 'none';
+  			document.getElementById('tituloRelacion').style.display = 'inline';
+  		}if(valueRol == "ALUMNO"){
   			document.getElementById('relacion').style.display = 'none';
+  			document.getElementById('insertname').style.display = 'none';
+  			document.getElementById('selectName').style.display = 'inline';
+  			document.getElementById('tituloRelacion').style.display = 'none';
+  			}
+  		if(valueRol != "ALUMNO" && valueRol != "PADRE"){
+  			document.getElementById('relacion').style.display = 'none';
+  			document.getElementById('insertname').style.display = 'none';
+  			document.getElementById('selectName').style.display = 'none';
+  			document.getElementById('tituloRelacion').style.display = 'none';
+  			}
     }
 </script>

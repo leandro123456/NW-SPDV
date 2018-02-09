@@ -53,41 +53,84 @@ public class LoginController{
     
     @GetMapping("/signup")
     public String signup(Model model) {
+    	loadSingUp(model);
         return "signup";
     }
     
-    @PostMapping("/signup")
+    private void loadSingUp(Model model) {
+    	List<Alumno> allAlumnos = alumnodao.retrieveAll();
+    	List<String> alumnos =new ArrayList<>();
+    	for(Alumno alum: allAlumnos){
+    		if(!alum.getCuenta_iniciada())
+    			alumnos.add(alum.getName());
+    	}
+    	model.addAttribute("alumnos",alumnos);
+		
+	}
+
+
+	@PostMapping("/signup")
     public String addNewUser(Model model,
     		@RequestParam("action") String action,
-    		@RequestParam(name="newName", required=false) String name,
+    		@RequestParam(name="insertname", required=false) String insertName,
+    		@RequestParam(name="selectName", required=false) String selectName,
     		@RequestParam(name="role", required=false) String role,
     		@RequestParam(name="newPass", required=false) String pass, 
-    		@RequestParam(name="newPass2", required=false) String pass2) throws Exception{
+    		@RequestParam(name="newPass2", required=false) String pass2,
+    		@RequestParam(name="relacion", required=false) String relacion) throws Exception{
     	String returnValue = null;
-    	if (action.compareTo("save") == 0) {
-    		
-    		if(name.isEmpty()) {
-    			model.addAttribute("msg1", "Error ... incorrect name, is empty");
+    	if (action.compareTo("save") == 0) {   		
+    		if(nameExist(insertName, selectName)) {
+    			model.addAttribute("msg1", "Error ... el nombre ya existe, genere otro diferente");
+    			loadSingUp(model);
     			return "signup";
         	}
         	switch (role) {
     		case "ALUMNO":
-    			returnValue = createAlumno(model, name, role,pass, pass2);
+    			returnValue = createAlumno(model, selectName, role,pass, pass2);
     			break;
     		case "PADRE":
-    			returnValue = createPadre(model, name, role,pass, pass2);
+    			returnValue = createPadre(model, insertName, role,pass, pass2, relacion);
     			break;
 
     		default:
     			break;
     		}
+        	return returnValue;
     	} 
-    
-    	return returnValue;
+    	return "login";
+    	
     }
     
     
-    @GetMapping("/signupPass")
+    private boolean nameExist(String insertName, String selectName) {
+		if(insertName == null){
+			Alumno alumno = alumnodao.retrieveByName(selectName);
+			Docente docente = docentedao.retrieveByName(selectName);
+			Padre padre = padredao.retrieveByName(selectName);
+			Admin admin = admindao.retrieveByName(selectName);
+			Administrativo admina = adminstrativodao.retrieveByName(selectName);
+			if(alumno == null && docente == null && padre == null 
+					&& admin == null && admina == null)
+				return true;
+			else
+				return false;
+		}else{
+			Alumno alumno = alumnodao.retrieveByName(insertName);
+			Docente docente = docentedao.retrieveByName(insertName);
+			Padre padre = padredao.retrieveByName(insertName);
+			Admin admin = admindao.retrieveByName(insertName);
+			Administrativo admina = adminstrativodao.retrieveByName(insertName);
+			if(alumno == null && docente == null && padre == null 
+					&& admin == null && admina == null)
+				return true;
+			else
+				return false;
+		}
+	}
+
+
+	@GetMapping("/signupPass")
     public String signupPass(Model model) {
         return "twoAuthentication";
     }
@@ -147,7 +190,7 @@ public class LoginController{
 
 
 
-	private String createPadre(Model model, String name, String role, String pass, String pass2) {
+	private String createPadre(Model model, String name, String role,String pass, String pass2, String alumnoRelacionado) {
 		if(!existName(name,role)) {
 			if(pass.equals(pass2)){
 				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
@@ -165,6 +208,8 @@ public class LoginController{
 					}
 					admin.setRole(role);
 					admin.setDelete(false);
+					admin.setAlumno(new ArrayList<String>());
+					admin.getAlumno().add(alumnoRelacionado);
 					padredao.create(admin);
 					model.addAttribute("msg2", "User update successfully completed");
 			    	return "login";
@@ -202,6 +247,7 @@ public class LoginController{
 					}
 					admin.setRole(role);
 					admin.setDelete(false);
+					admin.setCuenta_iniciada(true);
 					alumnodao.create(admin);
 					model.addAttribute("msg2", "User update successfully completed");
 			    	return "login";
