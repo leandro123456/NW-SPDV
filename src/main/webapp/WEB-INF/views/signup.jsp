@@ -92,9 +92,9 @@
 									<label>Remember to talk to an administrator to change the role of your account</label>
 									<p></p>
 									<label>Rol</label> 
-									<select name="role" class="form-control">
+									<select id="roles" name="role" class="form-control"  onchange="enableSons()">
 										<option value="ALUMNO">ALUMNO</option>
-										<option onclick="enableSons()" value="PADRE">PADRE</option>
+										<option value="PADRE">PADRE</option>
 									</select>
 									<p></p>
 									
@@ -104,7 +104,6 @@
 										<option value="marcos">marcos</option>
 									</select>
 									<p></p>
-
 									<div class="row">
 										<div class="col-lg-2"></div>
 										<div class="col-lg-8">
@@ -162,6 +161,11 @@
 <script type="text/javascript">
     function enableSons()
     {
-        document.getElementById('relacion').style.display = 'inline';
+        var seleccion=document.getElementById('roles');
+        var valueRol = seleccion.options[seleccion.selectedIndex].value;
+  		if(valueRol == "PADRE")
+  			document.getElementById('relacion').style.display = 'inline';
+  		else
+  			document.getElementById('relacion').style.display = 'none';
     }
 </script>
