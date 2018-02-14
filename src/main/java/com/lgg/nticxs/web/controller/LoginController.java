@@ -132,22 +132,18 @@ public class LoginController{
 
 	@GetMapping("/signupPass")
     public String signupPass(Model model) {
-        return "twoAuthentication";
+        return "signup2";
     }
     
     @PostMapping("/signupPass")
     public String signupPass(Model model,
-    		@RequestParam("action") String action,
     		@RequestParam(name="pass", required=true) String pass) throws Exception{
-    	if (action.compareTo("save") == 0) {
     		if(pass.equals("KFsck32/dF$5sd8"))
     				return "signup2";
     		else{
     			model.addAttribute("msg1", "Error ... contraseña incorrecta");
-    			return "twoAuthentication";
+    			return "signup2";
     		}
-    	} 
-    	return "signup";
     }
     
     
