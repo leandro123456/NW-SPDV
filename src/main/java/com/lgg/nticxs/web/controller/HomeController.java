@@ -1,6 +1,8 @@
 package com.lgg.nticxs.web.controller;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.Collection;
 import java.util.Properties;
 
@@ -11,7 +13,9 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -88,6 +92,36 @@ public class HomeController {
 		}
 		return "home";
 	}
+	
+	@PostMapping("home/")
+	public String downloadFile(Model model, String action) {
+		File ficheroXLS = new File("");
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		FileInputStream fis = new FileInputStream(ficheroXLS);
+		byte[] bytes = new byte[1000];
+		int read = 0;
+
+		if (!ctx.getResponseComplete()) {
+		   String fileName = ficheroXLS.getName();
+		   String contentType = "application/vnd.ms-excel";
+		   //String contentType = "application/pdf";
+		   HttpServletResponse response =(HttpServletResponse) ctx.getExternalContext().getResponse();
+		   response.setContentType(contentType);
+		   response.setHeader("Content-Disposition","attachment;filename=\"" + fileName + "\"");
+		   ServletOutputStream out = response.getOutputStream();
+
+		   while ((read = fis.read(bytes)) != -1) {
+		        out.write(bytes, 0, read);
+		   }
+
+		   out.flush();
+		   out.close();
+		   System.out.println("\nDescargado\n");
+		   ctx.responseComplete();
+		}
+	}
+	
+	
 	
 	private void loadPageUser(Model model) {
 		
