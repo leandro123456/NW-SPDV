@@ -83,7 +83,7 @@
 							<h3 class="panel-title">Detalles del Usuario</h3>
 						</div>
 						<div class="panel-body">
-							<form role="form" action="<c:url value='signup'/>" method="post" enctype="multipart/form-data" autocomplete="off">
+							<form role="form" action="<c:url value='signupPass2'/>" method="post" enctype="multipart/form-data" autocomplete="off">
 								<div class="form-group">
 
 									<label>Nombre</label>

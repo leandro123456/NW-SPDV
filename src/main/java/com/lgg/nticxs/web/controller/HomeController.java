@@ -37,16 +37,13 @@ public class HomeController {
 			e.printStackTrace();
 		}
 		try {
-			System.out.println("nombre: "+ request.getLocalAddr());
-			System.out.println("nombre: "+ request.getRemoteUser());
-			System.out.println("nombre: "+ request.getUserPrincipal().getName());
 			model.addAttribute("usuario", request.getUserPrincipal().getName());
 		} catch (Exception e) {
 			System.out.println("error");
 		}
 		
-		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE")) {
-			return "home2";
+		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE") || role.equals("ADMIN")) {
+			return "provisioning";
 		
 		}else {
 			loadPageUser(model);

@@ -105,6 +105,7 @@ public class LoginController{
     
     private boolean nameExist(String insertName, String selectName) {
 		if(insertName == null){
+			System.out.println("insert Name");
 			Alumno alumno = alumnodao.retrieveByName(selectName);
 			Docente docente = docentedao.retrieveByName(selectName);
 			Padre padre = padredao.retrieveByName(selectName);
@@ -112,10 +113,11 @@ public class LoginController{
 			Administrativo admina = adminstrativodao.retrieveByName(selectName);
 			if(alumno == null && docente == null && padre == null 
 					&& admin == null && admina == null)
-				return true;
-			else
 				return false;
+			else
+				return true;
 		}else{
+			System.out.println("select name");
 			Alumno alumno = alumnodao.retrieveByName(insertName);
 			Docente docente = docentedao.retrieveByName(insertName);
 			Padre padre = padredao.retrieveByName(insertName);
@@ -123,9 +125,9 @@ public class LoginController{
 			Administrativo admina = adminstrativodao.retrieveByName(insertName);
 			if(alumno == null && docente == null && padre == null 
 					&& admin == null && admina == null)
-				return true;
-			else
 				return false;
+			else
+				return true;
 		}
 	}
 

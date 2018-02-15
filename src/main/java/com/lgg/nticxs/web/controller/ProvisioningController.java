@@ -8,6 +8,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -29,48 +31,43 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.lgg.nticxs.utils.Settings;
 import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.helper.ES1Helper;
 import com.lgg.nticxs.web.helper.SRHelper;
+import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.SimpleClasificationIPP;
 
 
 @Controller
 public class ProvisioningController {
-//	 private ClasificationIppDAO clasifDao=new ClasificationIppDAO();
-//	 com.movasim.dp.DAO.KeysDAO dpdao= new com.movasim.dp.DAO.KeysDAO();
 	 SRHelper srHelper= new SRHelper();
-//	 CardDAO cardao= new CardDAO();
-//	 MNODAO mnodao=new  MNODAO();
+	 DocumentoDAO docdao = new DocumentoDAO();
 	 
 	 private static WSLogger logger = new WSLogger();
 	 
     @GetMapping("home/provisioning")
-    public String  doProfileTemplateUpload(Model model){
-       // loadPageProvisioning(model);
-        
-        logger.logger("INFO", "SM-WEB", "Provisioning", "", "", "doProfileTemplateUpload()", "", "", "", "The screen of provisioning opens");
-        
+    public String  doProfileTemplateUpload(Model model){      
         return "provisioning";
     }
 
-    @PostMapping("home/provisioning/template")
+    @PostMapping("home/provisioning/documento")
     public String doProfileTemplateUpload(Model model, 
-    		@RequestParam("file_template") MultipartFile file, 
-    		@RequestParam("template") String template, 
-    		@RequestParam("category") String category, 
-    		@RequestParam("clase") String clase,
-        	@RequestParam("type") String type, 
-        	@RequestParam(name="active", required=false, defaultValue = "false") Boolean available) {
-        
+    		@RequestParam("documento") MultipartFile documento, 
+    		@RequestParam("nombre") String nombre, 
+    		@RequestParam("descripcion") String descripcion) {
     	String fileName = null;
 
-        if (!file.isEmpty()) {
+        if (!documento.isEmpty()) {
             try {
-                fileName = file.getOriginalFilename();
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream buffStream = new BufferedOutputStream(new FileOutputStream(new File(Settings.getInstance().getFILE_UPLOAD_PATH_TEMPLATE_IPP() + fileName)));
-                buffStream.write(bytes);
-                buffStream.close();
+            	Documento document = new Documento();
+                fileName = documento.getOriginalFilename();
+                byte[] bytes = documento.getBytes();
+                document.setAvailable(true);
+                document.setDescripcion(descripcion);
+                document.setFecha(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")));
+                document.setMateria("materia");
+                document.setName(nombre);
+                docdao.create(document);
 //                TemplateIppDAO tempDAO = new TemplateIppDAO();
 //                TemplateIpp temp= tempDAO.retrieveByName(template);
 //                if(temp== null) {
