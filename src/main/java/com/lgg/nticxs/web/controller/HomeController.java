@@ -3,7 +3,11 @@ package com.lgg.nticxs.web.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -17,16 +21,32 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.common.io.Files;
+import com.lgg.nticxs.web.DAO.DocumentoDAO;
+import com.lgg.nticxs.web.model.Docente;
+import com.lgg.nticxs.web.model.Documento;
 
 @Controller
 public class HomeController {
+	DocumentoDAO docdao = new DocumentoDAO();
+	
 	@GetMapping("home/")
     public String pageLoad(HttpServletRequest request, Model model) {
 		String role= "";
@@ -90,33 +110,48 @@ public class HomeController {
 		return "home";
 	}
 	
-//	@PostMapping("home/")
-//	public String downloadFile(Model model, String action) {
-//		File ficheroXLS = new File("");
-//		FacesContext ctx = FacesContext.getCurrentInstance();
-//		FileInputStream fis = new FileInputStream(ficheroXLS);
-//		byte[] bytes = new byte[1000];
-//		int read = 0;
-//		if (!ctx.getResponseComplete()) {
-//		   String fileName = ficheroXLS.getName();
-//		   String contentType = "application/vnd.ms-excel";
-//		   //String contentType = "application/pdf";
-//		   HttpServletResponse response =(HttpServletResponse) ctx.getExternalContext().getResponse();
-//		   response.setContentType(contentType);
-//		   response.setHeader("Content-Disposition","attachment;filename=\"" + fileName + "\"");
-//		   ServletOutputStream out = response.getOutputStream();
-//
-//		   while ((read = fis.read(bytes)) != -1) {
-//		        out.write(bytes, 0, read);
-//		   }
-//
-//		   out.flush();
-//		   out.close();
-//		   System.out.println("\nDescargado\n");
-//		   ctx.responseComplete();
-//		}
-//		return null;
+//    @RequestMapping("home/download/documento")
+//    public void playMerged( @PathVariable("name") String nombre, HttpServletRequest request,
+//            HttpServletResponse response) {
+//            String mergedAudioPath = service.getMergedAudio(nombre);
+//            MultipartFileSender.fromPath(Paths.get(mergedAudioPath)).with(request).with(response).serveResource();
+//   }
+    
+    
+//	public void store(MultipartFile file){
+//		try {
+//            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+//        } catch (Exception e) {
+//        	throw new RuntimeException("FAIL!");
+//        }
 //	}
+	
+ 
+    public Resource loadFile(String filename) {
+    	Path rootLocation = Paths.get("upload-dir");
+        try {
+            Path file = rootLocation.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if(resource.exists() || resource.isReadable()) {
+                return resource;
+            }else{
+            	throw new RuntimeException("FAIL!");
+            }
+        } catch (MalformedURLException e) {
+        	throw new RuntimeException("FAIL!");
+        }
+    }
+    
+	@GetMapping("home/download/documento")
+	public ResponseEntity<Resource> getFile(@RequestParam("name") String filename) {
+		Resource file = loadFile(filename);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
+	}
+	
+	
+	
 	
 	
 	
