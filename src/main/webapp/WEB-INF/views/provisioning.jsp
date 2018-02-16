@@ -18,64 +18,30 @@
 	
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">Profile template upload</h3>
+				<h3 class="panel-title">Carga de Documentos</h3>
 			</div>
 			<div class="panel-body">
 				<c:if test="${not empty msg1}">
 					<div class="alert alert-warning">${msg1}</div>
 				</c:if>
 				<form role="form"
-					action="<c:url value="/home/provisioning/template" />"
+					action="<c:url value="/home/provisioning/documento" />"
 					method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<label>Description*</label> <input name="template"
+						<label>Nombre</label> <input name="name"
 							class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>File to upload*</label> <input name="file_template"
+						<label>Descripción</label> <input name="description"
+							class="form-control">
+					</div>
+					<div class="form-group">
+						<label>Documento*</label> <input name="document"
 							type="file" required>
 					</div>
-					<!--<fieldset disabled>-->
-					<div class="form-group">
-						<label>Classification</label>
-						<div class="row">
-							<div class="col-md-5">
-								<select name="category" class="form-control">
-									<option value="none">Select</option>
-									<c:forEach items="${categoryFound}" var="category">
-										<option value="${category.name}">${category.name}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="col-md-4">
-								<select name="clase" class="form-control">
-									<option value="none">Select</option>
-									<c:forEach items="${claseFound}" var="clase">
-										<option value="${clase.name}">${clase.name}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<select name="type" class="form-control">
-									<option value="none">Select</option>
-									<c:forEach items="${typeFound}" var="type">
-										<option value="${type.name}">${type.name}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group disabled">
-						<label class="checkbox-inline"> <input name="active"
-							type="checkbox">Active
-						</label>
-					</div>
-
-					<!--</fieldset>-->
-					<button type="submit" class="btn btn-default">Upload</button>
+					<button type="submit" class="btn btn-default">Cargar</button>
 				</form>
-				<p class="help-block">*mandatory</p>
+				<p class="help-block">*Elementos mandatorios/p>
 			</div>
 		</div>
 		<div class="panel panel-default" id="divInputFileUpload">

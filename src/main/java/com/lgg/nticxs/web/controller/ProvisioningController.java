@@ -8,19 +8,17 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Unmarshaller;
+
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,17 +29,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.lgg.nticxs.utils.Settings;
 import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
-import com.lgg.nticxs.web.helper.ES1Helper;
 import com.lgg.nticxs.web.helper.SRHelper;
+import com.lgg.nticxs.web.model.Docente;
 import com.lgg.nticxs.web.model.Documento;
-import com.lgg.nticxs.web.model.SimpleClasificationIPP;
 
 
 @Controller
 public class ProvisioningController {
 	 SRHelper srHelper= new SRHelper();
 	 DocumentoDAO docdao = new DocumentoDAO();
+	 DocenteDAO docentedao = new DocenteDAO();
 	 
 	 private static WSLogger logger = new WSLogger();
 	 
@@ -51,61 +50,33 @@ public class ProvisioningController {
     }
 
     @PostMapping("home/provisioning/documento")
-    public String doProfileTemplateUpload(Model model, 
-    		@RequestParam("documento") MultipartFile documento, 
-    		@RequestParam("nombre") String nombre, 
-    		@RequestParam("descripcion") String descripcion) {
-    	String fileName = null;
-
+    public String doProfileTemplateUpload(Model model,
+    		HttpServletRequest request,
+    		@RequestParam("document") MultipartFile documento, 
+    		@RequestParam("name") String nombre, 
+    		@RequestParam("description") String descripcion) {
         if (!documento.isEmpty()) {
             try {
             	Documento document = new Documento();
-                fileName = documento.getOriginalFilename();
+                Docente docente = docentedao.retrieveByName(request.getUserPrincipal().getName());
+                if(docente != null)
+                	document.setMateria(docente.getMateria());
                 byte[] bytes = documento.getBytes();
                 document.setAvailable(true);
                 document.setDescripcion(descripcion);
-                document.setFecha(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")));
-                document.setMateria("materia");
+                document.setFecha(new Date());
                 document.setName(nombre);
+                document.setDocumento(bytes);
                 docdao.create(document);
-//                TemplateIppDAO tempDAO = new TemplateIppDAO();
-//                TemplateIpp temp= tempDAO.retrieveByName(template);
-//                if(temp== null) {
-//                    temp=new TemplateIpp();
-//                    temp=SettingsValuesDefaultTemplate(category,clase,type,template, available,fileName);
-//                    tempDAO.create(temp);
-//                }else{
-//                    temp=SettingsValuesDefaultTemplate(category,clase,type,template, available,fileName);
-//                    tempDAO.update(temp);
-//                }
-                
-                logger.logger("DEBUG", "SM-WEB", "Provisioning", "", "Upload Template", "doProfileTemplateUpload()", "", "", 
-                		"Template name: " + template + "Category: " + ", " + category + ", " + "Class: " + clase + ", " + "Type: " +type + "."
-                		, "Successfull upload");
-                
-                model.addAttribute("msg1", "You have successfully uploaded");
-               // loadPageProvisioning(model);
+                model.addAttribute("msg1", "Su documento fue cargado exitosamente");
                 return "provisioning";
             } catch (Exception e) {
-            	//loadPageProvisioning(model);
-                StringWriter errors = new StringWriter();
-                e.printStackTrace(new PrintWriter(errors));
-                
-                logger.logger("ERROR", "SM-WEB", "Provisioning", "", "Upload Template", "doProfileTemplateUpload()", "", "", 
-                		"Template name: " + template + "Category: " + ", " + category + ", " + "Class: " + clase + ", " + "Type: " +type + "."
-                		, "Failed to upload");
-                
-                model.addAttribute("msg1", "You failed to upload" + errors.toString());
+                model.addAttribute("msg1", "You failed to upload");
+                e.printStackTrace();
                 return "provisioning";
             }
         } else {
-        	//loadPageProvisioning(model);
             model.addAttribute("msg1", "Unable to upload. File is empty.");
-            
-            logger.logger("WARNING", "SM-WEB", "Provisioning", "", "Upload Template", "doProfileTemplateUpload()", "", "", 
-            		"Template name: " + template + "Category: " + ", " + category + ", " + "Class: " + clase + ", " + "Type: " +type + "."
-            		, "Unable to upload. File is empty");
-            
             return "provisioning";
         }
     }
