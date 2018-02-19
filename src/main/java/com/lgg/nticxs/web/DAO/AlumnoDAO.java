@@ -11,7 +11,7 @@ public class AlumnoDAO extends JPADAO<Alumno>{
 
 	@SuppressWarnings("unchecked")
 	public List<Alumno> retrieveAll() {
-		String sql = "SELECT u FROM Alumno u WHERE u.delete=false";
+		String sql = "SELECT u FROM Alumno u WHERE u.delete=false and u.cuenta_iniciada=false";
 		Query query = getEntityManager().createQuery(sql);
 		List<Alumno> list = query.getResultList();
 		if (list != null && list.size() > 0) {

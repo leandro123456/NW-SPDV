@@ -60,9 +60,11 @@ public class LoginController{
     private void loadSingUp(Model model) {
     	List<Alumno> allAlumnos = alumnodao.retrieveAll();
     	List<String> alumnos =new ArrayList<>();
-    	for(Alumno alum: allAlumnos){
-    		if(!alum.getCuenta_iniciada())
-    			alumnos.add(alum.getName());
+    	if(allAlumnos != null) {
+	    	for(Alumno alum: allAlumnos){
+	    		if(!alum.getCuenta_iniciada())
+	    			alumnos.add(alum.getName());
+	    	}
     	}
     	model.addAttribute("alumnos",alumnos);
 		
@@ -80,16 +82,22 @@ public class LoginController{
     		@RequestParam(name="relacion", required=false) String relacion) throws Exception{
     	String returnValue = null;
     	if (action.compareTo("save") == 0) {   		
-    		if(nameExist(insertName, selectName)) {
-    			model.addAttribute("msg1", "Error ... el nombre ya existe, genere otro diferente");
-    			loadSingUp(model);
-    			return "signup";
-        	}
         	switch (role) {
     		case "ALUMNO":
-    			returnValue = createAlumno(model, selectName, role,pass, pass2);
+    			if(alumnoIsActive(selectName)){
+        			model.addAttribute("msg1", "Error ... el nombre ya existe, genere otro diferente");
+        			loadSingUp(model);
+        			return "signup";
+            	}
+    			else    				
+    				returnValue = createAlumno(model, selectName, role,pass, pass2);
     			break;
     		case "PADRE":
+    			if(nameExist(insertName, selectName)) {
+        			model.addAttribute("msg1", "Error ... el nombre ya existe, genere otro diferente");
+        			loadSingUp(model);
+        			return "signup";
+            	}
     			returnValue = createPadre(model, insertName, role,pass, pass2, relacion);
     			break;
 
@@ -103,7 +111,21 @@ public class LoginController{
     }
     
     
-    private boolean nameExist(String insertName, String selectName) {
+    private boolean alumnoIsActive(String selectName) {
+		Alumno alumno = alumnodao.retrieveByName(selectName);
+		if(alumno.getCuenta_iniciada()) {
+			System.out.println("el alumno tiene la cuenta iniciada");
+			return true;
+		}
+		else {
+			System.out.println("el alumno puede continuar");
+			return false;
+		}
+		
+	}
+
+
+	private boolean nameExist(String insertName, String selectName) {
 		if(insertName == null){
 			System.out.println("insert Name");
 			Alumno alumno = alumnodao.retrieveByName(selectName);
@@ -228,40 +250,33 @@ public class LoginController{
 
 
 	private String createAlumno(Model model, String name, String role, String pass, String pass2) {
-		if(!existName(name,role)) {
-			if(pass.equals(pass2)){
-				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
-					Alumno admin = new Alumno();
-	    			admin.setName(name);
-	    			try {
-	    				byte[] password = EncryptorPassword.encrypt(pass);
-						admin.setPassword(password);
-						List<byte[]> list = new ArrayList<byte[]>();
-						list.add(password);
-						admin.setHistoryPassword(list);
-					} catch (Exception e) {
-						System.out.println("error en la generacion del pass");
-						e.printStackTrace();
-					}
-					admin.setRole(role);
-					admin.setDelete(false);
-					admin.setCuenta_iniciada(true);
-					alumnodao.create(admin);
-					model.addAttribute("msg2", "User update successfully completed");
-			    	return "login";
-				} else {
-					model.addAttribute("msg1", "Error ... Password must meet security requirements");
-					return "signup";
+		if(pass.equals(pass2)){
+			if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
+				Alumno admin = alumnodao.retrieveByName(name);
+				try {
+					byte[] password = EncryptorPassword.encrypt(pass);
+					admin.setPassword(password);
+					List<byte[]> list = new ArrayList<byte[]>();
+					list.add(password);
+					admin.setHistoryPassword(list);
+				} catch (Exception e) {
+					model.addAttribute("msg1", "Error en la generacion de la contraseña");
+					e.printStackTrace();
 				}
+				admin.setRole(role);
+				admin.setDelete(false);
+				admin.setCuenta_iniciada(true);
+				alumnodao.update(admin);
+				model.addAttribute("msg2", "EL Usuario fue creado de manera exitosa");
+				return "login";
 			} else {
-				model.addAttribute("msg1", "Error ... password do not match");
+				model.addAttribute("msg1", "Error ... La contraseña no contiene los valores necesarios");
 				return "signup";
 			}
-		}else {
-			model.addAttribute("msg1", "Error ... incorrect name, already exists");
+		} else {
+			model.addAttribute("msg1", "Error ... contraseña incorrecta");
 			return "signup";
 		}
-		
 	}
 
 

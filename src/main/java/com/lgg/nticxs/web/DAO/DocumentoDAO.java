@@ -46,6 +46,19 @@ public class DocumentoDAO extends JPADAO<Documento>{
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<Documento> retrieveByMateria(String materia) {
+		String sql = "SELECT u FROM Documento u WHERE u.materia = :materia and u.available = true";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("materia", materia);
+		List<Documento> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		System.out.println("la lista de docuemntos esta vacia");
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
     public void deleteDocumento(String id) {
 		String sql = "SELECT u FROM Documento u WHERE u.id = :id and u.available = true";
 		Query query = getEntityManager().createQuery(sql);

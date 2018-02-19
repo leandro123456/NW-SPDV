@@ -1,11 +1,15 @@
 package org.junit;
 
+import java.util.List;
+
 //import org.junit.jupiter.api.Test;
 
 import com.lgg.nticxs.web.DAO.AlumnoDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
+import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Docente;
+import com.lgg.nticxs.web.model.Documento;
 
 public class Test1 {
 
@@ -29,5 +33,11 @@ public class Test1 {
 //		docente.setPassword("leandro".getBytes());
 //		docentedao.create(docente);
 //		System.out.println("termino");
+//	}
+//	@Test
+//	public void retrieveDocuments() {
+//		DocumentoDAO docdao = new DocumentoDAO();
+//		List<Documento> document = docdao.retrieveByMateria("nticxs");
+//		System.out.println("lista de documentos: " +document.size());
 //	}
 }

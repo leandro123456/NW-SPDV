@@ -119,6 +119,35 @@
             </div>
         </div>
         <div id="cd-timeline" class="cd-container">
+        	
+        	<c:forEach items="${documentos}" var="doc" varStatus="counter">	
+	        	<div class="cd-timeline-block">
+	                <div class="cd-timeline-img cd-location">
+	                </div>
+	                <div class="cd-timeline-content">
+	                	<p>${doc.fecha}</p>
+	                    <h2>${doc.descripcion}</h2>
+	                	<table class="table table-hover">
+				    		<thead>
+					      		<tr>
+							        <th>Nombre</th>
+							        <th width="100"></th>
+								</tr>
+					    	</thead>
+				    		<tbody>
+								<tr>
+									<td>${doc.nombre}</td>
+									<td><a href="<c:url value='/download/document/${doc.id}' />" class="btn btn-success custom-width">download</a></td>
+								</tr>
+				    		</tbody>
+			    		</table>
+	                </div>
+	            </div>
+            </c:forEach>
+        	
+        	
+        	
+        	
             <div class="cd-timeline-block">
                 <div class="cd-timeline-img cd-location">
                 </div>
