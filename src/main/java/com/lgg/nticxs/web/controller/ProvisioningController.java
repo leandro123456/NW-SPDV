@@ -59,6 +59,8 @@ public class ProvisioningController {
             try {
             	Documento document = new Documento();
                 Docente docente = docentedao.retrieveByName(request.getUserPrincipal().getName());
+                System.out.println("docente nombre: "+ request.getUserPrincipal().getName());
+                System.out.println("docente: "+ docente);
                 if(docente != null)
                 	document.setMateria(docente.getMateria());
                 byte[] bytes = documento.getBytes();

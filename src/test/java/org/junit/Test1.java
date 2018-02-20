@@ -1,5 +1,6 @@
 package org.junit;
 
+import java.util.Date;
 import java.util.List;
 
 //import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Docente;
 import com.lgg.nticxs.web.model.Documento;
+import com.lgg.nticxs.web.model.Nota;
 
 public class Test1 {
 
@@ -40,4 +42,17 @@ public class Test1 {
 //		List<Documento> document = docdao.retrieveByMateria("nticxs");
 //		System.out.println("lista de documentos: " +document.size());
 //	}
+//	@Test
+//	public void retrieveDocuments() {
+//		AlumnoDAO alumdao = new AlumnoDAO();
+//		Alumno alumno = alumdao.retrieveByName("raro");
+//		Nota nota = new Nota();
+//		nota.setDescripcion("actividad de clase");
+//		nota.setTipo(Nota.ACTIVIDADES);
+//		nota.setFecha(new Date());
+//		nota.setValor(10);
+//		nota.setTrimestre(Nota.PRIMER_TRIMESTRE);
+//		alumno.getNotas().add(nota);
+//		alumdao.update(alumno);	
+//		}
 }

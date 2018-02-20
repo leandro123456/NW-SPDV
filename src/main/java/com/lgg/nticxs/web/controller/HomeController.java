@@ -139,7 +139,7 @@ public class HomeController {
 //				.body(file);
 //	}
 	
-	@GetMapping( "home/download/document/{id}")
+	@GetMapping( "home/download/document/{docId}")
 	public String downloadDocument(@PathVariable String docId, HttpServletResponse response) 
 			throws IOException {
 		Documento document = docdao.retrieveById(docId);

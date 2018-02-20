@@ -81,4 +81,12 @@ public class Nota {
 		this.descripcion = descripcion;
 	}
 
+	public Integer getTrimestre() {
+		return trimestre;
+	}
+
+	public void setTrimestre(Integer trimestre) {
+		this.trimestre = trimestre;
+	}
+
 	}

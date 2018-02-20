@@ -115,7 +115,7 @@
             </div>
             <div class="heading-separator"></div>
             <div class="heading-details">
-                <p>En esta seccion se agregaran notas y documentacion correspondientes a las clases</p>
+                <h3>En esta seccion se agregaran notas y documentacion correspondientes a las clases</h3>
             </div>
         </div>
         <div id="cd-timeline" class="cd-container">
@@ -130,57 +130,20 @@
 	                	<table class="table table-hover">
 				    		<thead>
 					      		<tr>
-							        <th>Nombre</th>
+							        <th>${doc.name}</th>
 							        <th width="100"></th>
 								</tr>
 					    	</thead>
 				    		<tbody>
 								<tr>
-									<td>${doc.nombre}</td>
-									<td><a href="<c:url value='/download/document/${doc.id}' />" class="btn btn-success custom-width">download</a></td>
+									<td><a href="<c:url value='download/document/${doc.id}' />" class="btn btn-success custom-width">Descargar</a></td>
 								</tr>
 				    		</tbody>
 			    		</table>
+			    		<span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
 	                </div>
 	            </div>
             </c:forEach>
-        	
-        	
-        	
-        	
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div>
-                <div class="cd-timeline-content">
-                    <p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
-                </div>
-            </div>
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div>
-                <div class="cd-timeline-content">
-                    <p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
-                </div>
-            </div>
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img cd-location">
-                </div> 
-                <div class="cd-timeline-content">
-                    <p>10 January, 2016</p>
-                    <h2>Typi non habent claritatem insitam</h2>
-                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui</p>
-                    <a href="#0" class="cd-read-more">Read more</a>
-                    <span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
-                </div>
-            </div>
         </div>
     </section>
     <section id="foro" class="sections different-bg">

@@ -41,7 +41,7 @@
 					</div>
 					<button type="submit" class="btn btn-default">Cargar</button>
 				</form>
-				<p class="help-block">*Elementos mandatorios/p>
+				<p class="help-block">*Elementos mandatorios</p>
 			</div>
 		</div>
 		<div class="panel panel-default" id="divInputFileUpload">
