@@ -14,15 +14,15 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Asistencia {
 
-	static final public Integer PRSENTE = 0;
-	static final public Integer AUSENTE = 1;
-	static final public Integer AUSENTE_JUSTIFICADO = 2;
+	static final public String PRSENTE = "Presente";
+	static final public String AUSENTE = "Ausente";
+	static final public String AUSENTE_JUSTIFICADO = "Ausente_Justificado";
 	
 	@Field(name = "_id")
 	private String id;
 	
 	@Field (name = "tipo")
-	private Integer tipo;
+	private String tipo;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
@@ -41,11 +41,11 @@ public class Asistencia {
 		this.id = id;
 	}
 
-	public Integer getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Integer tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
