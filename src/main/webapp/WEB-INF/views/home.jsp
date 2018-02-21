@@ -223,6 +223,46 @@
                 <div class="separator"></div>
                 <h3>En esta seccion se muestran las notas de cada alumno</h3>
             </div>
+            <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="${promediotareas}">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Promedio de Tareas</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="${promediotp}">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Promedio de Trabajos Practicos</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="${promedioev}">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Promedio de Evaluaciones</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="${promediotrimestre}">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Promedio del Trimestre</div>
+                        </div>
+                    </div>
             <div class="row">
                <div class="panel-heading"><span class="lead">Lista de notas del Alumno </span></div>
 		  	<div class="tablecontainer">
@@ -261,47 +301,6 @@
                     <p>En esta seccion se muestra la asistencia de cada alumno</p>
                 </div>
                 <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <div class="main-skill">
-                            <div class="chart-round">
-                                <div class="chart" data-percent="86">
-                                    <span class="percent"></span>
-                                </div>
-                            </div>
-                            <div class="skills-text">Marketing</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="main-skill">
-                            <div class="chart-round">
-                                <div class="chart" data-percent="86">
-                                    <span class="percent"></span>
-                                </div>
-                            </div>
-                            <div class="skills-text">Marketing</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="main-skill">
-                            <div class="chart-round">
-                                <div class="chart" data-percent="86">
-                                    <span class="percent"></span>
-                                </div>
-                            </div>
-                            <div class="skills-text">Marketing</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="main-skill">
-                            <div class="chart-round">
-                                <div class="chart" data-percent="86">
-                                    <span class="percent"></span>
-                                </div>
-                            </div>
-                            <div class="skills-text">Marketing</div>
-                        </div>
-                    </div>
-                    
                     <div class="panel-heading"><span class="lead">Tabla con la asistencia del Alumno </span></div>
 			  	<div class="tablecontainer">
 					<table class="table table-hover">

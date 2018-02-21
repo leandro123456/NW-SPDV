@@ -2,7 +2,9 @@ package com.lgg.nticxs.web.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -166,7 +168,41 @@ public class HomeController {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
 		List<Nota> notas = alumno.getNotas(materia);
 		List<Asistencia> asistencias = alumno.getAsistencia(materia);
+		Double promediotareas = promedio(notas,Nota.ACTIVIDADES);
+		Double promediotp = promedio(notas,Nota.TRABAJO_PRACTICO);
+		Double promedioev = promedio(notas,Nota.EVALUACION);
+		Double promediotrimestre = promedio(notas,"trimestre");
+
+		Integer value = promediotareas.intValue();
+		model.addAttribute("promediotareas", value);
+		model.addAttribute("promediotp", promediotp);
+		model.addAttribute("promedioev", promedioev);
+		model.addAttribute("promediotrimestre", promediotrimestre);
+
 		model.addAttribute("notas", notas);
 		model.addAttribute("asistencias", asistencias);
+	}
+
+	private Double promedio(List<Nota> notas, String tipo) {
+		Double promedio = 0.0;
+		Integer total=0;
+		Integer cantidad = 0;
+		Date fecha = new Date();
+		Integer trimestreConsultado;
+		if(fecha.before(new Date(2018, 6, 1)))
+			trimestreConsultado =1;
+		else if (fecha.before(new Date(2018,9,1)))
+			trimestreConsultado = 2;
+			else
+				trimestreConsultado = 3;
+		for(Nota nota : notas){
+			if(nota.getTrimestre() == trimestreConsultado && nota.getTipo().equals(tipo)){
+				cantidad +=1;
+				total=total+nota.getValor();
+			}
+		}
+		if(cantidad != 0)
+		promedio = (double) (total/cantidad);
+		return promedio;
 	}
 }

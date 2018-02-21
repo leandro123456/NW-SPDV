@@ -47,7 +47,7 @@ public class Test1 {
 //	@Test
 //	public void retrieveDocuments() {
 //		AlumnoDAO alumdao = new AlumnoDAO();
-//		Alumno alumno = alumdao.retrieveByName("raro");
+//		Alumno alumno = alumdao.retrieveByName("pablo da silva");
 //		Nota nota = new Nota();
 //		nota.setDescripcion("actividad de clase");
 //		nota.setTipo(Nota.ACTIVIDADES);
@@ -58,17 +58,17 @@ public class Test1 {
 //		alumno.getNotas().add(nota);
 //		alumdao.update(alumno);	
 //		}
-	@Test
-	public void updateAsistencia() {
-		AlumnoDAO alumdao = new AlumnoDAO();
-		Alumno alumno = alumdao.retrieveByName("raro");
-		Asistencia asistencia = new Asistencia();
-		asistencia.setDescripcion("");
-		asistencia.setFecha(new Date());
-		asistencia.setMateria("nticxs");
-		asistencia.setTipo(Asistencia.PRSENTE);
-		alumno.getAsistencia().add(asistencia);
-		alumdao.update(alumno);
-	}
+//	@Test
+//	public void updateAsistencia() {
+//		AlumnoDAO alumdao = new AlumnoDAO();
+//		Alumno alumno = alumdao.retrieveByName("pablo da silva");
+//		Asistencia asistencia = new Asistencia();
+//		asistencia.setDescripcion("");
+//		asistencia.setFecha(new Date());
+//		asistencia.setMateria("nticxs");
+//		asistencia.setTipo(Asistencia.PRSENTE);
+//		alumno.getAsistencia().add(asistencia);
+//		alumdao.update(alumno);
+//	}
 	
 }
