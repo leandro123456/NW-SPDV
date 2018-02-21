@@ -1,5 +1,6 @@
 package com.lgg.nticxs.web.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -119,6 +120,24 @@ public class Alumno{
 
 	public List<Nota> getNotas() {
 		return notas;
+	}
+	
+	public List<Nota> getNotas(String materia) {
+		List<Nota> notasMateria = new ArrayList<>();
+		for(Nota nota : this.notas) {
+			if(nota.getMateria().equals(materia))
+				notasMateria.add(nota);
+		}
+		return notasMateria;
+	}
+	
+	public List<Asistencia> getAsistencia(String materia){
+		List<Asistencia> asistenciaMat = new ArrayList<>();
+		for(Asistencia asistencia : this.asistencia){
+			if(asistencia.getMateria().equals(materia))
+				asistenciaMat.add(asistencia);
+		}
+		return asistenciaMat;
 	}
 
 	public void setNotas(List<Nota> notas) {

@@ -30,6 +30,9 @@ public class Asistencia {
 	@Field (name = "descripcion")
 	private String descripcion;
 	
+	@Field (name = "materia")
+	private String materia;
+	
 	public String getId() {
 		return id;
 	}
@@ -57,6 +60,14 @@ public class Asistencia {
 		public String getDescripcion() {
 		return descripcion;
 	}
+
+	public String getMateria() {
+			return materia;
+		}
+
+		public void setMateria(String materia) {
+			this.materia = materia;
+		}
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;

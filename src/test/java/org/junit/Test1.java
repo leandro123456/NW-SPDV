@@ -9,6 +9,7 @@ import com.lgg.nticxs.web.DAO.AlumnoDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.model.Alumno;
+import com.lgg.nticxs.web.model.Asistencia;
 import com.lgg.nticxs.web.model.Docente;
 import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.Nota;
@@ -42,6 +43,7 @@ public class Test1 {
 //		List<Documento> document = docdao.retrieveByMateria("nticxs");
 //		System.out.println("lista de documentos: " +document.size());
 //	}
+	
 //	@Test
 //	public void retrieveDocuments() {
 //		AlumnoDAO alumdao = new AlumnoDAO();
@@ -52,7 +54,21 @@ public class Test1 {
 //		nota.setFecha(new Date());
 //		nota.setValor(10);
 //		nota.setTrimestre(Nota.PRIMER_TRIMESTRE);
+//		nota.setMateria("nticxs");
 //		alumno.getNotas().add(nota);
 //		alumdao.update(alumno);	
 //		}
+//	@Test
+//	public void updateAsistencia() {
+//		AlumnoDAO alumdao = new AlumnoDAO();
+//		Alumno alumno = alumdao.retrieveByName("raro");
+//		Asistencia asistencia = new Asistencia();
+//		asistencia.setDescripcion("");
+//		asistencia.setFecha(new Date());
+//		asistencia.setMateria("nticxs");
+//		asistencia.setTipo(Asistencia.PRSENTE);
+//		alumno.getAsistencia().add(asistencia);
+//		alumdao.update(alumno);
+//	}
+	
 }

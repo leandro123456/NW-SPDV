@@ -41,12 +41,23 @@ public class Nota {
 	@Field (name = "descripcion")
 	private String descripcion;
 	
+	@Field (name = "materia")
+	private String materia;
+	
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getMateria() {
+		return materia;
+	}
+
+	public void setMateria(String materia) {
+		this.materia = materia;
 	}
 
 	public String getTipo() {

@@ -221,60 +221,34 @@
             <div class="heading-content text-center">
                 <h3>Notas</h3>
                 <div class="separator"></div>
-                <p>En esta seccion se muestran las notas de cada alumno</p>
+                <h3>En esta seccion se muestran las notas de cada alumno</h3>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="main-team">
-                        <div class="team-details">
-                          <img src='<c:url value="/resources/assets/images/about-img.jpg" />' alt="" />
-                            <div class="team-overlay"></div>
-                            <div class="social">
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="members-info">
-                            <h4>Mitchell Anderson</h4>
-                            <h6>Creative Director</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="main-team">
-                        <div class="team-details">
-                          <img src='<c:url value="/resources/assets/images/team-img.jpg"/>' alt="" />
-                            <div class="team-overlay"></div>
-                            <div class="social">
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="members-info">
-                            <h4>Mitchell Anderson</h4>
-                            <h6>Creative Director</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="main-team">
-                        <div class="team-details">
-                          <img src='<c:url value="/resources/assets/images/team-img.jpg"/>' alt="" />
-                            <div class="team-overlay"></div>
-                            <div class="social">
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="members-info">
-                            <h4>Mitchell Anderson</h4>
-                            <h6>Creative Director</h6>
-                        </div>
-                    </div>
-                </div>
+               <div class="panel-heading"><span class="lead">Lista de notas del Alumno </span></div>
+		  	<div class="tablecontainer">
+				<table class="table table-hover">
+		    		<thead>
+			      		<tr>
+					        <th>Trimestre</th>
+					        <th>Tipo</th>
+					        <th>Fecha</th>
+					        <th>Descripcion</th>
+					        <th>Valor</th>
+						</tr>
+			    	</thead>
+		    		<tbody>
+					<c:forEach items="${notas}" var="nota" varStatus="counter">
+						<tr>
+							<td>${nota.trimestre}</td>
+							<td>${nota.tipo}</td>
+							<td>${nota.fecha}</td>
+							<td>${nota.descripcion}</td>
+							<td>${nota.valor}</td>
+						</tr>
+					</c:forEach>
+		    		</tbody>
+		    	</table>
+		    </div>
             </div>
         </div>      
     </section>
@@ -282,9 +256,9 @@
         <div class="overlay-img">
             <div class="container sections text-center">
                 <div class="heading-content text-center">
-                    <h3>Faltas</h3>
+                    <h3>Asistencia</h3>
                     <div class="separator"></div>
-                    <p>En esta seccion se muestran las notas de cada alumno</p>
+                    <p>En esta seccion se muestra la asistencia de cada alumno</p>
                 </div>
                 <div class="row">
                     <div class="col-sm-3 text-center">
@@ -327,6 +301,28 @@
                             <div class="skills-text">Marketing</div>
                         </div>
                     </div>
+                    
+                    <div class="panel-heading"><span class="lead">Tabla con la asistencia del Alumno </span></div>
+			  	<div class="tablecontainer">
+					<table class="table table-hover">
+			    		<thead>
+				      		<tr>
+						        <th>Tipo</th>
+						        <th>Fecha</th>
+						        <th>Descripcion</th>
+							</tr>
+				    	</thead>
+			    		<tbody>
+						<c:forEach items="${asistencias}" var="falta" varStatus="counter">
+							<tr>
+								<td>${falta.tipo}</td>
+								<td>${falta.fecha}</td>
+								<td>${falta.descripcion}</td>
+							</tr>
+						</c:forEach>
+			    		</tbody>
+			    	</table>
+			    </div>
                 </div> 
             </div>
         </div>

@@ -34,7 +34,9 @@ import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.DAO.PadreDAO;
 import com.lgg.nticxs.web.model.Alumno;
+import com.lgg.nticxs.web.model.Asistencia;
 import com.lgg.nticxs.web.model.Documento;
+import com.lgg.nticxs.web.model.Nota;
 import com.lgg.nticxs.web.model.Padre;
 
 @Controller
@@ -61,18 +63,20 @@ public class HomeController {
 		}
 		String nombre = request.getUserPrincipal().getName();
 			model.addAttribute("usuario", nombre);
-			
+		String nombreAlumno = "";
 		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE") || role.equals("ADMIN")) {
 			return "provisioning";
 		}else {
 			if(role.equals("PADRE")) {
 				Padre padre= padredao.retrieveByName(nombre);
+				nombreAlumno =padre.getAlumno().get(0);
 			}
 			if(role.equals("ALUMNO")) {
 				Alumno alumno = alumdao.retrieveByName(nombre);
-				
+				loadPageAlumno(model, "nticxs");
+				nombreAlumno = alumno.getName();
 			}
-			loadPageUser(model, "nticxs");
+			loadPagePadreAlumno(model,"nticxs",nombreAlumno);
 			return "home";
 		}	
     }
@@ -145,9 +149,7 @@ public class HomeController {
 		Documento document = docdao.retrieveById(docId);
         response.setContentLength(document.getDocumento().length);
         response.setHeader("Content-Disposition","attachment; filename=\"" + document.getName() +"\"");
- 
         FileCopyUtils.copy(document.getDocumento(), response.getOutputStream());
- 
  		return "home";
 	}
 	
@@ -155,8 +157,16 @@ public class HomeController {
 	
 	
 	
-	private void loadPageUser(Model model, String materia) {
+	private void loadPageAlumno(Model model, String materia) {
 		List<Documento> documentos = docdao.retrieveByMateria(materia);
 		model.addAttribute("documentos", documentos);
+	}
+	
+	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
+		Alumno alumno = alumdao.retrieveByName(alumnoName);
+		List<Nota> notas = alumno.getNotas(materia);
+		List<Asistencia> asistencias = alumno.getAsistencia(materia);
+		model.addAttribute("notas", notas);
+		model.addAttribute("asistencias", asistencias);
 	}
 }
