@@ -626,7 +626,6 @@ input:-ms-input-placeholder {
     font-weight: bold;
 }
 .skills .percent:after {
-    content: '%';
     margin-left: 0.1em;
     font-size: .8em;
 }

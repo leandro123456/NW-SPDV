@@ -216,8 +216,9 @@
             </div>
         </div>     
     </section>
-    <section id="notas" class="sections lightbg">
-        <div class="container text-center">
+    <section id="notas" class="skills skill-bg">
+<!-- 	<section id="notas" class="sections"> -->
+        <div class="overlay-img">
             <div class="heading-content text-center">
                 <h3>Notas</h3>
                 <div class="separator"></div>
@@ -243,6 +244,16 @@
                             <div class="skills-text">Promedio de Trabajos Practicos</div>
                         </div>
                     </div>
+                    <div class="col-sm-3 text-center">
+								<div class="main-skill">
+									<div class="chart-round">
+										<div class="chart" data-percent="86">
+											<span class="percent"></span>
+										</div>
+									</div>
+									<div class="skills-text">Marketing</div>
+								</div>
+                            </div>
                     <div class="col-sm-3 text-center">
                         <div class="main-skill">
                             <div class="chart-round">
@@ -292,7 +303,7 @@
             </div>
         </div>      
     </section>
-    <section id="faltas" class=" skills skill-bg">
+    <section id="faltas" class="sections">
         <div class="overlay-img">
             <div class="container sections text-center">
                 <div class="heading-content text-center">

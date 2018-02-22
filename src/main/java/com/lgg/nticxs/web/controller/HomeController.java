@@ -174,7 +174,7 @@ public class HomeController {
 		Double promediotrimestre = promedio(notas,"trimestre");
 
 		Integer value = promediotareas.intValue();
-		model.addAttribute("promediotareas", value);
+		model.addAttribute("promediotareas", value*10);
 		model.addAttribute("promediotp", promediotp);
 		model.addAttribute("promedioev", promedioev);
 		model.addAttribute("promediotrimestre", promediotrimestre);
