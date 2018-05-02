@@ -8,24 +8,32 @@ import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
 import org.eclipse.persistence.nosql.annotations.NoSql;
 
+	
+	
+
 @Entity
 @NoSql(dataFormat=DataFormatType.MAPPED)
-public class Asistencia {
-
-	static final public Integer PRESENTE = 0;
-	static final public Integer AUSENTE = 1;
-	static final public Integer AUSENTE_JUSTIFICADO = 2;
+public class Materia {
+	static final public String ACTIVIDADES = "actividad";
+	static final public String TRABAJO_PRACTICO = "trabajo_practico";
+	static final public String EVALUACION = "evaluacion";
+	static final public Integer PRIMER_TRIMESTRE = 1;
+	static final public Integer SEGUNDO_TRIMESTRE = 2;
+	static final public Integer TERCER_TRIMESTRE = 3;
 	
 	@Id
 	@GeneratedValue
 	@Field(name = "_id")
 	private String id;
 	
-	@Field (name = "tipo")
-	private Integer tipo;
+	@Field (name = "nombre")
+	private String nombre;
 	
-	@Field (name = "fecha")
-	private String fecha;
+	@Field (name = "año")
+	private String año;
+	
+	@Field (name = "trimestre")
+	private Integer trimestre;
 	
 	@Field (name = "descripcion")
 	private String descripcion;
@@ -36,9 +44,6 @@ public class Asistencia {
 	@Field (name = "idalumno")
 	private String idalumno;
 	
-	@Field (name = "trimestre")
-	private Integer trimestre;
-	
 	public String getId() {
 		return id;
 	}
@@ -47,21 +52,9 @@ public class Asistencia {
 		this.id = id;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
 	public String getIdmateria() {
-			return idmateria;
-		}
+		return idmateria;
+	}
 
 	public void setIdmateria(String idmateria) {
 		this.idmateria = idmateria;
@@ -75,16 +68,28 @@ public class Asistencia {
 		this.idalumno = idalumno;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getAño() {
+		return año;
+	}
+
+	public void setAño(String año) {
+		this.año = año;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
 	}
 
 	public Integer getTrimestre() {
@@ -93,5 +98,6 @@ public class Asistencia {
 
 	public void setTrimestre(Integer trimestre) {
 		this.trimestre = trimestre;
-	}	
-}
+	}
+
+	}

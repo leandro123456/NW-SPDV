@@ -13,12 +13,10 @@ public class Settings {
 	private Properties propertiesWEB;
     private static Settings instance = null;
 
-    private String FILE_UPLOAD_PATH_CARDS;
-    private String FILE_UPLOAD_PATH_IPP;
-    private String FILE_UPLOAD_PATH_TEMPLATE_IPP;
-    private String FILE_UPLOAD_PATH_PERSONALISATION_IPP;
-    private String FILE_UPLOAD_PATH_MSISDNS;
-    private String nameMsisds;
+    private String inicio_primer_timestre;
+    private String inicio_segundo_timestre;
+    private String inicio_tercer_timestre;
+    private String fin_tercer_timestre;
     private String DP_URL;
     private String SR_URL;
     private String usValid;
@@ -58,13 +56,11 @@ public class Settings {
     public void load() {
         propertiesWEB = new Properties();
         try {
-            propertiesWEB.load(new FileInputStream("/var/movasim/nticxs-web.properties"));
-            this.FILE_UPLOAD_PATH_CARDS = propertiesWEB.getProperty("uploadCards");
-            this.FILE_UPLOAD_PATH_IPP = propertiesWEB.getProperty("uploadIpp");
-            this.FILE_UPLOAD_PATH_TEMPLATE_IPP = propertiesWEB.getProperty("uploadTemplate");
-            this.FILE_UPLOAD_PATH_PERSONALISATION_IPP = propertiesWEB.getProperty("uploadPersonalisation");
-            this.FILE_UPLOAD_PATH_MSISDNS = propertiesWEB.getProperty("msisdsn");
-            this.DP_URL = propertiesWEB.getProperty("urlDp");
+            propertiesWEB.load(new FileInputStream("/var/serpierodavinci/configuracion.properties"));
+            this.inicio_primer_timestre = propertiesWEB.getProperty("inicio_primer_timestre");
+            this.inicio_segundo_timestre = propertiesWEB.getProperty("inicio_segundo_timestre");
+            this.inicio_tercer_timestre = propertiesWEB.getProperty("inicio_tercer_timestre");
+            this.fin_tercer_timestre = propertiesWEB.getProperty("fin_tercer_timestre");
             this.SR_URL = propertiesWEB.getProperty("urlSr");
             this.usValid = propertiesWEB.getProperty("usValid");
             this.passValid = propertiesWEB.getProperty("passValid");
@@ -95,120 +91,36 @@ public class Settings {
         }
     }
 
-    public String getFILE_UPLOAD_PATH_CARDS() {
-        return FILE_UPLOAD_PATH_CARDS;
-    }
-
-    public String getFILE_UPLOAD_PATH_IPP(){
-        return FILE_UPLOAD_PATH_IPP;
-    }
-
-    public String getDP_URL(){
-        return  DP_URL;
-    }
-
-    public String getSR_URL(){
-        return SR_URL;
-    }
-
-    public String getUsValid() {
-        return usValid;
-    }
-
-    public String getPassValid() {
-        return passValid;
-    }
-
-    public String getUsMovasim() {
-        return usMovasim;
-    }
-
-    public String getFILE_UPLOAD_PATH_MSISDNS() {
-		return FILE_UPLOAD_PATH_MSISDNS;
+	public String getInicio_primer_timestre() {
+		return inicio_primer_timestre;
 	}
 
-	public String getPassMovasim() {
-        return passMovasim;
-    }
-
-    public String getUsTenant() {
-        return usTenant;
-    }
-    
-
-    public String getPath_logCcm() {
-		return path_logCcm;
+	public void setInicio_primer_timestre(String inicio_primer_timestre) {
+		this.inicio_primer_timestre = inicio_primer_timestre;
 	}
 
-	public String getPath_logDp() {
-		return path_logDp;
+	public String getInicio_segundo_timestre() {
+		return inicio_segundo_timestre;
 	}
 
-	public String getPath_logSr() {
-		return path_logSr;
+	public void setInicio_segundo_timestre(String inicio_segundo_timestre) {
+		this.inicio_segundo_timestre = inicio_segundo_timestre;
 	}
 
-	public String getPassTenant() {
-        return passTenant;
-    }
-
-	public String getQueueName() {
-		return queueName;
+	public String getInicio_tercer_timestre() {
+		return inicio_tercer_timestre;
 	}
 
-	public String getKeyMovasim() {
-		return keyMovasim;
-	}
-	
-	public String getParameterToDecrypted() {
-		return parameterToDecrypted;
-	}
-	
-    public String getFILE_UPLOAD_PATH_TEMPLATE_IPP() {
-        return FILE_UPLOAD_PATH_TEMPLATE_IPP;
-    }
-
-    public String getFILE_UPLOAD_PATH_PERSONALISATION_IPP() {
-        return FILE_UPLOAD_PATH_PERSONALISATION_IPP;
-    }
-
-    public String getIccidName() {
-        return iccidName;
-    }
-
-    public String getImsiName() {
-        return imsiName;
-    }
-
-    public String getNameMsisds() {
-		return nameMsisds;
+	public void setInicio_tercer_timestre(String inicio_tercer_timestre) {
+		this.inicio_tercer_timestre = inicio_tercer_timestre;
 	}
 
-	public String getMsisdnName() {
-        return msisdnName;
-    }
-
-	public boolean isMutualAuth() {
-		return mutualAuth;
+	public String getFin_tercer_timestre() {
+		return fin_tercer_timestre;
 	}
 
-	public String getKeystore() {
-		return keystore;
+	public void setFin_tercer_timestre(String fin_tercer_timestre) {
+		this.fin_tercer_timestre = fin_tercer_timestre;
 	}
 
-	public String getKeystoreAlias() {
-		return keystoreAlias;
-	}
-
-	public String getKeystorePass() {
-		return keystorePass;
-	}
-	
-	public String getMovasimDBName() {
-		return movasimDBName;
-	}
-	
-	public String getMovasimPathCurl() {
-		return movasimPathCurl;
-	}
 }

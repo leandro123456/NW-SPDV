@@ -29,17 +29,17 @@ import com.lgg.nticxs.web.model.Documento;
 
 
 @Controller
-public class ProvisioningController {
+public class NotasController {
 	 SRHelper srHelper= new SRHelper();
 	 DocumentoDAO docdao = new DocumentoDAO();
 	 DocenteDAO docentedao = new DocenteDAO();
 	 AlumnoDAO alumdao = new AlumnoDAO();
 	 	 
-    @GetMapping("home/{materia}/provisioning")
+    @GetMapping("home/{materia}/explorer/document")
     public String  provisioning(Model model,
     		@PathVariable String materia){
     	model.addAttribute("materia", materia);
-        return "provisioning";
+        return "documentos";
     }
 
     @GetMapping("home/{materia}/provisioning/document")

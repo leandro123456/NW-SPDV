@@ -1,6 +1,5 @@
 package com.lgg.nticxs.web.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -38,16 +37,8 @@ public class Alumno{
 	private String role;
 	
 	@ElementCollection
-	@Field(name="notas")
-	private List<Nota> notas;
-	
-	@ElementCollection
 	@Field(name="mensajes")
 	private List<Mensaje> mensajes;
-
-	@ElementCollection
-	@Field(name="asistencia")
-	private List<Asistencia> asistencia;
 
 	@Field (name = "cuenta_iniciada")
 	private Boolean cuenta_iniciada;
@@ -55,6 +46,7 @@ public class Alumno{
 	public Alumno(){
 		this.setRole(ROLE_ALUMNO);
 		cuenta_iniciada=false;
+		this.setDelete(false);
 	}
 	
 	
@@ -117,33 +109,6 @@ public class Alumno{
 		this.role = role;
 	}
 
-
-	public List<Nota> getNotas() {
-		return notas;
-	}
-	
-	public List<Nota> getNotas(String materia) {
-		List<Nota> notasMateria = new ArrayList<>();
-		for(Nota nota : this.notas) {
-			if(nota.getMateria().equals(materia))
-				notasMateria.add(nota);
-		}
-		return notasMateria;
-	}
-	
-	public List<Asistencia> getAsistencia(String materia){
-		List<Asistencia> asistenciaMat = new ArrayList<>();
-		for(Asistencia asistencia : this.asistencia){
-			if(asistencia.getMateria().equals(materia))
-				asistenciaMat.add(asistencia);
-		}
-		return asistenciaMat;
-	}
-
-	public void setNotas(List<Nota> notas) {
-		this.notas = notas;
-	}
-
 	public List<Mensaje> getMensajes() {
 		return mensajes;
 	}
@@ -152,13 +117,6 @@ public class Alumno{
 		this.mensajes = mensajes;
 	}
 
-	public List<Asistencia> getAsistencia() {
-		return asistencia;
-	}
-
-	public void setAsistencia(List<Asistencia> asistencia) {
-		this.asistencia = asistencia;
-	}
 
 	public Boolean getCuenta_iniciada() {
 		return cuenta_iniciada;
@@ -166,8 +124,5 @@ public class Alumno{
 
 	public void setCuenta_iniciada(Boolean cuenta_iniciada) {
 		this.cuenta_iniciada = cuenta_iniciada;
-	}
-	
-	
-	
+	}	
 }

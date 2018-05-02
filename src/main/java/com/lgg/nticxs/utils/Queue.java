@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.lgg.nticxs.utils.Settings;
 
 public class Queue {
 	private static Queue instance = null;
@@ -14,7 +12,7 @@ public class Queue {
     
     public Queue() {
     	try {
-			createRabittMQ();
+			//createRabittMQ();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -27,15 +25,15 @@ public class Queue {
 		return instance;
 	}
     
-	private void createRabittMQ() throws Exception {
-		ConnectionFactory factory = new ConnectionFactory();
-		factory.setUsername("leandro");
-		factory.setPassword("lguzman");
-	    factory.setHost("localhost");
-	    connection = factory.newConnection();
-	    channel = connection.createChannel();
-	    channel.queueDeclare(Settings.getInstance().getQueueName(),  false, false, false, null);
-	}
+//	private void createRabittMQ() throws Exception {
+//		ConnectionFactory factory = new ConnectionFactory();
+//		factory.setUsername("leandro");
+//		factory.setPassword("lguzman");
+//	    factory.setHost("localhost");
+//	    connection = factory.newConnection();
+//	    channel = connection.createChannel();
+//	    channel.queueDeclare(Settings.getInstance().getQueueName(),  false, false, false, null);
+//	}
 	
 	
 	public void send(String queueName, String message) throws IOException {

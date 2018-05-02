@@ -1,24 +1,22 @@
 package com.lgg.nticxs.utils;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Enumeration;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.util.TimeZone;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+
+import com.lgg.nticxs.web.model.Nota;
 
 public class Utils {
 	
@@ -388,8 +386,48 @@ public class Utils {
 			}		
 			return iccidOk;
 		}
-
 		
+		public static String fechaActual() {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			SimpleDateFormat formatoFecha = new SimpleDateFormat();
+			formatoFecha.setTimeZone(TimeZone.getTimeZone("GMT-6"));
+			Date fechaSum = calendar.getTime();
+			formatoFecha.applyPattern("dd/MM/yyyy");
+			String fechaRespuesta = formatoFecha.format(fechaSum);
+			return fechaRespuesta;
+		}
+		
+		public static Integer TrimestreActual() {
+			Integer fechaActual = obtenerTrimestre(fechaActual());
+			return fechaActual;
+			
+		}
+
+		public static Calendar fechaACalendar(String fecha) {
+			System.out.println("fecha del timestre: "+fecha);
+			String[] fechArray = fecha.split("/");
+			int dia = Integer.valueOf(fechArray[1]);
+			int mes = Integer.valueOf(fechArray[0]) - 1;
+			int anio = Integer.valueOf(fechArray[2]);
+			Calendar c1 = new GregorianCalendar(anio, mes, dia);
+			return c1;
+		}
+
+		public static Integer obtenerTrimestre(String fecha) {
+			Calendar fechaActual = fechaACalendar(fecha);
+			Calendar fechaInicioPrimerTrimestre = fechaACalendar(Settings.getInstance().getInicio_primer_timestre());
+			Calendar fechaInicioSegundoTrimestre = fechaACalendar(Settings.getInstance().getInicio_segundo_timestre());
+			Calendar fechaInicioTercerTrimestre = fechaACalendar(Settings.getInstance().getInicio_tercer_timestre());
+			Calendar fechaFinTercerTrimestre = fechaACalendar(Settings.getInstance().getFin_tercer_timestre());
+			if(fechaActual.after(fechaInicioPrimerTrimestre) && fechaActual.before(fechaInicioSegundoTrimestre))
+				return Nota.PRIMER_TRIMESTRE;
+			if(fechaActual.after(fechaInicioSegundoTrimestre) && fechaActual.before(fechaInicioTercerTrimestre))
+				return Nota.SEGUNDO_TRIMESTRE;
+			if(fechaActual.after(fechaInicioTercerTrimestre) && fechaActual.before(fechaFinTercerTrimestre))
+				return Nota.TERCER_TRIMESTRE;
+			return null;
+		}
 	
 
 }

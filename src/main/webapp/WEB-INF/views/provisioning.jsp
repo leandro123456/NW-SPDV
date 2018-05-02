@@ -2,31 +2,40 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <jsp:include page="header.jsp" />
+<script src='<c:url value="https://unpkg.com/sweetalert/dist/sweetalert.min.js"/>'></script>
+<link href='<c:url value="/resources/css/tcal.css" />'	rel="stylesheet">
+<script src='<c:url value="/resources/js/tcal.js" />'></script>
+
+
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">eReach - Provisioning</h1>
+		<h1 class="page-header">${materia} - Aprovisionamiento</h1>
 	</div>
 </div>
-<!-- /.row -->
 
-<div class="row">
-
-<script src='<c:url value="/resources/js/jqueryProvisioning.js" />'></script>
-
-	<div class="col-lg-6" id="divProfileTemplateUpload">
-	
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Carga de Documentos</h3>
 			</div>
 			<div class="panel-body">
-				<c:if test="${not empty msg1}">
-					<div class="alert alert-warning">${msg1}</div>
-				</c:if>
+				<c:if test="${not empty msg}">
+				 	<input type="hidden" id ="mensaje" value="${msg}">
+					<script type="text/javascript">
+						var x= document.getElementById('mensaje').value;
+						swal({
+							  title: x,
+							  icon: "success",
+							  timer: 5000,
+							  closeOnClickOutside: false,
+							  buttons: false,
+							});
+					</script>
+				</c:if>				
+				
 				<form role="form"
-					action="<c:url value="/home/provisioning/documento" />"
-					method="post" enctype="multipart/form-data">
+					action="<c:url value="/home/" />${materia}/provisioning/document" method="post"
+					enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Nombre</label> <input name="name"
 							class="form-control" required>
@@ -44,131 +53,96 @@
 				<p class="help-block">*Elementos mandatorios</p>
 			</div>
 		</div>
+
+
 		<div class="panel panel-default" id="divInputFileUpload">
 			<div class="panel-heading">
-				<h3 class="panel-title">Input file upload</h3>
+				<h3 class="panel-title">Carga de alumnos</h3>
 			</div>
 			<div class="panel-body">
-				<c:if test="${not empty msg3}">
-					<div class="alert alert-warning">${msg3}</div>
-				</c:if>
+				<p>Carga de todos los alumnos</p>
 				<form role="form"
-					action="<c:url value="/home/provisioning/data" />" method="post"
+					action="<c:url value="/home/" />${materia}/provisioning/allstudents" method="post"
 					enctype="multipart/form-data">
 					<div class="form-group">
-						<label>Description*</label> <input name="name"
-							class="form-control" required>
+						<label>Archivo de Alumnos</label> <input name="file_template" type="file">
 					</div>
-					<form role="form">
-						<div class="form-group">
-							<label>File name</label> <input name="file_template" type="file">
-						</div>
-						<button type="submit" class="btn btn-default">Upload</button>
-					</form>
+					<button type="submit" class="btn btn-default">Cargar Todos los Alumnos</button>
+				</form>
+			</div>
+			<div class="panel-body">
+				<p>Carga un alumnno</p>
+				<form role="form"
+					action="<c:url value="/home/" />${materia}/provisioning/onestudent" method="post"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<input name="name" class="form-control" required> <label>Nombre y Apellido (separado por espacios)</label>
+					</div>
+					<button type="submit" class="btn btn-default">Cargar un Alumno</button>
 				</form>
 			</div>
 		</div>
-	</div>
 
-
-
-
-	<div class="col-lg-6">
+		
+		<div class="panel panel-default" id="divProfileCompleteUpload">
+			<div class="panel-heading">
+				<h3 class="panel-title">Cargar Notas</h3>
+			</div>
+			<div class="panel-body">
+				<p>Carga de todas las notas</p>
+				<form role="form"
+					action="<c:url value="/home/" />${materia}/provisioning/allnotes" method="post"				
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label>Descripcion</label> <input name="description"
+							class="form-control" required>
+					</div>
+					<p></p>
+					<div>
+						<label>Tipo de Nota</label> 
+						<select id="tipo" name="tipo" class="form-control"  onchange="enableSons()">
+							<option value="none">Select</option>
+							<option value="actividad">ACTIVIDADES</option>
+							<option value="trabajo_practico">TRABAJO_PRACTICO</option>
+							<option value="evaluacion">EVALUACION</option>
+						</select>
+					</div>
+					<p> </p>
+					<div class="container">
+						<div><input id="fecha" name="fecha" type="text"  class="tcal" value="" /></div>
+					</div>
+					<p> </p>
+					<div class="form-group">
+						<label>Archivo de Notas</label> <input name="file_notas" type="file">
+					</div>
+					<button type="submit" class="btn btn-default">Cargar Todos las Notas</button>
+				</form>
+			</div>
+		</div>
 
 		<div class="panel panel-default" id="divProfileCompleteUpload">
 			<div class="panel-heading">
-				<h3 class="panel-title">Profile complete upload</h3>
+				<h3 class="panel-title">Carga de Asistencia</h3>
 			</div>
 			<div class="panel-body">
-				<c:if test="${not empty msg2}">
-					<div class="alert alert-warning">${msg2}</div>
-				</c:if>
-				<form role="form" action="<c:url value="/home/provisioning/all" />"
-					method="post" enctype="multipart/form-data">
-
-					<div class="form-group">
-						<label>Template name</label> <input name="template"
-							class="form-control"> <label>ICCID*</label> <input
-							name="iccid" class="form-control" required> <label>MSISDN*</label>
-						<input name="msisdn" class="form-control" required> <label>IMSI</label>
-						<input name="imsi" class="form-control">
-					</div>
-					<div class="form-group">
-						<label>File to upload*</label> <input name="file_template"
-							type="file" required>
-					</div>
-					<div class="form-group disabled">
-						<fieldset disabled>
-							<label class="checkbox-inline"> <input name="active"
-								type="checkbox" checked="checked">Active
-							</label>
-						</fieldset>
-					</div>
-					<button type="submit" class="btn btn-default">Upload</button>
-				</form>
-				<p class="help-block">*mandatory</p>
-			</div>
-		</div>
-
-
-		<div class="panel panel-default" id="divEuiccBatchInfoUpload">
-			<div class="panel-heading">
-				<h3 class="panel-title">eUICC batch info upload</h3>
-			</div>
-			<div class="panel-body">
-				<c:if test="${not empty msg4}">
-					<div class="alert alert-warning">${msg4}</div>
-				</c:if>
+				<p>Carga de toda la asistencia</p>
 				<form role="form"
-					action="<c:url value="/home/provisioning/euicc" />" method="post"
+					action="<c:url value="/home/" />${materia}/provisioning/allassistance" method="post"				
 					enctype="multipart/form-data">
 					<div class="form-group">
-						<label>File name</label> <input name="file" type="file" required>
+						<label>Descripcion</label> <input name="description"
+							class="form-control" required>
 					</div>
-					<c:choose>
-						<c:when	test="${pageContext.request.isUserInRole('USERSR') or pageContext.request.isUserInRole('ADMINSR')}">
-							<div class="form-group">
-								<label>Keys SR</label> <select name="srname"
-									class="form-control">
-									<c:forEach items="${sr}" var="sr">
-										<option value="${sr}">${sr}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</c:when>
-						<c:when	test="${pageContext.request.isUserInRole('USERDP') or pageContext.request.isUserInRole('ADMINDP')}">
-							<div class="form-group">
-								<label>Keys DP</label> <select name="dpname"
-									class="form-control">
-									<c:forEach items="${dp}" var="dp">
-										<option value="${dp}">${dp}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="form-group">
-								<label>Keys DP</label> <select name="dpname"
-									class="form-control">
-									<c:forEach items="${dp}" var="dp">
-										<option value="${dp}">${dp}</option>
-									</c:forEach>
-								</select>
-							</div>
-							<div class="form-group">
-								<label>Keys SR</label> <select name="srname"
-									class="form-control">
-									<c:forEach items="${sr}" var="sr">
-										<option value="${sr}">${sr}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<button type="submit" class="btn btn-default">Upload</button>
+					<p> </p>
+					<div class="container">
+						<div><input id="fecha" name="fecha" type="text"  class="tcal" value="" /></div>
+					</div>
+					<p> </p>
+					<div class="form-group">
+						<label>Archivo de Asistencia</label> <input name="file_assistance" type="file">
+					</div>
+					<button type="submit" class="btn btn-default">Cargar</button>
 				</form>
 			</div>
 		</div>
-
-	</div>
 <jsp:include page="footer.jsp" />

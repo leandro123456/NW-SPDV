@@ -1,12 +1,9 @@
 package com.lgg.nticxs.web.model;
 
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
@@ -25,12 +22,15 @@ public class Documento {
 	
 	@Field (name = "descripcion")
 	private String descripcion;
+
+	@Field (name = "iddocente")
+	private String iddocente;
 	
 	@Field (name = "documento")
 	private byte[] documento;
 	
-	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	@Field (name = "fecha")
+	private String fecha;
 	
 	@Field (name = "materia")
 	private String materia;
@@ -72,11 +72,11 @@ public class Documento {
 		this.documento = documento;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
@@ -86,6 +86,14 @@ public class Documento {
 
 	public void setMateria(String materia) {
 		this.materia = materia;
+	}
+
+	public String getIddocente() {
+		return iddocente;
+	}
+
+	public void setIddocente(String iddocente) {
+		this.iddocente = iddocente;
 	}
 
 	public Boolean getAvailable() {

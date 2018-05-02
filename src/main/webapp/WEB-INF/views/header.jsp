@@ -2,8 +2,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
-<!DOCTYPE html>
-<html lang="en">
+<!-- <!DOCTYPE html> -->
+<!-- <html lang="en"> -->
 
 <head>
 
@@ -78,11 +78,11 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li id="provisioning">
-                        <a href="<c:url value='/home/provisioning' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-plus-square-o"></i> Provisioning</a>
+                        <a href="<c:url value='/home/provisioning' />" data-toggle="tooltip" title="Profile templates and output files upload"><i class="fa fa-fw fa-plus-square-o"></i> Aprovisionamiento</a>
                     </li>
 
-		            <li id="templateExplorer">
-		                <a href="<c:url value='/home/template/explorer' />" data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Template Explorer</a>
+		            <li id="documentExplorer">
+		                <a href="<c:url value="/home/" />${materia}/explorer/document"  data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Documentos</a>
 		            </li>
 
 		            <li id="ippGeneration">

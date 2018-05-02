@@ -1,13 +1,20 @@
 package org.junit;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
+
+import com.lgg.nticxs.utils.Utils;
 
 //import org.junit.jupiter.api.Test;
 
 import com.lgg.nticxs.web.DAO.AlumnoDAO;
+import com.lgg.nticxs.web.DAO.AsistenciaDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
+import com.lgg.nticxs.web.DAO.NotaDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
 import com.lgg.nticxs.web.model.Docente;
@@ -15,7 +22,51 @@ import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.Nota;
 
 public class Test1 {
+	
+//	@Test
+//	public void testCreateAsistencia() {
+//		AsistenciaDAO asisdao = new AsistenciaDAO();
+//		Asistencia asistencia = new Asistencia();
+//		asistencia.setDescripcion("test");
+//		asisdao.create(asistencia);
+//	}
+	
+//	@Test
+//	public void testActual() {
+//		System.out.println("fecha de hoy: "+Utils.fechaActual());
+//	}
+	
+//	@Test
+//	public void searchAsistencia(){
+//		AsistenciaDAO asisdao = new AsistenciaDAO();
+//		Asistencia asis = asisdao.retrieveByNameDateDescription("", "02/02/2018");
+//		System.out.println("asis: "+asis);
+//	}
+	
+	//@Test
+//	public void testFechaActual() {
+//		Calendar calendar = Calendar.getInstance();
+//		calendar.setTime(new Date());
+//		SimpleDateFormat formatoFecha = new SimpleDateFormat();
+//		formatoFecha.setTimeZone(TimeZone.getTimeZone("GMT-6"));
+//		Date fechaSum = calendar.getTime();
+//		formatoFecha.applyPattern("dd/MM/yyyy");
+//		String fechaRespuesta = formatoFecha.format(fechaSum);
+//		System.out.println(fechaRespuesta);
+//		Integer fechaActual = Utils.obtenerTrimestre(fechaRespuesta);
+//		System.out.println("trimestre "+fechaActual);
+//	}
 
+	//@Test
+//	public void testCreateNota() {
+//		NotaDAO notadao = new NotaDAO();
+//		Nota nota = new Nota();
+//		nota.setDescripcion("test");
+//		notadao.create(nota);
+		
+//		Nota nota = notadao.retrieveByNameDateDescription("", "", "");
+//	}
+	
 //	@Test
 //	public void createAlumno(){
 //		AlumnoDAO alumdao = new AlumnoDAO();

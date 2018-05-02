@@ -24,79 +24,79 @@ public class LogsController {
         return "view_logs";
     }
 
-    @GetMapping("home/view-logs/getLogOffset")
-    public @ResponseBody
-    String getLogOffset( @RequestParam("name") String name) {
+//    @GetMapping("home/view-logs/getLogOffset")
+//    public @ResponseBody
+//    String getLogOffset( @RequestParam("name") String name) {
+//
+//        String jsonObject = "{ \"success\": \"false\" , \"text\": \"Unknown error: 30\"}";
+//        if (name!= null) {
+//            if (name.equalsIgnoreCase("SMSC")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logCcm());
+//                long offset = tlr.findEnd();
+//                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
+//            } else
+//            if (name.equalsIgnoreCase("TLS")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logDp());
+//                long offset = tlr.findEnd();
+//                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
+//            } else
+//            if (name.equalsIgnoreCase("WEB")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logSr());
+//                long offset = tlr.findEnd();
+//                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
+//            }
+//        }
+//
+//       // model.addAttribute("json", jsonObject);
+//        return jsonObject;
+//    }
 
-        String jsonObject = "{ \"success\": \"false\" , \"text\": \"Unknown error: 30\"}";
-        if (name!= null) {
-            if (name.equalsIgnoreCase("SMSC")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logCcm());
-                long offset = tlr.findEnd();
-                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
-            } else
-            if (name.equalsIgnoreCase("TLS")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logDp());
-                long offset = tlr.findEnd();
-                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
-            } else
-            if (name.equalsIgnoreCase("WEB")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logSr());
-                long offset = tlr.findEnd();
-                jsonObject = "{ \"success\": \"false\" , \"text\": \"" + offset + "\"}";
-            }
-        }
-
-       // model.addAttribute("json", jsonObject);
-        return jsonObject;
-    }
-
-    @GetMapping("home/view-logs/getLogRegion")
-    public @ResponseBody
-    String getLogRegion( @RequestParam("name") String name,@RequestParam("start") String start,@RequestParam("end") String end) {
-        String szStart = start;
-        String szEnd = end;
-        String result = "---- Unknown error: 30 ----";
-        if (name!= null) {
-            if (name.equalsIgnoreCase("SMSC")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logCcm());
-                long started;
-                started= Long.valueOf(szStart);
-                started=started-2500;
-                long ended;
-                ended = Long.valueOf(szEnd);
-                try {
-                    result = tlr.readRegion(started, ended);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else
-            if (name.equalsIgnoreCase("TLS")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logDp());
-                long started = Long.valueOf(szStart);
-                started=started-2500;
-                long ended = Long.valueOf(szEnd);
-                try {
-                    result = tlr.readRegion(started, ended);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else
-            if (name.equalsIgnoreCase("WEB")) {
-                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logSr());
-                long started = Long.valueOf(szStart);
-                started=started-2500;
-                long ended = Long.valueOf(szEnd);
-                try {
-                    result = tlr.readRegion(started, ended);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        //System.out.println(String.format("sending : %s " , result));
-        return result;
-    }
+//    @GetMapping("home/view-logs/getLogRegion")
+//    public @ResponseBody
+//    String getLogRegion( @RequestParam("name") String name,@RequestParam("start") String start,@RequestParam("end") String end) {
+//        String szStart = start;
+//        String szEnd = end;
+//        String result = "---- Unknown error: 30 ----";
+//        if (name!= null) {
+//            if (name.equalsIgnoreCase("SMSC")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logCcm());
+//                long started;
+//                started= Long.valueOf(szStart);
+//                started=started-2500;
+//                long ended;
+//                ended = Long.valueOf(szEnd);
+//                try {
+//                    result = tlr.readRegion(started, ended);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            } else
+//            if (name.equalsIgnoreCase("TLS")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logDp());
+//                long started = Long.valueOf(szStart);
+//                started=started-2500;
+//                long ended = Long.valueOf(szEnd);
+//                try {
+//                    result = tlr.readRegion(started, ended);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            } else
+//            if (name.equalsIgnoreCase("WEB")) {
+//                TailLogReader tlr = new TailLogReader(Settings.getInstance().getPath_logSr());
+//                long started = Long.valueOf(szStart);
+//                started=started-2500;
+//                long ended = Long.valueOf(szEnd);
+//                try {
+//                    result = tlr.readRegion(started, ended);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        //System.out.println(String.format("sending : %s " , result));
+//        return result;
+//    }
 
     @GetMapping("home/view/instance/logs")
     public String instancelogs(Model model) {

@@ -2,9 +2,7 @@ package com.lgg.nticxs.web.controller;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -28,12 +26,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
+import com.lgg.nticxs.utils.Utils;
 import com.lgg.nticxs.web.DAO.AdminDAO;
 import com.lgg.nticxs.web.DAO.AdministrativoDAO;
 import com.lgg.nticxs.web.DAO.AlumnoDAO;
+import com.lgg.nticxs.web.DAO.AsistenciaDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
+import com.lgg.nticxs.web.DAO.NotaDAO;
 import com.lgg.nticxs.web.DAO.PadreDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
@@ -48,6 +48,8 @@ public class HomeController {
 	AlumnoDAO alumdao = new AlumnoDAO();
 	DocenteDAO docentedoa = new DocenteDAO();
 	AdminDAO admindao = new AdminDAO();
+	NotaDAO notasdao = new NotaDAO();
+	AsistenciaDAO asistenciadao = new AsistenciaDAO();
 	AdministrativoDAO administdao = new AdministrativoDAO();
 	
 	@GetMapping("home/")
@@ -67,7 +69,7 @@ public class HomeController {
 			model.addAttribute("usuario", nombre);
 		String nombreAlumno = "";
 		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE") || role.equals("ADMIN")) {
-			return "provisioning";
+			return "redirect:/home/nticxs/provisioning";
 		}else {
 			if(role.equals("PADRE")) {
 				Padre padre= padredao.retrieveByName(nombre);
@@ -156,9 +158,6 @@ public class HomeController {
 	}
 	
 	
-	
-	
-	
 	private void loadPageAlumno(Model model, String materia) {
 		List<Documento> documentos = docdao.retrieveByMateria(materia);
 		model.addAttribute("documentos", documentos);
@@ -166,35 +165,48 @@ public class HomeController {
 	
 	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
-		List<Nota> notas = alumno.getNotas(materia);
-		List<Asistencia> asistencias = alumno.getAsistencia(materia);
+		List<Nota> notas = notasdao.retrieveByAlumno(alumno.getId());
+		List<Asistencia> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
 		Double promediotareas = promedio(notas,Nota.ACTIVIDADES);
 		Double promediotp = promedio(notas,Nota.TRABAJO_PRACTICO);
 		Double promedioev = promedio(notas,Nota.EVALUACION);
 		Double promediotrimestre = promedio(notas,"trimestre");
-
-		Integer value = promediotareas.intValue();
-		model.addAttribute("promediotareas", value*10);
-		model.addAttribute("promediotp", promediotp);
-		model.addAttribute("promedioev", promedioev);
-		model.addAttribute("promediotrimestre", promediotrimestre);
+		Integer asistenciaFaltas = promedioAsistencia(asistencias);
+		Integer asistenciaPresente = promedioAsistencia(asistencias);
+		
+		model.addAttribute("promediotareas", promediotareas*10);
+		model.addAttribute("promediotp", promediotp*10);
+		model.addAttribute("promedioev", promedioev*10);
+		model.addAttribute("promediotrimestre", promediotrimestre*10);
 
 		model.addAttribute("notas", notas);
 		model.addAttribute("asistencias", asistencias);
+		model.addAttribute("asistenciaFaltas",asistenciaFaltas);
+		model.addAttribute("asistenciaPresente",asistenciaPresente);
+		
+	}
+
+	private Integer promedioAsistencia(List<Asistencia> asistencia) {
+		Integer asistenciaTotal = 0;
+		if(Asistencia.AUSENTE_JUSTIFICADO != null) {
+			for(Asistencia asist : asistencia) {
+				if(asist.getTipo().equals(Asistencia.AUSENTE) || asist.getTipo().equals(Asistencia.AUSENTE_JUSTIFICADO))
+					asistenciaTotal+=1;
+			}
+		}else {
+			for(Asistencia asist : asistencia) {
+				if(asist.getTipo().equals(Asistencia.PRESENTE))
+					asistenciaTotal+=1;
+			}
+		}
+		return asistenciaTotal;
 	}
 
 	private Double promedio(List<Nota> notas, String tipo) {
 		Double promedio = 0.0;
-		Integer total=0;
+		Double total=0.0;
 		Integer cantidad = 0;
-		Date fecha = new Date();
-		Integer trimestreConsultado;
-		if(fecha.before(new Date(2018, 6, 1)))
-			trimestreConsultado =1;
-		else if (fecha.before(new Date(2018,9,1)))
-			trimestreConsultado = 2;
-			else
-				trimestreConsultado = 3;
+		Integer trimestreConsultado = Utils.TrimestreActual();
 		for(Nota nota : notas){
 			if(nota.getTrimestre() == trimestreConsultado && nota.getTipo().equals(tipo)){
 				cantidad +=1;
@@ -205,4 +217,6 @@ public class HomeController {
 		promedio = (double) (total/cantidad);
 		return promedio;
 	}
+
+
 }

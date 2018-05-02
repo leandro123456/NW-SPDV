@@ -225,15 +225,15 @@
                 <h3>En esta seccion se muestran las notas de cada alumno</h3>
             </div>
             <div class="col-sm-3 text-center">
-                        <div class="main-skill">
-                            <div class="chart-round">
-                                <div class="chart" data-percent="${promediotareas}">
-                                    <span class="percent"></span>
-                                </div>
-                            </div>
-                            <div class="skills-text">Promedio de Tareas</div>
-                        </div>
-                    </div>
+                 <div class="main-skill">
+                     <div class="chart-round">
+                         <div class="chart" data-percent="${promediotareas}">
+                             <span class="percent"></span>
+                         </div>
+                     </div>
+                     <div class="skills-text">Promedio de Tareas</div>
+                 </div>
+             </div>
                     <div class="col-sm-3 text-center">
                         <div class="main-skill">
                             <div class="chart-round">
@@ -244,16 +244,6 @@
                             <div class="skills-text">Promedio de Trabajos Practicos</div>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-								<div class="main-skill">
-									<div class="chart-round">
-										<div class="chart" data-percent="86">
-											<span class="percent"></span>
-										</div>
-									</div>
-									<div class="skills-text">Marketing</div>
-								</div>
-                            </div>
                     <div class="col-sm-3 text-center">
                         <div class="main-skill">
                             <div class="chart-round">
@@ -311,6 +301,36 @@
                     <div class="separator"></div>
                     <p>En esta seccion se muestra la asistencia de cada alumno</p>
                 </div>
+                <div class="col-sm-3 text-center">
+                 <div class="main-skill">
+                     <div class="chart-round">
+                         <div class="chart" data-percent="${asistenciaPresente}">
+                             <span class="percent"></span>
+                         </div>
+                     </div>
+                     <div class="skills-text">Cantidad de Asistencia Presente</div>
+                 </div>
+             </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="${asistenciaFaltas}">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Cantidad de Asistencia Ausente</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <div class="main-skill">
+                            <div class="chart-round">
+                                <div class="chart" data-percent="15%">
+                                    <span class="percent"></span>
+                                </div>
+                            </div>
+                            <div class="skills-text">Promedio de Inasistencia Disponible</div>
+                        </div>
+                    </div>
                 <div class="row">
                     <div class="panel-heading"><span class="lead">Tabla con la asistencia del Alumno </span></div>
 			  	<div class="tablecontainer">

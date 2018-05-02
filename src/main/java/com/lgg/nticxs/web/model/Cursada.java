@@ -10,9 +10,10 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 
 	
 	
+
 @Entity
 @NoSql(dataFormat=DataFormatType.MAPPED)
-public class Nota {
+public class Cursada {
 	static final public String ACTIVIDADES = "actividad";
 	static final public String TRABAJO_PRACTICO = "trabajo_practico";
 	static final public String EVALUACION = "evaluacion";
@@ -24,21 +25,9 @@ public class Nota {
 	@GeneratedValue
 	@Field(name = "_id")
 	private String id;
-	
-	@Field (name = "tipo")
-	private String tipo;
-	
-	@Field (name = "fecha")
-	private String fecha;
-	
-	@Field (name = "valor")
-	private Double valor;
-	
-	@Field (name = "trimestre")
-	private Integer trimestre;
-	
-	@Field (name = "descripcion")
-	private String descripcion;
+
+	@Field (name = "año")
+	private String año;
 	
 	@Field (name = "idmateria")
 	private String idmateria;
@@ -70,44 +59,13 @@ public class Nota {
 		this.idalumno = idalumno;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getAño() {
+		return año;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setAño(String año) {
+		this.año = año;
 	}
 
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
-	}
-
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Integer getTrimestre() {
-		return trimestre;
-	}
-
-	public void setTrimestre(Integer trimestre) {
-		this.trimestre = trimestre;
-	}
 
 	}

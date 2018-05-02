@@ -150,21 +150,21 @@ public class ES4Helper {
 			}
 		}};
 
-		KeyStore ks = KeyStore.getInstance("JKS");
-		FileInputStream in = new FileInputStream(Settings.getInstance().getKeystore());
-		ks.load(in, Settings.getInstance().getKeystorePass().toCharArray());
-		in.close();
-		KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
-		keyManagerFactory.init(ks, Settings.getInstance().getKeystorePass().toCharArray());
-		KeyManager[] keyManagers = new KeyManager[]{keyManagerFactory.getKeyManagers()[0]};
-
-		TLSClientParameters tlsParams = new TLSClientParameters();
-		tlsParams.setTrustManagers(simpleTrustManager);
-		tlsParams.setKeyManagers(keyManagers);
-		tlsParams.setSecureSocketProtocol("TLSv1.2");
-		tlsParams.setCertAlias(Settings.getInstance().getKeystoreAlias());
-		tlsParams.setDisableCNCheck(true);
-		conduit.setTlsClientParameters(tlsParams);
+//		KeyStore ks = KeyStore.getInstance("JKS");
+//		FileInputStream in = new FileInputStream(Settings.getInstance().getKeystore());
+//		ks.load(in, Settings.getInstance().getKeystorePass().toCharArray());
+//		in.close();
+//		KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
+//		keyManagerFactory.init(ks, Settings.getInstance().getKeystorePass().toCharArray());
+//		KeyManager[] keyManagers = new KeyManager[]{keyManagerFactory.getKeyManagers()[0]};
+//
+//		TLSClientParameters tlsParams = new TLSClientParameters();
+//		tlsParams.setTrustManagers(simpleTrustManager);
+//		tlsParams.setKeyManagers(keyManagers);
+//		tlsParams.setSecureSocketProtocol("TLSv1.2");
+//		tlsParams.setCertAlias(Settings.getInstance().getKeystoreAlias());
+//		tlsParams.setDisableCNCheck(true);
+//		conduit.setTlsClientParameters(tlsParams);
 	}
 
 }

@@ -1,6 +1,6 @@
 body {
   /* Ubicación de la imagen */
-  background-image: url("/alumnos/resources/images/casa.jpg");
+  background-image: url("/resources/images/casa.jpg");
 
   /* Nos aseguramos que la imagen de fondo este centrada vertical y
     horizontalmente en todo momento */
