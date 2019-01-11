@@ -18,7 +18,7 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import com.lgg.nticxs.utils.Settings;
+import com.lgg.nticxs.web.utils.Settings;
 
 /**
  * Created by movasim on 19/09/16.

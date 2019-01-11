@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lgg.nticxs.utils.OperationCSV;
-import com.lgg.nticxs.utils.Utils;
+import com.lgg.nticxs.web.utils.OperationCSV;
+import com.lgg.nticxs.web.utils.Utils;
 import com.lgg.nticxs.web.DAO.AlumnoDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;

@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.lgg.nticxs.utils.EncryptorPassword;
+import com.lgg.nticxs.web.utils.EncryptorPassword;
 import com.lgg.nticxs.web.DAO.AdminDAO;
 import com.lgg.nticxs.web.DAO.AdministrativoDAO;
 import com.lgg.nticxs.web.DAO.AlumnoDAO;

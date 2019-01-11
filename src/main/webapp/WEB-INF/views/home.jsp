@@ -41,7 +41,7 @@
                     <ul class="nav navbar-nav navbar-right">                      
                         <li class="active"><a href="#home">Inicio</a></li>
                         <li><a href="#clases">Clases</a></li>
-                        <li><a href="#foro">Foro</a></li>
+<!--                         <li><a href="#foro">Foro</a></li> -->
                         <li><a href="#notas">Notas</a></li>
                         <li><a href="#faltas">Faltas</a></li>
                         <li><a href="#contacto">Contacto</a></li>                                 
@@ -146,76 +146,76 @@
             </c:forEach>
         </div>
     </section>
-    <section id="foro" class="sections different-bg">
-        <div class="container text-center">
-            <div class="row">
-                <div class="container text-center">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                            <div class="heading-title">
-                                <h3>Foro</h3>
-                                <div class="separator"></div>
-                            </div>
-                            <div class="heading-separator"></div>
-                            <div class="heading-details">
-                                <p>Esta seccion permite cargar preguntas y respuestas de temas relacionadoas a la materia.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
-                    <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <div class="client-content">
-                                <h3>What Our Clients are saying</h3>
-                                <p>
-                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                    He worked very hard to satisfy our requirements and the communication was great.”
-                                </p>
-                                <div class="client-basicinfo">
-                                    <h6>John Doe</h6>
-                                    <a href="#">www.yourwebsite.zt</a>
-                                </div>
-                            </div>
-                        </div>     
-                        <div class="item">
-                            <div class="client-content">
-                                <h3>What Our Clients are saying</h3>
-                                <p>
-                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                    He worked very hard to satisfy our requirements and the communication was great.” 
-                                </p>
-                                <div class="client-basicinfo">
-                                    <h6>John Doe</h6>
-                                    <a href="#">www.yourwebsite.zt</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="client-content">
-                                <h3>What Our Clients are saying</h3>
-                                <p>
-                                    “It was a pleasure to work with Imran. He is very dedicated and professional. 
-                                    He worked very hard to satisfy our requirements and the communication was great.”
-                                </p>
-                                <div class="client-basicinfo">
-                                    <h6>John Doe</h6>
-                                    <a href="#">www.yourwebsite.zt</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <ol class="carousel-indicators">
-                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                    </ol>
-                </div>
-            </div>
-        </div>     
-    </section>
+<!--     <section id="foro" class="sections different-bg"> -->
+<!--         <div class="container text-center"> -->
+<!--             <div class="row"> -->
+<!--                 <div class="container text-center"> -->
+<!--                     <div class="row"> -->
+<!--                         <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"> -->
+<!--                             <div class="heading-title"> -->
+<!--                                 <h3>Foro</h3> -->
+<!--                                 <div class="separator"></div> -->
+<!--                             </div> -->
+<!--                             <div class="heading-separator"></div> -->
+<!--                             <div class="heading-details"> -->
+<!--                                 <p>Esta seccion permite cargar preguntas y respuestas de temas relacionadoas a la materia.</p> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--             <div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12"> -->
+<!--                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000"> -->
+<!--                     <div class="carousel-inner" role="listbox"> -->
+<!--                         <div class="item active"> -->
+<!--                             <div class="client-content"> -->
+<!--                                 <h3>What Our Clients are saying</h3> -->
+<!--                                 <p> -->
+<!--                                     “It was a pleasure to work with Imran. He is very dedicated and professional.  -->
+<!--                                     He worked very hard to satisfy our requirements and the communication was great.” -->
+<!--                                 </p> -->
+<!--                                 <div class="client-basicinfo"> -->
+<!--                                     <h6>John Doe</h6> -->
+<!--                                     <a href="#">www.yourwebsite.zt</a> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div>      -->
+<!--                         <div class="item"> -->
+<!--                             <div class="client-content"> -->
+<!--                                 <h3>What Our Clients are saying</h3> -->
+<!--                                 <p> -->
+<!--                                     “It was a pleasure to work with Imran. He is very dedicated and professional.  -->
+<!--                                     He worked very hard to satisfy our requirements and the communication was great.”  -->
+<!--                                 </p> -->
+<!--                                 <div class="client-basicinfo"> -->
+<!--                                     <h6>John Doe</h6> -->
+<!--                                     <a href="#">www.yourwebsite.zt</a> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                         <div class="item"> -->
+<!--                             <div class="client-content"> -->
+<!--                                 <h3>What Our Clients are saying</h3> -->
+<!--                                 <p> -->
+<!--                                     “It was a pleasure to work with Imran. He is very dedicated and professional.  -->
+<!--                                     He worked very hard to satisfy our requirements and the communication was great.” -->
+<!--                                 </p> -->
+<!--                                 <div class="client-basicinfo"> -->
+<!--                                     <h6>John Doe</h6> -->
+<!--                                     <a href="#">www.yourwebsite.zt</a> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                     <ol class="carousel-indicators"> -->
+<!--                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li> -->
+<!--                         <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
+<!--                         <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
+<!--                     </ol> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div>      -->
+<!--     </section> -->
     <section id="notas" class="skills skill-bg">
 <!-- 	<section id="notas" class="sections"> -->
         <div class="overlay-img">

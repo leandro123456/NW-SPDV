@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.lgg.nticxs.web.DAO.RolesDAO;
-import com.lgg.nticxs.utils.EncryptorPassword;
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.EncryptorPassword;
+import com.lgg.nticxs.web.utils.WSLogger;
 
 import com.lgg.nticxs.web.model.Role;
 import com.lgg.nticxs.web.model.SimpleCard;

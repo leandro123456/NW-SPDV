@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.lgg.nticxs.utils.Utils;
+import com.lgg.nticxs.web.utils.Utils;
 import com.lgg.nticxs.web.DAO.AdminDAO;
 import com.lgg.nticxs.web.DAO.AdministrativoDAO;
 import com.lgg.nticxs.web.DAO.AlumnoDAO;
@@ -51,6 +51,7 @@ public class HomeController {
 	NotaDAO notasdao = new NotaDAO();
 	AsistenciaDAO asistenciadao = new AsistenciaDAO();
 	AdministrativoDAO administdao = new AdministrativoDAO();
+	Integer trimestreActual = Utils.TrimestreActual();
 	
 	@GetMapping("home/")
     public String pageLoad(HttpServletRequest request, Model model) {
@@ -188,15 +189,17 @@ public class HomeController {
 
 	private Integer promedioAsistencia(List<Asistencia> asistencia) {
 		Integer asistenciaTotal = 0;
-		if(Asistencia.AUSENTE_JUSTIFICADO != null) {
-			for(Asistencia asist : asistencia) {
-				if(asist.getTipo().equals(Asistencia.AUSENTE) || asist.getTipo().equals(Asistencia.AUSENTE_JUSTIFICADO))
-					asistenciaTotal+=1;
-			}
-		}else {
-			for(Asistencia asist : asistencia) {
-				if(asist.getTipo().equals(Asistencia.PRESENTE))
-					asistenciaTotal+=1;
+		if(asistencia!= null) {
+			if(Asistencia.AUSENTE_JUSTIFICADO != null) {
+				for(Asistencia asist : asistencia) {
+					if(asist.getTipo().equals(Asistencia.AUSENTE) || asist.getTipo().equals(Asistencia.AUSENTE_JUSTIFICADO))
+						asistenciaTotal+=1;
+				}
+			}else {
+				for(Asistencia asist : asistencia) {
+					if(asist.getTipo().equals(Asistencia.PRESENTE))
+						asistenciaTotal+=1;
+				}
 			}
 		}
 		return asistenciaTotal;
@@ -206,11 +209,13 @@ public class HomeController {
 		Double promedio = 0.0;
 		Double total=0.0;
 		Integer cantidad = 0;
-		Integer trimestreConsultado = Utils.TrimestreActual();
-		for(Nota nota : notas){
-			if(nota.getTrimestre() == trimestreConsultado && nota.getTipo().equals(tipo)){
-				cantidad +=1;
-				total=total+nota.getValor();
+		
+		if (notas != null) {
+			for(Nota nota : notas){
+				if(nota.getTrimestre() == trimestreActual && nota.getTipo().equals(tipo)){
+					cantidad +=1;
+					total=total+nota.getValor();
+				}
 			}
 		}
 		if(cantidad != 0)

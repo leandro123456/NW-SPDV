@@ -1,6 +1,6 @@
 package com.lgg.nticxs.web.helper;
 
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.WSLogger;
 
 /**
  * Created by movasim on 19/09/16.

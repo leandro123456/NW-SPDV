@@ -3,7 +3,7 @@ package com.lgg.nticxs.web.helper;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.WSLogger;
 
 
 public class SRHelper {

@@ -85,13 +85,14 @@
 		                <a href="<c:url value="/home/" />${materia}/explorer/document"  data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Documentos</a>
 		            </li>
 
-		            <li id="ippGeneration">
-		                <a href="<c:url value='/home/ipp/generation' />" title="Generate new IPPs" ><i class="fa fa-fw fa-lightbulb-o"></i> IPP Generation</a>
+		            <li id="documentExplorer">
+		                <a href="<c:url value="/home/" />${materia}/explorer/notes"  data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Notas</a>
 		            </li>
 
-		            <li id="ippExplorer">
-		                <a href="<c:url value='/home/ipp/explorer' />"><i class="fa fa-fw fa-expand" data-toggle="tooltip" title="IPP administration tool"></i> IPP Explorer</a>
+		           <li id="documentExplorer">
+		                <a href="<c:url value="/home/" />${materia}/explorer/assistence"  data-toggle="tooltip" title="Edit template parameters" ><i class="fa fa-fw fa-file-text-o"></i> Asistencias</a>
 		            </li>
+
 
                     <li id="amdDP">
                         <a href="<c:url value='/home/amddp' />"><i class="fa fa-fw fa-arrows-alt"  data-toggle="tooltip" title="SM-SRs"></i> AMD DP</a>

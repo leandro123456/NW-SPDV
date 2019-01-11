@@ -19,8 +19,8 @@ import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.ws.addressing.AttributedURIType;
 
-import com.lgg.nticxs.utils.Settings;
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.Settings;
+import com.lgg.nticxs.web.utils.WSLogger;
 
 //import scala.util.matching.Regex;
 

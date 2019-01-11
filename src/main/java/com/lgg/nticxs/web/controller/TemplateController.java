@@ -4,8 +4,8 @@ package com.lgg.nticxs.web.controller;
 import com.lgg.nticxs.web.model.SimpleClasificationIPP;
 import com.lgg.nticxs.web.model.SimpleTemplate;
 import com.lgg.nticxs.web.model.TemplateSearch;
-import com.lgg.nticxs.utils.Settings;
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.Settings;
+import com.lgg.nticxs.web.utils.WSLogger;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.lgg.nticxs.utils;
+package com.lgg.nticxs.web.utils;
 
 import java.security.MessageDigest;
 import java.util.Arrays;

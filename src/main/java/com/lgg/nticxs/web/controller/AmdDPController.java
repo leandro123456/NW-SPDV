@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.WSLogger;
 import com.lgg.nticxs.web.model.SimpleGroups;
 import com.lgg.nticxs.web.model.SimpleMNODP;
 import com.lgg.nticxs.web.model.SimpleSr;

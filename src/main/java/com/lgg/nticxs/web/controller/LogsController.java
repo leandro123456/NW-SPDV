@@ -2,7 +2,7 @@ package com.lgg.nticxs.web.controller;
 
 import com.lgg.nticxs.web.helper.TailLogReader;
 
-import com.lgg.nticxs.utils.Settings;
+import com.lgg.nticxs.web.utils.Settings;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

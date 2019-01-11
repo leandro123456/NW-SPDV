@@ -1,6 +1,6 @@
 package com.lgg.nticxs.web.helper;
 
-import com.lgg.nticxs.utils.Settings;
+import com.lgg.nticxs.web.utils.Settings;
 
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.endpoint.Client;

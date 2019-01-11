@@ -1,6 +1,6 @@
 package com.lgg.nticxs.web.controller;
 
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.WSLogger;
 import com.lgg.nticxs.web.model.*;
 
 import org.springframework.security.core.Authentication;

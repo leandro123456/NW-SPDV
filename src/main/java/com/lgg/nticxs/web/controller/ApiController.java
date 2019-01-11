@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.lgg.nticxs.utils.WSLogger;
+import com.lgg.nticxs.web.utils.WSLogger;
 import com.lgg.nticxs.web.helper.ES3Helper;
 
 

@@ -4,7 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import com.lgg.nticxs.utils.PropertieValue;
+import com.lgg.nticxs.web.utils.PropertieValue;
 
 public class Factory {
 

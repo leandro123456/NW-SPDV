@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lgg.nticxs.utils.EncryptorPassword;
+import com.lgg.nticxs.web.utils.EncryptorPassword;
 import com.lgg.nticxs.web.DAO.AdminDAO;
 import com.lgg.nticxs.web.DAO.AdministrativoDAO;
 import com.lgg.nticxs.web.DAO.AlumnoDAO;

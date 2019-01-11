@@ -1,4 +1,4 @@
-package com.lgg.nticxs.utils;
+package com.lgg.nticxs.web.utils;
 
 /**
  * Created by movasim on 09/09/16.
