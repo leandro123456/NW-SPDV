@@ -2,6 +2,7 @@ package com.lgg.nticxs.web.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
@@ -16,15 +17,18 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.lgg.nticxs.web.utils.Utils;
 import com.lgg.nticxs.web.DAO.AdminDAO;
@@ -54,7 +58,7 @@ public class HomeController {
 	Integer trimestreActual = Utils.TrimestreActual();
 	
 	@GetMapping("home/")
-    public String pageLoad(HttpServletRequest request, Model model) {
+    public ModelAndView pageLoad(HttpServletRequest request, ModelMap model) {
 		String role= "";
 		try {
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -62,27 +66,18 @@ public class HomeController {
 			Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
 		    for (GrantedAuthority grantedAuthority : authorities) {
 		    	role=grantedAuthority.getAuthority();
+		    	model.addAttribute("role", role);
 		    }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String nombre = request.getUserPrincipal().getName();
-			model.addAttribute("usuario", nombre);
-		String nombreAlumno = "";
+		model.addAttribute("usuario", nombre);
 		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE") || role.equals("ADMIN")) {
-			return "redirect:/home/nticxs/provisioning";
+			return new ModelAndView("redirect:/home/provisioning", model);
 		}else {
-			if(role.equals("PADRE")) {
-				Padre padre= padredao.retrieveByName(nombre);
-				nombreAlumno =padre.getAlumno().get(0);
-			}
-			if(role.equals("ALUMNO")) {
-				Alumno alumno = alumdao.retrieveByName(nombre);
-				loadPageAlumno(model, "nticxs");
-				nombreAlumno = alumno.getName();
-			}
-			loadPagePadreAlumno(model,"nticxs",nombreAlumno);
-			return "home";
+			return new ModelAndView("redirect:/home", model);
+
 		}	
     }
 

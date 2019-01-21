@@ -24,16 +24,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class IppController {
-//	MNODAO mnodao=new  MNODAO();
-//	PresetCommandDAO presetcommanddao = new PresetCommandDAO();
-//	
-	
 	private static WSLogger logger = new WSLogger();
 
     @GetMapping("home/ipp/generation")
-    public String generation(Model model) {
-//        loadPageIppGeneration(model);
-        
+    public String generation(Model model) {       
         logger.logger("INFO", "SM-WEB", "IPP", "", "", "generation()", "", "", "", "The screen of IPP generation opens");
         
         return "ipp_generation";
