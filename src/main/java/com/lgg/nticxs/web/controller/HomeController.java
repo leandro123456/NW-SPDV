@@ -28,6 +28,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lgg.nticxs.web.utils.Utils;
@@ -57,7 +59,7 @@ public class HomeController {
 	AdministrativoDAO administdao = new AdministrativoDAO();
 	Integer trimestreActual = Utils.TrimestreActual();
 	
-	@GetMapping("home/")
+	@GetMapping("homepage/")
     public ModelAndView pageLoad(HttpServletRequest request, ModelMap model) {
 		String role= "";
 		try {
@@ -80,7 +82,20 @@ public class HomeController {
 
 		}	
     }
-
+	
+	@RequestMapping("/home")
+	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
+	    if(role.equals("PADRE")){
+	    	
+	    	
+	    }else{ //SERIA ALUMNO
+	    	
+	    }
+		model.addAttribute("usuario", usuario);
+	    model.addAttribute("role", role);
+	    return "home";
+	}
+	
 	@PostMapping("home/")
 	public String sendMail(Model model, String Mensaje) {
 		Properties props = new Properties();

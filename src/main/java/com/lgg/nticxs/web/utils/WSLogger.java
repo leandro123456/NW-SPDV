@@ -25,7 +25,7 @@ public class WSLogger {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		String timestamp = String.valueOf(System.currentTimeMillis() / 1000L);
-		String user = System.getProperty("user.name") + " -- [user WEB] " + auth.getName();		
+		String user = "TestUser";//System.getProperty("user.name") + " -- [user WEB] " + auth.getName();		
 		String encoding = Base64.getEncoder().encodeToString(("loggeruser:password").getBytes());
 		HttpPost httpPost = new HttpPost("http://127.0.0.1/ereachlogger/logging/createlog");
 		try {

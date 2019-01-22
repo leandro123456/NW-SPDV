@@ -97,6 +97,20 @@
 										<option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
 									</select>
 									<p></p>
+									<label>Materia</label> 
+										<div name="nticxs" class="form-check form-check-inline">
+										  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+										  <label class="form-check-label" for="inlineCheckbox1">Nticxs</label>
+										</div>
+										<div name="matematica1" class="form-check form-check-inline">
+										  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+										  <label class="form-check-label" for="inlineCheckbox2">Matematica 1</label>
+										</div>
+										<div name="lengua1" class="form-check form-check-inline">
+										  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" disabled>
+										  <label class="form-check-label" for="inlineCheckbox3">Lengua 1</label>
+										</div>
+									<p></p>
 
 									<div class="row">
 										<div class="col-lg-2"></div>

@@ -37,9 +37,9 @@
                 </div>
                 
                 <form action="<c:url value="/twoauthentication" />" method="post" class="form-signin">
-                    <input name="sixKey" type="password" name="pass" type="text" class="form-control" placeholder="Ingrese la Contraseña" required autofocus>
+                    <input type="password" name="pass" type="text" class="form-control" placeholder="Ingrese la Contraseña" required autofocus>
                     <p> </p>
-                    <button class="btn btn-lg btn-primary btn-block btn-signin">Enviar</button>
+                    <button class="btn btn-lg btn-primary btn-block btn-signin">Ingresar</button>
                 </form>
             </div>
             <div class="col-md-4">
