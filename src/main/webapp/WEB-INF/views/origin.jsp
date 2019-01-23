@@ -1,5 +1,6 @@
-<!doctype html>
-<html lang="en">
+<%@ page isELIgnored="false" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <head>
   <meta charset="utf-8">
   <title>Ser Piero DaVinci</title>
@@ -8,28 +9,27 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="eBusiness/img/favicon.png" rel="icon">
-  <link href="eBusiness/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/serpierodavinci-web/resources/eBusiness/img/favicon.png" rel="icon">
+  <link href="/serpierodavinci-web/resources/eBusiness/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Bootstrap CSS File -->
-  <link href="eBusiness/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/bootstrap/css/bootstrap.min.css" />'>
   <!-- Libraries CSS Files -->
-  <link href="eBusiness/lib/nivo-slider/css/nivo-slider.css" rel="stylesheet">
-  <link href="eBusiness/lib/owlcarousel/owl.carousel.css" rel="stylesheet">
-  <link href="eBusiness/lib/owlcarousel/owl.transitions.css" rel="stylesheet">
-  <link href="eBusiness/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="eBusiness/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="eBusiness/lib/venobox/venobox.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/nivo-slider/css/nivo-slider.css" />'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/owlcarousel/owl.carousel.css" />'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/owlcarousel/owl.transitions.css"/>'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/font-awesome/css/font-awesome.min.css" />'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/animate/animate.min.css" />'>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/lib/venobox/venobox.css" />'>
 
   <!-- Nivo Slider Theme -->
-  <link href="eBusiness/css/nivo-slider-theme.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/css/nivo-slider-theme.css"/>'>
 
   <!-- Main Stylesheet File -->
-  <link href="eBusiness/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/css/style.css" />'>
 
   <!-- Responsive Stylesheet File -->
-  <link href="eBusiness/css/responsive.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href='<c:url value="/resources/eBusiness/css/responsive.css" />'>
 
 </head>
 
@@ -94,9 +94,9 @@
   <div id="home" class="slider-area">
     <div class="bend niceties preview-2">
       <div id="ensign-nivoslider" class="slides">
-        <img src="img/slider/slider1.jpg" alt="" title="#slider-direction-1" />
-        <img src="img/slider/slider2.jpg" alt="" title="#slider-direction-2" />
-        <img src="img/slider/slider3.jpg" alt="" title="#slider-direction-3" />
+        <img alt="" title="#slider-direction-1" src='<c:url value="/resources/eBusiness/img/slider/slider1.jpg"  />'/>
+        <img alt="" title="#slider-direction-2" src='<c:url value="/resources/eBusiness/img/slider/slider2.jpg"  />'/>
+        <img alt="" title="#slider-direction-3" src='<c:url value="/resources/eBusiness/img/slider/slider3.jpg"/>'/>
       </div>
 
       <!-- direction 1 -->
@@ -214,7 +214,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 design development">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/1.jpg" alt="" /></a>
+                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/1.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/1.jpg">
@@ -231,7 +231,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 photo">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/2.jpg" alt="" /></a>
+                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/2.jpg">
@@ -248,7 +248,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 design">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/3.jpg" alt="" /></a>
+                <a href="#"><img  src='<c:url value="/resources/eBusiness/img/portfolio/3.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/3.jpg">
@@ -265,7 +265,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 photo development">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/4.jpg" alt="" /></a>
+                <a href="#"><img  src='<c:url value="/resources/eBusiness/img/portfolio/4.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/4.jpg">
@@ -282,7 +282,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 development">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/5.jpg" alt="" /></a>
+                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/5.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/5.jpg">
@@ -299,7 +299,7 @@
           <div class="col-md-4 col-sm-4 col-xs-12 design photo">
             <div class="single-awesome-project">
               <div class="awesome-img">
-                <a href="#"><img src="img/portfolio/6.jpg" alt="" /></a>
+                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/6.jpg"/>' alt="" /></a>
                 <div class="add-actions text-center">
                   <div class="project-dec">
                     <a class="venobox" data-gall="myGallery" href="img/portfolio/6.jpg">
@@ -334,22 +334,22 @@
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- JavaScript Libraries -->
-  <script src="eBusiness/lib/jquery/jquery.min.js"></script>
-  <script src="eBusiness/lib/bootstrap/js/bootstrap.min.js"></script>
-  <script src="eBusiness/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="eBusiness/lib/venobox/venobox.min.js"></script>
-  <script src="eBusiness/lib/knob/jquery.knob.js"></script>
-  <script src="eBusiness/lib/wow/wow.min.js"></script>
-  <script src="eBusiness/lib/parallax/parallax.js"></script>
-  <script src="eBusiness/lib/easing/easing.min.js"></script>
-  <script src="eBusiness/lib/nivo-slider/js/jquery.nivo.slider.js" type="text/javascript"></script>
-  <script src="eBusiness/lib/appear/jquery.appear.js"></script>
-  <script src="eBusiness/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src='<c:url value="/resources/eBusiness/lib/jquery/jquery.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/bootstrap/js/bootstrap.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/owlcarousel/owl.carousel.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/venobox/venobox.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/knob/jquery.knob.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/wow/wow.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/parallax/parallax.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/easing/easing.min.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/nivo-slider/js/jquery.nivo.slider.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/appear/jquery.appear.js" />'></script>
+  <script src='<c:url value="/resources/eBusiness/lib/isotope/isotope.pkgd.min.js" />'></script>
 
   <!-- Contact Form JavaScript File -->
-  <script src="eBusiness/contactform/contactform.js"></script>
+  <script src='<c:url value="/resources/eBusiness/contactform/contactform.js" />'></script>
 
-  <script src="eBusiness/js/main.js"></script>
+  <script src='<c:url value="/resources/eBusiness/js/main.js" />'></script>
 </body>
+<jsp:include page="footer.jsp" /> 
 
-</html>
