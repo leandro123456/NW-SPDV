@@ -93,7 +93,7 @@ public class HomeController {
 	    }
 		model.addAttribute("usuario", usuario);
 	    model.addAttribute("role", role);
-	    return "home";
+	    return "origin";
 	}
 	
 	@PostMapping("home/")
