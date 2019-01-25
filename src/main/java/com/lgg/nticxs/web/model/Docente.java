@@ -2,6 +2,7 @@ package com.lgg.nticxs.web.model;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,25 +22,25 @@ public class Docente{
 	@Field (name = "name")
 	private String name;
 	
+	@Field (name = "email")
+	private String email;
+	
 	@Field (name = "password")
 	private byte[] password;
 	
-	@Field (name = "historyPassword")
-	private List<byte[]> historyPassword;
-	
 	@Field (name = "delete")
 	private Boolean delete;
-
-	@Field (name = "role")
-	private String role;
 	
-	@Field (name = "materia")
-	private String materia;
+	@ElementCollection
+	@Field(name="materia")
+	private List<String> materia;
 	
 	@Field (name = "curso")
 	private String curso;
 	
-	
+	@Field (name = "role")
+	private String role;
+
 	public String getId() {
 		return id;
 	}
@@ -64,20 +65,21 @@ public class Docente{
 		this.password = password;
 	}
 
-	public List<byte[]> getHistoryPassword() {
-		return historyPassword;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setHistoryPassword(List<byte[]> historyPassword) {
-		this.historyPassword = historyPassword;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public Boolean getDelete() {
-		return delete;
+	public List<String> getMateria() {
+		return materia;
 	}
 
-	public void setDelete(Boolean delete) {
-		this.delete = delete;
+	public void setMateria(List<String> materia) {
+		this.materia = materia;
 	}
 
 	public String getRole() {
@@ -88,12 +90,12 @@ public class Docente{
 		this.role = role;
 	}
 
-	public String getMateria() {
-		return materia;
+	public Boolean getDelete() {
+		return delete;
 	}
 
-	public void setMateria(String materia) {
-		this.materia = materia;
+	public void setDelete(Boolean delete) {
+		this.delete = delete;
 	}
 
 	public String getCurso() {

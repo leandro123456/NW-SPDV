@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Nticxs Web</title>
+<title>Ser Piero Da Vinci</title>
 
 <!-- Bootstrap Core CSS -->
 <link href='<c:url value="/resources/css/bootstrap.min.css" />'
@@ -93,10 +93,9 @@
 									</select>
 									<p></p>
 									
-									<label id = "tituloRelacion" style="display: none">Vincular con alumno</label>
-									<select id="relacion" name="relacion" class="form-control"
+									<label id = "tituloRelacion" style="display: none">Vincular con alumno/s</label>
+									<select multiple class="form-control" id="relacion" name="relacion" 
 									style="display: none">
-										<option value="none">Seleccionar Alumno</option>
 										<c:forEach items="${alumnos}" var="alumno">
 											<option value="${alumno}">${alumno}</option>
 										</c:forEach>
@@ -112,46 +111,40 @@
 											<option value="${alumno}">${alumno}</option>
 										</c:forEach>
 									</select>
-									<p></p>
-									<label>Remember to talk to an administrator to change the role of your account</label>
-									<p></p>
 									
-									
-									
+									<p> </p>
+                                    <label>Email</label>
+                                   	<input name="email" class="form-control" required>
+									<p> </p>
 									
 									<div class="row">
 										<div class="col-lg-2"></div>
 										<div class="col-lg-8">
 											<div class="panel panel-default">
 												<div class="panel-heading">
-													<h3 class="panel-title">Password</h3>
+													<h3 class="panel-title">Contraseña</h3>
 												</div>
 												<div class="panel-body">
-													<label>Password must be 15 characters long</label>
+													<label>Su contraseña debe tener un largo superior a 10 caracteres</label>
 													<p></p>
-													<label>Your password must meet the following
-														requirements:</label>
+													<label>Tambien debe cumplir con los siguientes requisitos:</label>
 													<p></p>
-													<label>-Three uppercase letters</label>
+													<label>-Un valor Alfabetico en mayuscula</label>
 													<p></p>
-													<label>-Three lowercase letters</label>
-													<p></p>
-													<label>-Three numbers</label>
-													<p></p>
-													<label>And in addition the previous characters do not have repetitions followed</label>
+													<label>-Un valor numerico</label>
 													<p></p> 
-													<label>-Three of the following special characters:</label>
+													<label>-Al menos un caracter especial:</label>
 													<p></p>
 													<label>!@#$&;.,</label>
 													<p></p>
-													<label>Password</label>
+													<label>Contraseña</label>
 	                                                <input id="password" type="password" name="newPass" class="form-control" autocomplete="new-password">
 	                                                <p> </p>
 	                                                <input id="randomPassword" type="button" class="btn btn-default" value="Random Password">
 	                                                <p> </p>
 	                                                <input id="viewPassword" type="button" class="btn btn-default" value="View Password">
 	                                                <p> </p>
-	                                                <label>Confirm new password</label>
+	                                                <label>Confirmar Contraseña</label>
 	                                                <input id="confirmNewPassword" type="password" name="newPass2" class="form-control" autocomplete="new-password">
 												</div>
 											</div>

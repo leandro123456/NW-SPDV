@@ -1,17 +1,16 @@
 package com.lgg.nticxs.web.model;
 
-import javax.persistence.Entity;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
 import org.eclipse.persistence.nosql.annotations.NoSql;
 
-	
-	
-
-@Entity
+@Embeddable
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Materia {
 	static final public String ACTIVIDADES = "actividad";
@@ -21,83 +20,48 @@ public class Materia {
 	static final public Integer SEGUNDO_TRIMESTRE = 2;
 	static final public Integer TERCER_TRIMESTRE = 3;
 	
-	@Id
-	@GeneratedValue
-	@Field(name = "_id")
-	private String id;
 	
-	@Field (name = "nombre")
-	private String nombre;
+
+	@ElementCollection
+	@Field (name = "materia")
+	private List<Materia.materia> materia;
+
+	public List<Materia.materia> getMateria() {
+		return materia;
+	}
+
+	public void setMateria(List<Materia.materia> materia) {
+		this.materia = materia;
+	}
 	
-	@Field (name = "año")
-	private String año;
 	
-	@Field (name = "trimestre")
-	private Integer trimestre;
 	
-	@Field (name = "descripcion")
-	private String descripcion;
-	
-	@Field (name = "idmateria")
-	private String idmateria;
-	
-	@Field (name = "idalumno")
-	private String idalumno;
-	
-	public String getId() {
-		return id;
-	}
+	@Embeddable
+	@NoSql(dataFormat=DataFormatType.MAPPED)
+	public static class materia{
+		@Field (name = "identifier")
+		private String identifier;
+		
+		@Field (name = "anio")
+		private Integer anio;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+		public String getIdentifier() {
+			return identifier;
+		}
 
-	public String getIdmateria() {
-		return idmateria;
-	}
+		public void setIdentifier(String identifier) {
+			this.identifier = identifier;
+		}
 
-	public void setIdmateria(String idmateria) {
-		this.idmateria = idmateria;
-	}
+		public Integer getAnio() {
+			return anio;
+		}
 
-	public String getIdalumno() {
-		return idalumno;
-	}
-
-	public void setIdalumno(String idalumno) {
-		this.idalumno = idalumno;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getAño() {
-		return año;
-	}
-
-	public void setAño(String año) {
-		this.año = año;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Integer getTrimestre() {
-		return trimestre;
-	}
-
-	public void setTrimestre(Integer trimestre) {
-		this.trimestre = trimestre;
+		public void setAnio(Integer anio) {
+			this.anio = anio;
+		}
+		
+		
 	}
 
 	}

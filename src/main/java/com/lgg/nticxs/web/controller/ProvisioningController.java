@@ -70,8 +70,8 @@ public class ProvisioningController {
                 Docente docente = docentedao.retrieveByName(request.getUserPrincipal().getName());
                 System.out.println("docente nombre: "+ request.getUserPrincipal().getName());
                 System.out.println("docente: "+ docente);
-                if(docente != null)
-                	document.setMateria(docente.getMateria());
+//                if(docente != null)
+//                	document.setMateria(docente.getMateria());
                 byte[] bytes = documento.getBytes();
                 document.setIddocente(docente.getId());
                 document.setAvailable(true);

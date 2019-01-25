@@ -1,8 +1,6 @@
 package com.lgg.nticxs.web.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
 import org.eclipse.persistence.nosql.annotations.DataFormatType;
 import org.eclipse.persistence.nosql.annotations.Field;
@@ -10,20 +8,16 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 
 	
 	
-@Entity
+@Embeddable
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Nota {
 	static final public String ACTIVIDADES = "actividad";
 	static final public String TRABAJO_PRACTICO = "trabajo_practico";
 	static final public String EVALUACION = "evaluacion";
+	static final public String TRIMESTRAL = "trimestral";
 	static final public Integer PRIMER_TRIMESTRE = 1;
 	static final public Integer SEGUNDO_TRIMESTRE = 2;
 	static final public Integer TERCER_TRIMESTRE = 3;
-	
-	@Id
-	@GeneratedValue
-	@Field(name = "_id")
-	private String id;
 	
 	@Field (name = "tipo")
 	private String tipo;
@@ -46,14 +40,6 @@ public class Nota {
 	@Field (name = "idalumno")
 	private String idalumno;
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getIdmateria() {
 		return idmateria;
 	}

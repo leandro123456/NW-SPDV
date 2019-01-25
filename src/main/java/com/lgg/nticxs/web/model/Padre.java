@@ -26,22 +26,21 @@ public class Padre{
 	@Field (name = "name")
 	private String name;
 	
+	@Field (name = "email")
+	private String email;
+	
 	@Field (name = "password")
 	private byte[] password;
-	
-	@Field (name = "historyPassword")
-	private List<byte[]> historyPassword;
-	
+
 	@Field (name = "delete")
 	private Boolean delete;
-
-	@Field (name = "role")
-	private String role;
 	
 	@ElementCollection
 	@Field(name="alumno")
 	private List<String> alumno;
 	
+	@Field (name = "role")
+	private String role;
 	
 	public Padre(){
 	}
@@ -57,6 +56,22 @@ public class Padre{
 
 	public List<String> getAlumno() {
 		return alumno;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public void setAlumno(List<String> alumno) {
@@ -87,13 +102,6 @@ public class Padre{
 		this.password = password;
 	}
 
-	public List<byte[]> getHistoryPassword() {
-		return historyPassword;
-	}
-
-	public void setHistoryPassword(List<byte[]> historyPassword) {
-		this.historyPassword = historyPassword;
-	}
 
 	public Boolean getDelete() {
 		return delete;
@@ -101,14 +109,6 @@ public class Padre{
 
 	public void setDelete(Boolean delete) {
 		this.delete = delete;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 	
 }

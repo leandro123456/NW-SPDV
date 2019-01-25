@@ -13,11 +13,16 @@ import org.eclipse.persistence.nosql.annotations.NoSql;
 @NoSql(dataFormat=DataFormatType.MAPPED)
 public class Mensaje {
 	
-	@Field(name = "_id")
-	private String id;
+	static final public String PRIORIDAD_BAJA = "baja";
+	static final public String PRIORIDAD_MEDIA = "media";
+	static final public String PRIORIDAD_ALTA = "alta";
 	
+
 	@Field (name = "tipo")
 	private String tipo;
+	
+	@Field (name = "prioridad")
+	private String prioridad;
 	
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
@@ -25,16 +30,12 @@ public class Mensaje {
 	@Field (name = "contenido")
 	private String contenido;
 	
-	@Field (name = "encabezado")
-	private String encabezado;
+	@Field (name = "asunto")
+	private String asunto;
 	
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	@Field (name = "copiapadre")
+	private Boolean copiapadre;
+	
 
 	public String getTipo() {
 		return tipo;
@@ -60,13 +61,30 @@ public class Mensaje {
 		this.contenido = contenido;
 	}
 
-	public String getEncabezado() {
-		return encabezado;
+	public String getPrioridad() {
+		return prioridad;
 	}
 
-	public void setEncabezado(String encabezado) {
-		this.encabezado = encabezado;
+	public void setPrioridad(String prioridad) {
+		this.prioridad = prioridad;
 	}
+
+	public String getAsunto() {
+		return asunto;
+	}
+
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+
+	public Boolean getCopiapadre() {
+		return copiapadre;
+	}
+
+	public void setCopiapadre(Boolean copiapadre) {
+		this.copiapadre = copiapadre;
+	}
+
 
 
 	}

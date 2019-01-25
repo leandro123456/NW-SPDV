@@ -61,14 +61,15 @@ public class LoginController{
 	@PostMapping("/signup")
     public String addNewUser(Model model,
     		@RequestParam("action") String action,
-    		@RequestParam(name="insertname", required=false) String insertName,
+    		@RequestParam(name="insertName", required=false) String insertName,
     		@RequestParam(name="selectName", required=false) String selectName,
+    		@RequestParam(name="email", required=false) String email,
     		@RequestParam(name="role", required=false) String role,
     		@RequestParam(name="newPass", required=false) String pass, 
     		@RequestParam(name="newPass2", required=false) String pass2,
-    		@RequestParam(name="relacion", required=false) String relacion) throws Exception{
+    		@RequestParam(name="relacion", required=false) List<String> relacion) throws Exception{
     	String returnValue = null;
-    	if (action.compareTo("save") == 0) {   		
+    	if (action.compareTo("save") == 0 && email.contains("@")) {   		
         	switch (role) {
     		case "ALUMNO":
     			if(alumnoIsActive(selectName)){
@@ -77,7 +78,7 @@ public class LoginController{
         			return "signup";
             	}
     			else    				
-    				returnValue = createAlumno(model, selectName, role,pass, pass2);
+    				returnValue = createAlumno(model, selectName, role,pass, pass2,email);
     			break;
     		case "PADRE":
     			if(nameExist(insertName, selectName)) {
@@ -85,7 +86,7 @@ public class LoginController{
         			loadSingUp(model);
         			return "signup";
             	}
-    			returnValue = createPadre(model, insertName, role,pass, pass2, relacion);
+    			returnValue = createPadre(model, insertName, role,pass, pass2, relacion,email);
     			break;
 
     		default:
@@ -201,7 +202,7 @@ public class LoginController{
 		
 	}
     
-	private String createPadre(Model model, String name, String role,String pass, String pass2, String alumnoRelacionado) {
+	private String createPadre(Model model, String name, String role,String pass, String pass2, List<String> alumnoRelacionado,String email) {
 		if(!existName(name,role)) {
 			if(pass.equals(pass2)){
 				if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
@@ -212,15 +213,14 @@ public class LoginController{
 						admin.setPassword(password);
 						List<byte[]> list = new ArrayList<byte[]>();
 						list.add(password);
-						admin.setHistoryPassword(list);
 					} catch (Exception e) {
 						System.out.println("error en la generacion del pass");
 						e.printStackTrace();
 					}
 					admin.setRole(role);
 					admin.setDelete(false);
-					admin.setAlumno(new ArrayList<String>());
-					admin.getAlumno().add(alumnoRelacionado);
+					admin.setEmail(email);
+					admin.setAlumno(alumnoRelacionado);
 					padredao.create(admin);
 					model.addAttribute("msg2", "User update successfully completed");
 			    	return "login";
@@ -240,7 +240,7 @@ public class LoginController{
 	}
 
 
-	private String createAlumno(Model model, String name, String role, String pass, String pass2) {
+	private String createAlumno(Model model, String name, String role, String pass, String pass2, String email) {
 		if(pass.equals(pass2)){
 			if (pass.matches("^(?!.*([A-Za-z0-9])\\1{1})(?=.*[A-Z].*[A-Z].*[A-Z])(?=.*[!@#$&;.,*].*[!@#$&;.,*].*[!@#$&;.,*])(?=.*[0-9].*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{15}$")) {
 				Alumno admin = alumnodao.retrieveByName(name);
@@ -249,7 +249,6 @@ public class LoginController{
 					admin.setPassword(password);
 					List<byte[]> list = new ArrayList<byte[]>();
 					list.add(password);
-					admin.setHistoryPassword(list);
 				} catch (Exception e) {
 					model.addAttribute("msg1", "Error en la generacion de la contraseña");
 					e.printStackTrace();
@@ -257,6 +256,7 @@ public class LoginController{
 				admin.setRole(role);
 				admin.setDelete(false);
 				admin.setCuenta_iniciada(true);
+				admin.setEmail(email);
 				alumnodao.update(admin);
 				model.addAttribute("msg2", "EL Usuario fue creado de manera exitosa");
 				return "login";
@@ -282,7 +282,6 @@ public class LoginController{
 						admin.setPassword(password);
 						List<byte[]> list = new ArrayList<byte[]>();
 						list.add(password);
-						admin.setHistoryPassword(list);
 					} catch (Exception e) {
 						System.out.println("error en la generacion del pass");
 						e.printStackTrace();
