@@ -94,7 +94,7 @@
   <div id="home" class="slider-area">
     <div class="bend niceties preview-2">
       <div id="ensign-nivoslider" class="slides">
-        <img alt="" title="#slider-direction-1" src='<c:url value="/resources/eBusiness/img/slider/slider1.jpg"  />'/>
+        <img alt="" title="#slider-direction-1" src='<c:url value="/resources/eBusiness/img/slider/sliderdavinci1.jpg"  />'/>
         <img alt="" title="#slider-direction-2" src='<c:url value="/resources/eBusiness/img/slider/slider2.jpg"  />'/>
         <img alt="" title="#slider-direction-3" src='<c:url value="/resources/eBusiness/img/slider/slider3.jpg"/>'/>
       </div>
@@ -107,17 +107,17 @@
               <div class="slider-content">
                 <!-- layer 1 -->
                 <div class="layer-1-1 hidden-xs wow slideInDown" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best Business Information </h2>
+                  <h2 class="title1">Libertad de Expresión y Pensamiento</h2>
                 </div>
                 <!-- layer 2 -->
-                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">We're In The Business Of Helping You Start Your Business</h1>
-                </div>
+<!--                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s"> -->
+<!--                   <h1 class="title2">We're In The Business Of Helping You Start Your Business</h1> -->
+<!--                 </div> -->
                 <!-- layer 3 -->
-                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
-                </div>
+<!--                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s"> -->
+<!--                   <a class="ready-btn right-btn page-scroll" href="#services">See Services</a> -->
+<!--                   <a class="ready-btn page-scroll" href="#about">Learn More</a> -->
+<!--                 </div> -->
               </div>
             </div>
           </div>
@@ -132,17 +132,17 @@
               <div class="slider-content text-center">
                 <!-- layer 1 -->
                 <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best Business Information </h2>
+                  <h2 class="title1">Libertad de Expresión y Pensamiento</h2>
                 </div>
                 <!-- layer 2 -->
-                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">We're In The Business Of Get Quality Business Service</h1>
-                </div>
+<!--                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s"> -->
+<!--                   <h1 class="title2">We're In The Business Of Get Quality Business Service</h1> -->
+<!--                 </div> -->
                 <!-- layer 3 -->
-                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
-                </div>
+<!--                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s"> -->
+<!--                   <a class="ready-btn right-btn page-scroll" href="#services">See Services</a> -->
+<!--                   <a class="ready-btn page-scroll" href="#about">Learn More</a> -->
+<!--                 </div> -->
               </div>
             </div>
           </div>
@@ -157,17 +157,17 @@
               <div class="slider-content">
                 <!-- layer 1 -->
                 <div class="layer-1-1 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <h2 class="title1">The Best business Information </h2>
+                  <h2 class="title1">Libertad de Expresión y Pensamiento</h2>
                 </div>
                 <!-- layer 2 -->
-                <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s">
-                  <h1 class="title2">Helping Business Security  & Peace of Mind for Your Family</h1>
-                </div>
+<!--                 <div class="layer-1-2 wow slideInUp" data-wow-duration="2s" data-wow-delay=".1s"> -->
+<!--                   <h1 class="title2">Helping Business Security  & Peace of Mind for Your Family</h1> -->
+<!--                 </div> -->
                 <!-- layer 3 -->
-                <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                  <a class="ready-btn right-btn page-scroll" href="#services">See Services</a>
-                  <a class="ready-btn page-scroll" href="#about">Learn More</a>
-                </div>
+<!--                 <div class="layer-1-3 hidden-xs wow slideInUp" data-wow-duration="2s" data-wow-delay=".2s"> -->
+<!--                   <a class="ready-btn right-btn page-scroll" href="#services">See Services</a> -->
+<!--                   <a class="ready-btn page-scroll" href="#about">Learn More</a> -->
+<!--                 </div> -->
               </div>
             </div>
           </div>
@@ -183,7 +183,7 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="section-headline text-center">
-            <h2>Our Portfolio</h2>
+            <h2>Materias</h2>
           </div>
         </div>
       </div>
@@ -194,7 +194,7 @@
             <div class="awesome-menu ">
               <ul class="project-menu">
                 <li>
-                  <a href="#" class="active" data-filter="*">All</a>
+                  <a href="#" class="active" data-filter="*">Todas las materias</a>
                 </li>
                 <li>
                   <a href="#" data-filter=".development">Development</a>
@@ -262,7 +262,7 @@
           </div>
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 photo development">
+          <div class="col-md-4 col-sm-4 col-xs-12 " data-filter="photo" data-filter="development">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img  src='<c:url value="/resources/eBusiness/img/portfolio/4.jpg"/>' alt="" /></a>
@@ -316,20 +316,6 @@
       </div>
     </div>
   </div>
-
-
-	<div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="footer-last-content">
-                <h4>Nuestra direccion</h4>
-                <p> </p>
-                <div class="contact-info">
-                    <p><i class="fa fa-map-marker"></i>   Moreno, Buenos Aires, Argentina</p>
-                    <!--<p><i class="fa fa-phone"></i></p> -->
-                    <p><i class="fa fa-envelope"></i>   leandrogabrielguzman@gmail.com</p>
-                </div>
-
-            </div>
-        </div>
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
