@@ -210,8 +210,10 @@
           </div>
         </div>
         <div class="awesome-project-content">
+          <c:set var="phot" value="photo"/>
+          <c:set var="developme" value="development"/>
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 design development">
+          <div class="col-md-4 col-sm-4 col-xs-12 design ${developme}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/1.jpg"/>' alt="" /></a>
@@ -228,7 +230,7 @@
           </div>
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 photo">
+          <div class="col-md-4 col-sm-4 col-xs-12 ${phot}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
@@ -262,7 +264,7 @@
           </div>
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 " data-filter="photo" data-filter="development">
+          <div class="col-md-4 col-sm-4 col-xs-12 ${phot} ${developme}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img  src='<c:url value="/resources/eBusiness/img/portfolio/4.jpg"/>' alt="" /></a>
@@ -279,7 +281,7 @@
           </div>
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 development">
+          <div class="col-md-4 col-sm-4 col-xs-12 ${developme}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/5.jpg"/>' alt="" /></a>
@@ -296,7 +298,7 @@
           </div>
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 design photo">
+          <div class="col-md-4 col-sm-4 col-xs-12 design ${phot}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/6.jpg"/>' alt="" /></a>

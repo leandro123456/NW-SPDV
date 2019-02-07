@@ -86,13 +86,18 @@ public class HomeController {
 	@RequestMapping("/home")
 	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
 	    if(role.equals("PADRE")){
-	    	
-	    	
+	    	System.out.println("nombre de usuario: "+ usuario);
+	    	Padre padre =padredao.retrieveByName(usuario);
+	    	for (String hijo : padre.getAlumno()) {
+				System.out.println("nombre: "+ hijo);
+			}
+	    	model.addAttribute("hijos", padre.getAlumno());
 	    }else{ //SERIA ALUMNO
 	    	
 	    }
 		model.addAttribute("usuario", usuario);
 	    model.addAttribute("role", role);
+	    
 	    return "origin";
 	}
 	
