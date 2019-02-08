@@ -92,13 +92,17 @@ public class HomeController {
 		if(role.equals("PADRE")){
 	    	System.out.println("nombre de padre: "+ usuario);
 	    	Padre padre =padredao.retrieveByName(usuario);
+	    	HashMap<String, String> infoHijoMateria  = new HashMap<>();
 	    	for (String hijo : padre.getAlumno()) {
-				System.out.println("nombreHIjo: "+ hijo);
+				System.out.println("nombreHijo: "+ hijo);
 				Alumno alumno = alumdao.retrieveByName(hijo);
 				//asociacionMAt
-				alumno.getCiclolectivo().getMaterias();
-				
+				List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
+				for(Materia.materia mate :mat){
+					infoHijoMateria.put(alumno.getName(), mate.getName());
+				}
 			}
+	    	model.addAttribute("hijoMateria", infoHijoMateria);
 	    	model.addAttribute("hijos", padre.getAlumno());
 	    }else{ //SERIA ALUMNO
 	    	

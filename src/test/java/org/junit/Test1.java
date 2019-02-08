@@ -66,8 +66,7 @@ public class Test1 {
 		AlumnoDAO alumdao = new AlumnoDAO();
 		Alumno alumno = new Alumno();
 		alumno.setName("pablo");
-		
-		
+
 		Ciclolectivo ciclo = new Ciclolectivo();
 		ciclo.setAnio(2019);
 		
