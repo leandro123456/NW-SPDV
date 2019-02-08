@@ -42,6 +42,10 @@ public class Materia {
 		@Field (name = "identifier")
 		private String identifier;
 		
+		@Field (name = "name")
+		private String name;
+		
+		
 		@Field (name = "anio")
 		private Integer anio;
 
@@ -59,6 +63,14 @@ public class Materia {
 
 		public void setAnio(Integer anio) {
 			this.anio = anio;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
 		}
 		
 		

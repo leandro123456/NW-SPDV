@@ -56,8 +56,43 @@ public class Test1 {
 //		materia.setMateria(listMaterias);
 //		
 //		ciclo.setMaterias(materia);
-//		ciclodao.create(ciclodao);
+//		ciclodao.create(ciclo);
+//		System.out.println("termino bien");
 //	}
+	
+	
+	@Test
+	public void testMakeAlumno(){
+		AlumnoDAO alumdao = new AlumnoDAO();
+		Alumno alumno = new Alumno();
+		alumno.setName("pablo");
+		
+		
+		Ciclolectivo ciclo = new Ciclolectivo();
+		ciclo.setAnio(2019);
+		
+		Materia materia = new Materia();
+		List<Materia.materia> listMaterias = new ArrayList<>();
+		
+		Materia.materia matParticular = new materia();
+		matParticular.setAnio(2019);
+		matParticular.setIdentifier("01MAT");	
+		listMaterias.add(matParticular);
+		
+		matParticular.setAnio(2019);
+		matParticular.setIdentifier("01LENG");
+		listMaterias.add(matParticular);
+
+		materia.setMateria(listMaterias);
+		
+		ciclo.setMaterias(materia);
+		
+		
+		alumno.setCiclolectivo(ciclo);
+		alumno.setEmail("pablo.bilbao@hotmail.com");
+		alumdao.create(alumno);
+		System.out.println("termino");
+	}
 	
 //	@Test
 //	public void testCreateAsistencia() {
@@ -112,18 +147,18 @@ public class Test1 {
 //		System.out.println("termino");
 //	}
 	
-	@Test
-	public void createDocente(){
-		DocenteDAO docentedao= new DocenteDAO();
-		Docente docente = new Docente();
-		docente.setCurso("4");
-		docente.setDelete(false);
-//		docente.setMateria("NTICXs");
-		docente.setName("Leandroa Guzman");
-		docente.setPassword("leandro".getBytes());
-		docentedao.create(docente);
-		System.out.println("termino");
-	}
+//	@Test
+//	public void createDocente(){
+//		DocenteDAO docentedao= new DocenteDAO();
+//		Docente docente = new Docente();
+//		docente.setCurso("4");
+//		docente.setDelete(false);
+////		docente.setMateria("NTICXs");
+//		docente.setName("Leandroa Guzman");
+//		docente.setPassword("leandro".getBytes());
+//		docentedao.create(docente);
+//		System.out.println("termino");
+//	}
 //	@Test
 //	public void retrieveDocuments() {
 //		DocumentoDAO docdao = new DocumentoDAO();
@@ -161,52 +196,52 @@ public class Test1 {
 	
 	
 	/*				Encrypt of password					*/
-	@Test
-    public void encrypt() throws Exception {
-		String message = "";
-        MessageDigest md = MessageDigest.getInstance("md5");
-        byte[] digestOfPassword = md.digest("ABGELDPGOQWZX"
-                        .getBytes("utf-8"));
-        byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-        for (int j = 0, k = 16; j < 8;) {
-                keyBytes[k++] = keyBytes[j++];
-        }
-
-        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
-        IvParameterSpec iv = new IvParameterSpec(new byte[8]);
-        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-
-        byte[] plainTextBytes = message.getBytes("utf-8");
-        byte[] cipherText = cipher.doFinal(plainTextBytes);
-        // String encodedCipherText = new sun.misc.BASE64Encoder()
-        // .encode(cipherText);
-
-        System.out.println(Utils.toUnformattedHexArray(cipherText));;
-    }
+//	@Test
+//    public void encrypt() throws Exception {
+//		String message = "";
+//        MessageDigest md = MessageDigest.getInstance("md5");
+//        byte[] digestOfPassword = md.digest("ABGELDPGOQWZX"
+//                        .getBytes("utf-8"));
+//        byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
+//        for (int j = 0, k = 16; j < 8;) {
+//                keyBytes[k++] = keyBytes[j++];
+//        }
+//
+//        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+//        IvParameterSpec iv = new IvParameterSpec(new byte[8]);
+//        Cipher cipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+//        cipher.init(Cipher.ENCRYPT_MODE, key, iv);
+//
+//        byte[] plainTextBytes = message.getBytes("utf-8");
+//        byte[] cipherText = cipher.doFinal(plainTextBytes);
+//        // String encodedCipherText = new sun.misc.BASE64Encoder()
+//        // .encode(cipherText);
+//
+//        System.out.println(Utils.toUnformattedHexArray(cipherText));;
+//    }
     
     /*				Decrypt of password					*/
-    @Test
-    public void decrypt() throws Exception {
-    	
-    	byte[] message = "".getBytes();
-        MessageDigest md = MessageDigest.getInstance("md5");
-        byte[] digestOfPassword = md.digest("ABGELDPGOQWZX"
-                        .getBytes("utf-8"));
-        byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
-        for (int j = 0, k = 16; j < 8;) {
-                keyBytes[k++] = keyBytes[j++];
-        }
-
-        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
-        IvParameterSpec iv = new IvParameterSpec(new byte[8]);
-        Cipher decipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
-        decipher.init(Cipher.DECRYPT_MODE, key, iv);
-
-        byte[] plainText = decipher.doFinal(message);
-
-        System.out.println(new String(plainText, "UTF-8"));
-    }
+//    @Test
+//    public void decrypt() throws Exception {
+//    	
+//    	byte[] message = "".getBytes();
+//        MessageDigest md = MessageDigest.getInstance("md5");
+//        byte[] digestOfPassword = md.digest("ABGELDPGOQWZX"
+//                        .getBytes("utf-8"));
+//        byte[] keyBytes = Arrays.copyOf(digestOfPassword, 24);
+//        for (int j = 0, k = 16; j < 8;) {
+//                keyBytes[k++] = keyBytes[j++];
+//        }
+//
+//        SecretKey key = new SecretKeySpec(keyBytes, "DESede");
+//        IvParameterSpec iv = new IvParameterSpec(new byte[8]);
+//        Cipher decipher = Cipher.getInstance("DESede/CBC/PKCS5Padding");
+//        decipher.init(Cipher.DECRYPT_MODE, key, iv);
+//
+//        byte[] plainText = decipher.doFinal(message);
+//
+//        System.out.println(new String(plainText, "UTF-8"));
+//    }
     
     
 }

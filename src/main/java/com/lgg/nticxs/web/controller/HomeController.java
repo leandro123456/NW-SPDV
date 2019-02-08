@@ -4,7 +4,9 @@ package com.lgg.nticxs.web.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -44,6 +46,7 @@ import com.lgg.nticxs.web.DAO.PadreDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
 import com.lgg.nticxs.web.model.Documento;
+import com.lgg.nticxs.web.model.Materia;
 import com.lgg.nticxs.web.model.Nota;
 import com.lgg.nticxs.web.model.Padre;
 
@@ -85,11 +88,16 @@ public class HomeController {
 	
 	@RequestMapping("/home")
 	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
-	    if(role.equals("PADRE")){
-	    	System.out.println("nombre de usuario: "+ usuario);
+	   Map<String, Materia> asociacionMAt= new HashMap<>();
+		if(role.equals("PADRE")){
+	    	System.out.println("nombre de padre: "+ usuario);
 	    	Padre padre =padredao.retrieveByName(usuario);
 	    	for (String hijo : padre.getAlumno()) {
-				System.out.println("nombre: "+ hijo);
+				System.out.println("nombreHIjo: "+ hijo);
+				Alumno alumno = alumdao.retrieveByName(hijo);
+				//asociacionMAt
+				alumno.getCiclolectivo().getMaterias();
+				
 			}
 	    	model.addAttribute("hijos", padre.getAlumno());
 	    }else{ //SERIA ALUMNO
