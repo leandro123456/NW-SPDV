@@ -228,9 +228,14 @@
               </div>
             </div>
           </div>
-          <!-- single-awesome-project end -->
-          <!-- single-awesome-project start -->
-          <div class="col-md-4 col-sm-4 col-xs-12 ${phot}">
+          
+          
+					<c:forEach items="${hijoMateria}" var="hijoMateria">
+							<tr>
+								<td>${hijoMateria.nombre}</td>
+								<td>${hijoMateria.materia}</td>
+							</tr>
+							          <div class="col-md-4 col-sm-4 col-xs-12 ${phot}">
             <div class="single-awesome-project">
               <div class="awesome-img">
                 <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
@@ -245,6 +250,15 @@
               </div>
             </div>
           </div>
+          
+          
+          
+						</c:forEach>
+          </div>
+          
+          
+          
+
           <!-- single-awesome-project end -->
           <!-- single-awesome-project start -->
           <div class="col-md-4 col-sm-4 col-xs-12 design">

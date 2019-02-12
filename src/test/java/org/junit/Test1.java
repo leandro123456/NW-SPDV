@@ -61,7 +61,7 @@ public class Test1 {
 //	}
 	
 	
-	@Test
+	//@Test
 	public void testMakeAlumno(){
 		AlumnoDAO alumdao = new AlumnoDAO();
 		Alumno alumno = new Alumno();

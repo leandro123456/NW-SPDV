@@ -49,6 +49,7 @@ import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.Materia;
 import com.lgg.nticxs.web.model.Nota;
 import com.lgg.nticxs.web.model.Padre;
+import com.lgg.nticxs.web.model.SimpleAlumno;
 
 @Controller
 public class HomeController {
@@ -92,14 +93,15 @@ public class HomeController {
 		if(role.equals("PADRE")){
 	    	System.out.println("nombre de padre: "+ usuario);
 	    	Padre padre =padredao.retrieveByName(usuario);
-	    	HashMap<String, String> infoHijoMateria  = new HashMap<>();
+	    	List<SimpleAlumno> infoHijoMateria  = new ArrayList<SimpleAlumno>();
 	    	for (String hijo : padre.getAlumno()) {
 				System.out.println("nombreHijo: "+ hijo);
 				Alumno alumno = alumdao.retrieveByName(hijo);
 				//asociacionMAt
 				List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
 				for(Materia.materia mate :mat){
-					infoHijoMateria.put(alumno.getName(), mate.getName());
+					SimpleAlumno estudiante = new SimpleAlumno(alumno.getName(), mate.getName());
+					infoHijoMateria.add(estudiante);
 				}
 			}
 	    	model.addAttribute("hijoMateria", infoHijoMateria);
