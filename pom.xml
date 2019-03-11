@@ -142,19 +142,7 @@
 			<artifactId>spock-core</artifactId>
 			<version>1.0-groovy-2.4</version>
 		</dependency>
-		
-		
-		
-	    <!-- rabbit dependencies-->
-	   <dependency>
-		    <groupId>com.rabbitmq</groupId>
-		    <artifactId>amqp-client</artifactId>
-		    <version>3.1.4</version>
-		</dependency>
-		
-		
-		
-		<!-- Two step verification dependencies -->
+			
 		<dependency>
 	  		<groupId>commons-codec</groupId>
 	  		<artifactId>commons-codec</artifactId>
