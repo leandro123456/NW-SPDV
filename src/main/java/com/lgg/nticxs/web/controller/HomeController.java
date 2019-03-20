@@ -91,11 +91,10 @@ public class HomeController {
 	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
 	   Map<String, Materia> asociacionMAt= new HashMap<>();
 		if(role.equals("PADRE")){
-	    	System.out.println("nombre de padre: "+ usuario);
 	    	Padre padre =padredao.retrieveByName(usuario);
 	    	List<SimpleAlumno> infoHijoMateria  = new ArrayList<SimpleAlumno>();
+	    	System.out.println("cantidad de hijos: "+ padre.getAlumno().size());
 	    	for (String hijo : padre.getAlumno()) {
-				System.out.println("nombreHijo: "+ hijo);
 				Alumno alumno = alumdao.retrieveByName(hijo);
 				//asociacionMAt
 				List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
@@ -106,8 +105,8 @@ public class HomeController {
 			}
 	    	model.addAttribute("hijoMateria", infoHijoMateria);
 	    	model.addAttribute("hijos", padre.getAlumno());
-	    }else{ //SERIA ALUMNO
-	    	
+	    }else{ 
+	    	//SERIA ALUMNO
 	    }
 		model.addAttribute("usuario", usuario);
 	    model.addAttribute("role", role);
