@@ -17,7 +17,7 @@
     <!-- Custom jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/images/nticxs-logo.png" />'>
+	<link rel="stylesheet" type="text/css" href='<c:url value="/resources/images/nticxs-logo.jpg" />'>
 	<link href='<c:url value="/resources/nuevo/vendor/bootstrap/css/bootstrap.min.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />' rel="stylesheet">
 	<link href='<c:url value="/resources/nuevo/fonts/iconic/css/material-design-iconic-font.min.css" />' rel="stylesheet">
