@@ -29,6 +29,16 @@ public class Materia {
 	public List<Materia.materia> getMateria() {
 		return materia;
 	}
+	
+	public Materia.materia getMateria(String nombre){
+		Materia.materia value = null;
+		System.out.println("materia: "+ this.materia);
+		for (Materia.materia matter: this.materia){
+			if(matter.name == nombre)
+				value=matter;
+		}
+		return value;
+	}
 
 	public void setMateria(List<Materia.materia> materia) {
 		this.materia = materia;

@@ -51,10 +51,9 @@ import com.lgg.nticxs.web.model.Nota;
 import com.lgg.nticxs.web.model.Padre;
 import com.lgg.nticxs.web.model.SimpleAlumno;
 import com.lgg.nticxs.web.model.SimpleAlumnoFilter;
-import com.lgg.nticxs.web.model.SimpleMateria;
 
 @Controller
-public class HomeController {
+public class MateriaController {	
 	DocumentoDAO docdao = new DocumentoDAO();
 	PadreDAO padredao = new PadreDAO();
 	AlumnoDAO alumdao = new AlumnoDAO();
@@ -64,32 +63,47 @@ public class HomeController {
 	AsistenciaDAO asistenciadao = new AsistenciaDAO();
 	AdministrativoDAO administdao = new AdministrativoDAO();
 	Integer trimestreActual = Utils.TrimestreActual();
+	Integer anioActual = Utils.AnioActual();
 	
-	@GetMapping("homepage/")
-    public ModelAndView pageLoad(HttpServletRequest request, ModelMap model) {
-		String role= "";
-		try {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			@SuppressWarnings("unchecked")
-			Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>) authentication.getAuthorities();
-		    for (GrantedAuthority grantedAuthority : authorities) {
-		    	role=grantedAuthority.getAuthority();
-		    	model.addAttribute("role", role);
-		    }
-		} catch (Exception e) {
-			e.printStackTrace();
+	@GetMapping("/usuario/{usuario}/materias/{materia}")
+	public String initMateria(@PathVariable String usuario,@PathVariable String materia,
+			Model model, @RequestParam("role") String role) 
+			throws IOException {
+		System.out.println("EL AÑO ACTUAL");
+		Alumno alumno = alumdao.retrieveByName(usuario);
+		Nota notas = notasdao.retrieveByUserMatter(usuario, materia, anioActual);
+		//clasificar las notas por trimestre
+			
+		//obtener notas del timestre
+		
+		Asistencia faltas = asistenciadao.retrieveByUserMatter(usuario, materia,anioActual);
+		//clasificar las faltas por trimestre
+			//clasificar asistencia por presente,ausente, ausentejustificado
+		
+		
+		if(role !="PADRE"){
+			List<Documento> documents = new ArrayList<>();
+	    	if(documents != null)
+	    		documents=docdao.retrieveByMateriaAnio(materia,anioActual);
+	    	model.addAttribute("documents", documents);
 		}
-		String nombre = request.getUserPrincipal().getName();
-		model.addAttribute("usuario", nombre);
-		if(role.equals("ADMINISTRATIVO") || role.equals("DOCENTE") || role.equals("ADMIN")) {
-			return new ModelAndView("redirect:/home/provisioning", model);
-		}else {
-			return new ModelAndView("redirect:/home", model);
-
-		}	
-    }
+		Materia.materia matter = alumno.getCiclolectivo().getMaterias().getMateria(materia);
+    	model.addAttribute("materia", matter);
+ 		return "home";
+	}
 	
-	@RequestMapping("/home")
+	
+	@PostMapping("/usuario/{usuario}/materias/{materia}")
+	public String initetMateria(@PathVariable String usuario,@PathVariable String materia, Model model) 
+			throws IOException {
+		System.out.println("es un POST");
+		Alumno alumno = alumdao.retrieveByName(usuario);
+		Materia.materia matter = alumno.getCiclolectivo().getMaterias().getMateria(materia);
+    	model.addAttribute("materia", matter);
+ 		return "home";
+	}
+	
+	@RequestMapping("/home22")
 	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
 		if(role.equals("PADRE")){
 	    	Padre padre =padredao.retrieveByName(usuario);
@@ -111,20 +125,19 @@ public class HomeController {
 	    }else{ 
 	    	Alumno alumno = alumdao.retrieveByName(usuario);
 	    	List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
-	    	List<SimpleMateria> materias = new ArrayList<>();
+	    	List<String> materias = new ArrayList<>();
 	    	for(Materia.materia mate :mat){
-	    		SimpleMateria matter = new SimpleMateria(mate.getName());
-	    		materias.add( matter);
+	    		materias.add( mate.getName());
 	    	}
 	    	model.addAttribute("materias", materias);
 	    }
-		model.addAttribute("usuario", usuario.replaceAll(" ", "."));
+		model.addAttribute("usuario", usuario);
 	    model.addAttribute("role", role);
 	    
 	    return "origin";
 	}
 	
-	@PostMapping("home/")
+	@PostMapping("home22/")
 	public String sendMail(Model model, String Mensaje) {
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -186,7 +199,7 @@ public class HomeController {
 //				.body(file);
 //	}
 	
-	@GetMapping( "home/download/document/{docId}")
+	@GetMapping( "home22/download/document/{docId}")
 	public String downloadDocument(@PathVariable String docId, HttpServletResponse response) 
 			throws IOException {
 		Documento document = docdao.retrieveById(docId);

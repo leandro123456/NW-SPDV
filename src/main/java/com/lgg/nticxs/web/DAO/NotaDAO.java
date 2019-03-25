@@ -56,4 +56,18 @@ public class NotaDAO extends JPADAO<Nota>{
 		}
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public Nota retrieveByUserMatter(String user, String matter, Integer anio) {
+		String sql = "SELECT u FROM Nota u WHERE u.idalumno LIKE :idalumno and  u.idmateria LIKE :idmatter and  u.fecha LIKE :anio ";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("idalumno", user);
+		query.setParameter("idmatter", matter);
+		query.setParameter("anio", ""+anio);
+		List<Nota> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
 }

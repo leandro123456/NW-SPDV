@@ -428,6 +428,12 @@ public class Utils {
 				return Nota.TERCER_TRIMESTRE;
 			return null;
 		}
+
+		public static Integer AnioActual() {
+			Calendar cal= Calendar.getInstance();
+			int year= cal.get(Calendar.YEAR);
+			return year;
+		}
 	
 
 }

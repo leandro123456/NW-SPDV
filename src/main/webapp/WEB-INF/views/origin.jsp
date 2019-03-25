@@ -195,44 +195,64 @@
                 <li>
                   <a href="#" class="active" data-filter="*">Todas las materias</a>
                 </li>
-                <li>
-                  <a href="#" data-filter=".Dufau.Ignacio">${hijos}1</a>
-                </li>
-                <li>
-                  <a href="#" data-filter=".dufau.ignacio">${hijos}</a>
-                </li>
-                <c:forEach items="${hijos}" var="hijos">
-                <li>
-                  <a href="#" data-filter=".${hijos}">${hijos}</a>
-                </li>
-                </c:forEach>
+                <c:if test="${not empty pageContext.request.userPrincipal}">
+                	<c:if test ="${pageContext.request.userPrincipal.authorities == '[PADRE]'}">
+               			<c:forEach items="${hijos}" var="hijo">
+			                <li>
+			                  <a href="#" data-filter=".${hijo.nameforfilter}">${hijo.nombre}</a>
+			                </li>
+               			</c:forEach>
+               		</c:if>
+                </c:if>
               </ul>
             </div>
           </div>
         </div>
         <div class="awesome-project-content">
-		<c:forEach items="${hijoMateria}" var="hijoMateria">
-	          	<div class="col-md-4 col-sm-4 col-xs-4 ${hijoMateria.nombre}" style='height: 288px;'>
-	            <div class="single-awesome-project">
-	              <div class="awesome-img">
-	                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
-	                <div class="add-actions text-center">
-	                  <div class="project-dec">
-	                    <a class="venobox" data-gall="myGallery" href="img/portfolio/2.jpg">
-	                      <h4>${hijoMateria.materia}</h4>
-	                       <span>${hijoMateria.materia}</span>
-	                    </a>
-	                  </div>
-	                </div>
-	              </div>
-	            </div>
-	          </div>
-		</c:forEach>
-      </div>
+       			<c:choose>
+       			<c:when test = "${pageContext.request.userPrincipal.authorities == '[PADRE]'}">
+					<c:forEach items="${hijoMateria}" var="hijoMateria">
+			          	<div class="col-md-4 col-sm-4 col-xs-4 ${hijoMateria.nombre}" style='height: 288px;'>
+			            	<div class="single-awesome-project">
+				              <div class="awesome-img">
+				                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
+				                <div class="add-actions text-center">
+				                  <div class="project-dec">
+				                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${hijoMateria.nameforfilter}/materias/${hijoMateria.matterforfilter}"/>">
+				                      <h4>${hijoMateria.materia}</h4>
+				                       <span>${hijoMateria.materia}</span>
+				                    </a>
+				                  </div>
+				                </div>
+				              </div>
+			            	</div>
+			          	</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+						<c:forEach items="${materias}" var="materias">
+				          	<div class="col-md-4 col-sm-4 col-xs-4 style='height: 288px;'">
+				            	<div class="single-awesome-project">
+					              <div class="awesome-img">
+					                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
+					                <div class="add-actions text-center">
+					                  <div class="project-dec">
+					                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${usuario}/materias/${materias.matterforfilter}"/>">
+					                      <h4>${materias.materia}</h4>
+					                       <span>${materias.materia}</span>
+					                    </a>
+					                  </div>
+					                </div>
+					              </div>
+					            </div>
+				          	</div>
+						</c:forEach>
+				</c:otherwise>
+			</c:choose>
+      	</div>
       </div>
     </div>
   </div>
-
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

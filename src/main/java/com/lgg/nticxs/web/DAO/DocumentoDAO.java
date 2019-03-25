@@ -68,4 +68,21 @@ public class DocumentoDAO extends JPADAO<Documento>{
 		update(list.get(0));
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Documento> retrieveByMateriaAnio(String materia,Integer anioActual) {
+		String sql = "SELECT u FROM Documento u WHERE u.materia = :materia and u.fecha = anio and u.available = true";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("materia", materia);
+		query.setParameter("anio", anioActual);
+		List<Documento> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		System.out.println("la lista de docuemntos esta vacia");
+		return null;
+	}
+	
+	
+	
+	
 }

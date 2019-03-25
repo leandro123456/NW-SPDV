@@ -55,4 +55,17 @@ public class AsistenciaDAO extends JPADAO<Asistencia>{
 		}
 		return null;
 	}
+	
+	public Asistencia retrieveByUserMatter(String idalumno, String materia, Integer anioActual) {
+		String sql = "SELECT u FROM Asistencia u WHERE u.idalumno LIKE :idalumno and u.idmateria LIKE : materia and  u.fecha LIKE :anio";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("idalumno", idalumno);
+		query.setParameter("materia", materia);
+		query.setParameter("anio", ""+anioActual);
+		List<Asistencia> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
 }
