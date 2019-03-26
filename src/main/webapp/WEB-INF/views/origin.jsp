@@ -176,6 +176,11 @@
     </div>
   </div>
   <!-- End Slider Area -->
+  
+  <c:set var = "roleAndNameComplete" value="${pageContext.request.userPrincipal.authorities}"/>
+  <c:set var = "roleAndNameCompleteSubA" value="${fn:substringAfter(roleAndNameComplete, '[')}"/>
+  <c:set var = "roleComplete" value="${fn:substringBefore(roleAndNameCompleteSubA, ']')}"/>
+                    
 
   <!-- Start portfolio Area -->
   <div id="portfolio" class="portfolio-area area-padding fix">
@@ -195,30 +200,28 @@
                 <li>
                   <a href="#" class="active" data-filter="*">Todas las materias</a>
                 </li>
-                <c:if test="${not empty pageContext.request.userPrincipal}">
-                	<c:if test ="${pageContext.request.userPrincipal.authorities == '[PADRE]'}">
-               			<c:forEach items="${hijos}" var="hijo">
+                	<c:if test ="${roleComplete == 'PADRE'}">
+               			<c:forEach items="${hijos}" var="hijos">
 			                <li>
-			                  <a href="#" data-filter=".${hijo.nameforfilter}">${hijo.nombre}</a>
+			                  <a href="#" data-filter=".${hijos.nameforfilter}">${hijos.nombre}</a>
 			                </li>
                			</c:forEach>
                		</c:if>
-                </c:if>
-              </ul>
+               	</ul>
             </div>
           </div>
         </div>
         <div class="awesome-project-content">
        			<c:choose>
-       			<c:when test = "${pageContext.request.userPrincipal.authorities == '[PADRE]'}">
+       			<c:when test = "${roleComplete == 'PADRE'}">
 					<c:forEach items="${hijoMateria}" var="hijoMateria">
 			          	<div class="col-md-4 col-sm-4 col-xs-4 ${hijoMateria.nombre}" style='height: 288px;'>
 			            	<div class="single-awesome-project">
 				              <div class="awesome-img">
-				                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
+				                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/${hijoMateria.image}.jpg"/>' alt="" /></a>
 				                <div class="add-actions text-center">
 				                  <div class="project-dec">
-				                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${hijoMateria.nameforfilter}/materias/${hijoMateria.matterforfilter}"/>">
+				                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${hijoMateria.nameforfilter}/role/${roleComplete}/materias/${hijoMateria.matterforfilter}"/>">
 				                      <h4>${hijoMateria.materia}</h4>
 				                       <span>${hijoMateria.materia}</span>
 				                    </a>
@@ -234,10 +237,10 @@
 				          	<div class="col-md-4 col-sm-4 col-xs-4 style='height: 288px;'">
 				            	<div class="single-awesome-project">
 					              <div class="awesome-img">
-					                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/2.jpg"/>' alt="" /></a>
+					                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/${materias.image}.jpg"/>' alt="" /></a>
 					                <div class="add-actions text-center">
 					                  <div class="project-dec">
-					                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${usuario}/materias/${materias.matterforfilter}"/>">
+					                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${usuario}/role/${roleComplete}/materias/${materias.matterforfilter}"/>">
 					                      <h4>${materias.materia}</h4>
 					                       <span>${materias.materia}</span>
 					                    </a>

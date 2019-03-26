@@ -32,9 +32,10 @@ public class Materia {
 	
 	public Materia.materia getMateria(String nombre){
 		Materia.materia value = null;
-		System.out.println("materia: "+ this.materia);
+		System.out.println("materias: "+ this.materia.get(0).name);
+		System.out.println("busco: "+ nombre);
 		for (Materia.materia matter: this.materia){
-			if(matter.name == nombre)
+			if(matter.name.equals(nombre))
 				value=matter;
 		}
 		return value;

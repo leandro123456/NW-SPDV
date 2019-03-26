@@ -24,14 +24,19 @@ import com.lgg.nticxs.web.DAO.CiclolectivoDAO;
 import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.DAO.NotaDAO;
+import com.lgg.nticxs.web.DAO.SimpleMateriaDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
+import com.lgg.nticxs.web.model.Asistencia2;
 import com.lgg.nticxs.web.model.Ciclolectivo;
 import com.lgg.nticxs.web.model.Docente;
 import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.Materia;
 import com.lgg.nticxs.web.model.Materia.materia;
 import com.lgg.nticxs.web.model.Nota;
+import com.lgg.nticxs.web.model.Nota2;
+import com.lgg.nticxs.web.model.SimpleAlumno;
+import com.lgg.nticxs.web.model.SimpleMateria;
 
 public class Test1 {
 	
@@ -60,6 +65,54 @@ public class Test1 {
 //		System.out.println("termino bien");
 //	}
 	
+	//Correr este TEST para generar todas las materias
+	//@Test
+	public void makeAllSimplesMaterias(){
+		//Materias 1ero
+		SimpleMateriaDAO simplemateriadao = new SimpleMateriaDAO();
+		SimpleMateria smateria = new SimpleMateria("Lengua 1","lengua1");
+		simplemateriadao.create(smateria);
+		SimpleMateria smateria1 = new SimpleMateria("Matematica 1","matematica1");
+		simplemateriadao.create(smateria1);
+		
+		//Materias 2do
+		SimpleMateria smateria2 = new SimpleMateria("Lengua 2","lengua2");
+		simplemateriadao.create(smateria2);
+		SimpleMateria smateria3 = new SimpleMateria("Matematica 2","matematica2");
+		simplemateriadao.create(smateria3);
+		
+	}
+	
+	//@Test
+	public void makeNote(){
+		NotaDAO notaDAO = new NotaDAO();
+		List<Nota2> notas = notaDAO.retrieveAll();
+		System.out.println(notas.size());
+		Integer anioActual = Utils.AnioActual();
+		System.out.println(anioActual);
+		List<Nota2> nota = notaDAO.retrieveByUserMatter("Dufau Ignacio", "Matematica 1", anioActual);
+		System.out.println(nota.size());
+	}
+	
+	//@Test
+	public void searchAsistencia(){
+		Integer anioActual = Utils.AnioActual();
+		AsistenciaDAO asisdao = new AsistenciaDAO();
+		List<Asistencia2> asistencia1 = asisdao.retrieveByAlumno("Dufau Ignacio");
+		System.out.println(asistencia1.size());
+		List<Asistencia2> asistencia2 = asisdao.retrieveByUserMatter("Dufau Ignacio", "Matematica 1", anioActual);
+		System.out.println(asistencia2.size());
+
+	}
+	
+	//@Test
+	public void simplealumnoTest(){
+		SimpleAlumno simple = new SimpleAlumno("Dufau Ignacio", "Matematica 1");
+		String value= simple.getNameforfilter();
+		System.out.println("inicio: "+value);
+		String result = value.replaceAll("\\.", " ");
+		System.out.println("fin: "+result);
+	}
 	
 	//@Test
 	public void testMakeAlumno(){

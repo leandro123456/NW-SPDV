@@ -6,8 +6,8 @@ import com.lgg.nticxs.web.DAO.AlumnoDAO;
 import com.lgg.nticxs.web.DAO.AsistenciaDAO;
 import com.lgg.nticxs.web.DAO.NotaDAO;
 import com.lgg.nticxs.web.model.Alumno;
-import com.lgg.nticxs.web.model.Asistencia;
-import com.lgg.nticxs.web.model.Nota;
+import com.lgg.nticxs.web.model.Asistencia2;
+import com.lgg.nticxs.web.model.Nota2;
 
 public class OperationCSV {
 	
@@ -48,7 +48,7 @@ public class OperationCSV {
 			for(String linea: lineas) {
 				try {
 					String[] parts = linea.split(";");
-					Nota nota = notadao.retrieveByNameDateDescription(parts[0], fecha, description);
+					Nota2 nota = notadao.retrieveByNameDateDescription(parts[0], fecha, description);
 					if(nota != null) {
 						nota.setDescripcion(description);
 						nota.setFecha(fecha);
@@ -59,7 +59,7 @@ public class OperationCSV {
 						nota.setValor(Double.parseDouble(parts[1]));
 						notadao.update(nota);
 					}else {
-						nota = new Nota();
+						nota = new Nota2();
 						nota.setDescripcion(description);
 						nota.setFecha(fecha);
 						nota.setIdalumno(parts[0]);
@@ -97,7 +97,7 @@ public class OperationCSV {
 			for(String linea: lineas) {
 				try {
 					String[] parts = linea.split(";");
-					Asistencia asistencia = asisdao.retrieveByNameDateDescription(parts[0], fecha);
+					Asistencia2 asistencia = asisdao.retrieveByNameDateDescription(parts[0], fecha);
 					if(asistencia != null) {
 						asistencia.setDescripcion(description);
 						asistencia.setFecha(fecha);
@@ -107,7 +107,7 @@ public class OperationCSV {
 						asistencia.setTrimestre(trimestre);
 						asisdao.update(asistencia);
 					}else {
-						asistencia = new Asistencia();
+						asistencia = new Asistencia2();
 						asistencia.setDescripcion(description);
 						asistencia.setFecha(fecha);
 						asistencia.setIdalumno(parts[0]);

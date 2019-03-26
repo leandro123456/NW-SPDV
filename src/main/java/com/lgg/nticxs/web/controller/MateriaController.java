@@ -45,9 +45,11 @@ import com.lgg.nticxs.web.DAO.NotaDAO;
 import com.lgg.nticxs.web.DAO.PadreDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
+import com.lgg.nticxs.web.model.Asistencia2;
 import com.lgg.nticxs.web.model.Documento;
 import com.lgg.nticxs.web.model.Materia;
 import com.lgg.nticxs.web.model.Nota;
+import com.lgg.nticxs.web.model.Nota2;
 import com.lgg.nticxs.web.model.Padre;
 import com.lgg.nticxs.web.model.SimpleAlumno;
 import com.lgg.nticxs.web.model.SimpleAlumnoFilter;
@@ -65,31 +67,31 @@ public class MateriaController {
 	Integer trimestreActual = Utils.TrimestreActual();
 	Integer anioActual = Utils.AnioActual();
 	
-	@GetMapping("/usuario/{usuario}/materias/{materia}")
-	public String initMateria(@PathVariable String usuario,@PathVariable String materia,
-			Model model, @RequestParam("role") String role) 
+	@GetMapping("/usuario/{usuario}/role/{role}/materias/{materia}")
+	public ModelAndView initMateria(@PathVariable String usuario,@PathVariable String materia,
+			ModelMap model, @PathVariable("role") String role) 
 			throws IOException {
-		System.out.println("EL AÑO ACTUAL");
-		Alumno alumno = alumdao.retrieveByName(usuario);
-		Nota notas = notasdao.retrieveByUserMatter(usuario, materia, anioActual);
+		System.out.println("ENTRO");
+		Alumno alumno = alumdao.retrieveByName(usuario.replaceAll("\\.", " "));
+		List<Nota2> notas = notasdao.retrieveByUserMatter(usuario, materia, anioActual);
 		//clasificar las notas por trimestre
 			
 		//obtener notas del timestre
 		
-		Asistencia faltas = asistenciadao.retrieveByUserMatter(usuario, materia,anioActual);
+		List<Asistencia2> faltas = asistenciadao.retrieveByUserMatter(usuario, materia,anioActual);
 		//clasificar las faltas por trimestre
 			//clasificar asistencia por presente,ausente, ausentejustificado
-		
-		
-		if(role !="PADRE"){
+		if(!role.equals("PADRE")){
 			List<Documento> documents = new ArrayList<>();
 	    	if(documents != null)
 	    		documents=docdao.retrieveByMateriaAnio(materia,anioActual);
 	    	model.addAttribute("documents", documents);
 		}
-		Materia.materia matter = alumno.getCiclolectivo().getMaterias().getMateria(materia);
-    	model.addAttribute("materia", matter);
- 		return "home";
+    	//model.addAttribute("materia", materia);
+    	model.addAttribute("role",role);
+    	model.addAttribute("usuario",usuario);
+    	System.out.println("SALIO");
+    	return new ModelAndView("redirect:/home/provisioning", model);
 	}
 	
 	
@@ -217,8 +219,8 @@ public class MateriaController {
 	
 	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
-		List<Nota> notas = notasdao.retrieveByAlumno(alumno.getId());
-		List<Asistencia> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
+		List<Nota2> notas = notasdao.retrieveByAlumno(alumno.getId());
+		List<Asistencia2> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
 		Double promediotareas = promedio(notas,Nota.ACTIVIDADES);
 		Double promediotp = promedio(notas,Nota.TRABAJO_PRACTICO);
 		Double promedioev = promedio(notas,Nota.EVALUACION);
@@ -238,16 +240,16 @@ public class MateriaController {
 		
 	}
 
-	private Integer promedioAsistencia(List<Asistencia> asistencia) {
+	private Integer promedioAsistencia(List<Asistencia2> asistencia) {
 		Integer asistenciaTotal = 0;
 		if(asistencia!= null) {
 			if(Asistencia.AUSENTE_JUSTIFICADO != null) {
-				for(Asistencia asist : asistencia) {
+				for(Asistencia2 asist : asistencia) {
 					if(asist.getTipo().equals(Asistencia.AUSENTE) || asist.getTipo().equals(Asistencia.AUSENTE_JUSTIFICADO))
 						asistenciaTotal+=1;
 				}
 			}else {
-				for(Asistencia asist : asistencia) {
+				for(Asistencia2 asist : asistencia) {
 					if(asist.getTipo().equals(Asistencia.PRESENTE))
 						asistenciaTotal+=1;
 				}
@@ -256,13 +258,13 @@ public class MateriaController {
 		return asistenciaTotal;
 	}
 
-	private Double promedio(List<Nota> notas, String tipo) {
+	private Double promedio(List<Nota2> notas, String tipo) {
 		Double promedio = 0.0;
 		Double total=0.0;
 		Integer cantidad = 0;
 		
 		if (notas != null) {
-			for(Nota nota : notas){
+			for(Nota2 nota : notas){
 				if(nota.getTrimestre() == trimestreActual && nota.getTipo().equals(tipo)){
 					cantidad +=1;
 					total=total+nota.getValor();

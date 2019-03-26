@@ -5,15 +5,15 @@ import java.util.List;
 import javax.persistence.Query;
 
 import com.lgg.nticxs.web.jpa.JPADAO;
-import com.lgg.nticxs.web.model.Nota;
+import com.lgg.nticxs.web.model.Nota2;
 
-public class NotaDAO extends JPADAO<Nota>{
+public class NotaDAO extends JPADAO<Nota2>{
 
 	@SuppressWarnings("unchecked")
-	public List<Nota> retrieveAll() {
-		String sql = "SELECT u FROM Nota u";
+	public List<Nota2> retrieveAll() {
+		String sql = "SELECT u FROM Nota2 u";
 		Query query = getEntityManager().createQuery(sql);
-		List<Nota> list = query.getResultList();
+		List<Nota2> list = query.getResultList();
 		if (list != null && list.size() > 0) {
 			return list;
 		}
@@ -21,11 +21,11 @@ public class NotaDAO extends JPADAO<Nota>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Nota retrieveById(String userId) {
-		String sql = "SELECT u FROM Nota u WHERE u.id = :id";
+	public Nota2 retrieveById(String userId) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.id = :id";
 		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("id", userId);
-		List<Nota> list = query.getResultList();
+		List<Nota2> list = query.getResultList();
 		if (list != null && list.size() > 0) {
 			return list.get(0);
 		}
@@ -33,24 +33,24 @@ public class NotaDAO extends JPADAO<Nota>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Nota> retrieveByAlumno(String idalumno) {
-		String sql = "SELECT u FROM Nota u WHERE u.idalumno = :idalumno";
+	public List<Nota2> retrieveByAlumno(String idalumno) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.idalumno = :idalumno";
 		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("idalumno", idalumno);
-		List<Nota> list = query.getResultList();
+		List<Nota2> list = query.getResultList();
 		if (list != null && list.size() > 0) {
 			return list;
 		}
 		return null;
 	}
 
-	public Nota retrieveByNameDateDescription(String idalumno, String fecha, String descripcion) {
-		String sql = "SELECT u FROM Nota u WHERE u.idalumno LIKE :idalumno and  u.fecha LIKE :fecha and u.descripcion LIKE :descripcion";
+	public Nota2 retrieveByNameDateDescription(String idalumno, String fecha, String descripcion) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.idalumno LIKE :idalumno and  u.fecha LIKE :fecha and u.descripcion LIKE :descripcion";
 		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("idalumno", idalumno);
 		query.setParameter("fecha", fecha);
 		query.setParameter("descripcion", descripcion);
-		List<Nota> list = query.getResultList();
+		List<Nota2> list = query.getResultList();
 		if (list != null && list.size() > 0) {
 			return list.get(0);
 		}
@@ -58,15 +58,15 @@ public class NotaDAO extends JPADAO<Nota>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Nota retrieveByUserMatter(String user, String matter, Integer anio) {
-		String sql = "SELECT u FROM Nota u WHERE u.idalumno LIKE :idalumno and  u.idmateria LIKE :idmatter and  u.fecha LIKE :anio ";
+	public List<Nota2> retrieveByUserMatter(String user, String matter, Integer anio) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.idalumno LIKE :idalumno and  u.idmateria LIKE :idmatter and  u.fecha LIKE :anio ";
 		Query query = getEntityManager().createQuery(sql);
 		query.setParameter("idalumno", user);
 		query.setParameter("idmatter", matter);
-		query.setParameter("anio", ""+anio);
-		List<Nota> list = query.getResultList();
+		query.setParameter("anio", "%" + anio + "%");
+		List<Nota2> list = query.getResultList();
 		if (list != null && list.size() > 0) {
-			return list.get(0);
+			return list;
 		}
 		return null;
 	}
