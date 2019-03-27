@@ -68,8 +68,8 @@ public class MateriaController {
 	Integer anioActual = Utils.AnioActual();
 	
 	@GetMapping("/usuario/{usuario}/role/{role}/materias/{materia}")
-	public ModelAndView initMateria(@PathVariable String usuario,@PathVariable String materia,
-			ModelMap model, @PathVariable("role") String role) 
+	public String initMateria(@PathVariable String usuario,@PathVariable String materia,
+			Model model, @PathVariable("role") String role) 
 			throws IOException {
 		System.out.println("ENTRO");
 		Alumno alumno = alumdao.retrieveByName(usuario.replaceAll("\\.", " "));
@@ -88,22 +88,30 @@ public class MateriaController {
 	    	model.addAttribute("documents", documents);
 		}
     	//model.addAttribute("materia", materia);
-    	model.addAttribute("role",role);
-    	model.addAttribute("usuario",usuario);
+    	//model.addAttribute("role",role);
+    	//model.addAttribute("usuario",usuario);
     	System.out.println("SALIO");
-    	return new ModelAndView("redirect:/home/provisioning", model);
+    	//return new ModelAndView("redirect:/home/documentos", model);
+    	//return "redirect:/"+usuario+"/"+role+"/"+materia+"/informaciongeneral";
+    	loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+    	return "home";
+	}
+	
+	@PostMapping("/usuario/{usuario}/role/{role}/materias/{materia}")
+	public String testHome(@PathVariable String usuario,@PathVariable String materia,
+			Model model, @PathVariable("role") String role){
+		System.out.println("entro al POST");
+		loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+		return "home";
 	}
 	
 	
-	@PostMapping("/usuario/{usuario}/materias/{materia}")
-	public String initetMateria(@PathVariable String usuario,@PathVariable String materia, Model model) 
-			throws IOException {
-		System.out.println("es un POST");
-		Alumno alumno = alumdao.retrieveByName(usuario);
-		Materia.materia matter = alumno.getCiclolectivo().getMaterias().getMateria(materia);
-    	model.addAttribute("materia", matter);
- 		return "home";
-	}
+    @GetMapping("/{usuario}/{role}/{materia}/informaciongeneral")
+    public String  provisioning(Model model,@PathVariable String usuario,@PathVariable String materia){
+    	loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+        return "home";
+    }
+    
 	
 	@RequestMapping("/home22")
 	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
@@ -136,7 +144,7 @@ public class MateriaController {
 		model.addAttribute("usuario", usuario);
 	    model.addAttribute("role", role);
 	    
-	    return "origin";
+	    return "home";
 	}
 	
 	@PostMapping("home22/")
@@ -218,6 +226,7 @@ public class MateriaController {
 	}
 	
 	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
+		try {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
 		List<Nota2> notas = notasdao.retrieveByAlumno(alumno.getId());
 		List<Asistencia2> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
@@ -237,6 +246,10 @@ public class MateriaController {
 		model.addAttribute("asistencias", asistencias);
 		model.addAttribute("asistenciaFaltas",asistenciaFaltas);
 		model.addAttribute("asistenciaPresente",asistenciaPresente);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 

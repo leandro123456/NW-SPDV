@@ -221,10 +221,14 @@
 				                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/${hijoMateria.image}.jpg"/>' alt="" /></a>
 				                <div class="add-actions text-center">
 				                  <div class="project-dec">
-				                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${hijoMateria.nameforfilter}/role/${roleComplete}/materias/${hijoMateria.matterforfilter}"/>">
-				                      <h4>${hijoMateria.materia}</h4>
-				                       <span>${hijoMateria.materia}</span>
+				                    <form role="form"
+										action="<c:url value="/usuario/${hijoMateria.nameforfilter}/role/${roleComplete}/materias/${hijoMateria.matterforfilter}" />"
+										method="post" enctype="multipart/form-data">
+			                    		<a class="venobox" data-gall="myGallery" href="javascript:;" onclick="parentNode.submit();">
+				                      	<h4>${hijoMateria.materia}</h4>
+				                       	<span>${hijoMateria.materia}</span>
 				                    </a>
+				                    </form>
 				                  </div>
 				                </div>
 				              </div>
@@ -240,10 +244,15 @@
 					                <a href="#"><img src='<c:url value="/resources/eBusiness/img/portfolio/${materias.image}.jpg"/>' alt="" /></a>
 					                <div class="add-actions text-center">
 					                  <div class="project-dec">
-					                    <a class="venobox" data-gall="myGallery" href="<c:url value="/usuario/${usuario}/role/${roleComplete}/materias/${materias.matterforfilter}"/>">
+					                  <!-- class="venobox" data-gall="myGallery"  -->
+					                  <form role="form"
+										action="<c:url value="/usuario/${usuario}/role/${role}/materias/${materias.matterforfilter}" />"
+										method="post" enctype="multipart/form-data">
+					                    <a href="javascript:;" onclick="parentNode.submit();">
 					                      <h4>${materias.materia}</h4>
 					                       <span>${materias.materia}</span>
 					                    </a>
+					                    </form>
 					                  </div>
 					                </div>
 					              </div>
@@ -256,7 +265,13 @@
       </div>
     </div>
   </div>
-
+			<div>
+				<form role="form"
+					action="<c:url value="/usuario/vava/role/PADRE/materias/Matematica1" />"
+					method="post" enctype="multipart/form-data">
+					<button type="submit" class="btn btn-default">Enviar</button>
+				</form>
+			</div>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
   <!-- JavaScript Libraries -->
