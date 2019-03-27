@@ -43,6 +43,7 @@ import com.lgg.nticxs.web.DAO.DocenteDAO;
 import com.lgg.nticxs.web.DAO.DocumentoDAO;
 import com.lgg.nticxs.web.DAO.NotaDAO;
 import com.lgg.nticxs.web.DAO.PadreDAO;
+import com.lgg.nticxs.web.DAO.SimpleMateriaDAO;
 import com.lgg.nticxs.web.model.Alumno;
 import com.lgg.nticxs.web.model.Asistencia;
 import com.lgg.nticxs.web.model.Asistencia2;
@@ -53,6 +54,7 @@ import com.lgg.nticxs.web.model.Nota2;
 import com.lgg.nticxs.web.model.Padre;
 import com.lgg.nticxs.web.model.SimpleAlumno;
 import com.lgg.nticxs.web.model.SimpleAlumnoFilter;
+import com.lgg.nticxs.web.model.SimpleMateria;
 
 @Controller
 public class MateriaController {	
@@ -66,6 +68,7 @@ public class MateriaController {
 	AdministrativoDAO administdao = new AdministrativoDAO();
 	Integer trimestreActual = Utils.TrimestreActual();
 	Integer anioActual = Utils.AnioActual();
+	SimpleMateriaDAO smateriadao = new SimpleMateriaDAO();
 	
 	@GetMapping("/usuario/{usuario}/role/{role}/materias/{materia}")
 	public String initMateria(@PathVariable String usuario,@PathVariable String materia,
@@ -101,7 +104,8 @@ public class MateriaController {
 	public String testHome(@PathVariable String usuario,@PathVariable String materia,
 			Model model, @PathVariable("role") String role){
 		System.out.println("entro al POST");
-		loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+		SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
+		loadPagePadreAlumno(model,smateria.getMateria(),usuario.replaceAll("\\.", " "));
 		return "home";
 	}
 	
@@ -228,6 +232,18 @@ public class MateriaController {
 	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
 		try {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
+		Materia.materia materiaComplete = alumno.getCiclolectivo().getMaterias().getMateria(materia);
+		SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
+		try {
+			System.out.println("INFO DE LA MATERIA");
+			System.out.println("1: "+materiaComplete);
+			System.out.println("1: "+materiaComplete.getName());
+			System.out.println("INFO DE LA MATERIA SIMPLE");
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 		List<Nota2> notas = notasdao.retrieveByAlumno(alumno.getId());
 		List<Asistencia2> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
 		Double promediotareas = promedio(notas,Nota.ACTIVIDADES);
@@ -237,11 +253,13 @@ public class MateriaController {
 		Integer asistenciaFaltas = promedioAsistencia(asistencias);
 		Integer asistenciaPresente = promedioAsistencia(asistencias);
 		
+		model.addAttribute("smateria", smateria);
+		model.addAttribute("materia", materia);
 		model.addAttribute("promediotareas", promediotareas*10);
 		model.addAttribute("promediotp", promediotp*10);
 		model.addAttribute("promedioev", promedioev*10);
 		model.addAttribute("promediotrimestre", promediotrimestre*10);
-
+		model.addAttribute("usuario", alumnoName);
 		model.addAttribute("notas", notas);
 		model.addAttribute("asistencias", asistencias);
 		model.addAttribute("asistenciaFaltas",asistenciaFaltas);

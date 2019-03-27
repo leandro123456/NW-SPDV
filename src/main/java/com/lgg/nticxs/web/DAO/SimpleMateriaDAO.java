@@ -21,10 +21,10 @@ public class SimpleMateriaDAO extends JPADAO<SimpleMateria>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public SimpleMateria retrieveById(String userId) {
+	public SimpleMateria retrieveById(String materiaId) {
 		String sql = "SELECT u FROM SimpleMateria u WHERE u.id = :id";
 		Query query = getEntityManager().createQuery(sql);
-		query.setParameter("id", userId);
+		query.setParameter("id", materiaId);
 		List<SimpleMateria> list = query.getResultList();
 		if (list != null && list.size() > 0) {
 			return list.get(0);
@@ -43,6 +43,20 @@ public class SimpleMateriaDAO extends JPADAO<SimpleMateria>{
 		}
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public SimpleMateria retrieveByMatterForFilter(String matterforfilter) {
+		String sql = "SELECT u FROM SimpleMateria u WHERE u.matterforfilter = :matterforfilter";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("matterforfilter", matterforfilter);
+		List<SimpleMateria> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+	
+	
 //
 //	public SimpleMateria retrieveByNameDateDescription(String idalumno, String fecha, String descripcion) {
 //		String sql = "SELECT u FROM Nota u WHERE u.idalumno LIKE :idalumno and  u.fecha LIKE :fecha and u.descripcion LIKE :descripcion";

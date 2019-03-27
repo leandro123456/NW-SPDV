@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<c:url value='/home/' />"><img alt="Nticxs" width="50%" 
+                    <a class="navbar-brand" href="<c:url value='/home/' />"><img alt="${materia}" width="50%" 
                     src='<c:url value="/resources/images/nticxs-logo.png" />'></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -43,7 +43,7 @@
                         <li><a href="#clases">Clases</a></li>
 <!--                         <li><a href="#foro">Foro</a></li> -->
                         <li><a href="#notas">Notas</a></li>
-                        <li><a href="#faltas">Faltas</a></li>
+                        <li><a href="#faltas">Asistencia</a></li>
                         <li><a href="#contacto">Contacto</a></li>                                 
                     </ul>
                 </div>
@@ -97,10 +97,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="home-content">
-                                <h1>Materia <span>NTICXs</span></h1>
+                                <h1>Materia <span>${smateria.materia}</span></h1>
                                 <h4>Ser Piero Da Vinci</h4>
-                                <h5>Curso  <span>4to</span></h5>
-                                <h6>Docente Guzman Leandro</h6>      
+                                <h5>Curso<span>${smateria.curso}</span></h5>
+                                <h6>Docente ${smateria.docente}</h6>      
                             </div>
                         </div>
                     </div>
