@@ -106,6 +106,13 @@ public class Test1 {
 	}
 	
 	//@Test
+	public void searchNostasTrimestrales(){
+		NotaDAO notasdao = new NotaDAO();
+		List<Nota2> trimestreCerrado = notasdao.retrieveByAlumnoMateriaTrimestres("Dufau Ignacio","Matematica 1",2019);
+		System.out.println("notas trimestrales" + trimestreCerrado.size());
+
+	}
+	//@Test
 	public void simplealumnoTest(){
 		SimpleAlumno simple = new SimpleAlumno("Dufau Ignacio", "Matematica 1");
 		String value= simple.getNameforfilter();

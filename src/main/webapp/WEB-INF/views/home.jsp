@@ -38,9 +38,12 @@
                     src='<c:url value="/resources/images/nticxs-logo.png" />'></a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">                      
+                    <ul class="nav navbar-nav navbar-right"> 
+                    	<li class="active"><a href="#home">Pantalla de Inicio</a></li>                     
                         <li class="active"><a href="#home">Inicio</a></li>
-                        <li><a href="#clases">Clases</a></li>
+                        <c:if test ="${role!= 'PADRE'}">
+                        	<li><a href="#clases">Clases</a></li>
+                        </c:if>
 <!--                         <li><a href="#foro">Foro</a></li> -->
                         <li><a href="#notas">Notas</a></li>
                         <li><a href="#faltas">Asistencia</a></li>
@@ -97,9 +100,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="home-content">
+                            	<h4>Ser Piero Da Vinci</h4>
                                 <h1>Materia <span>${smateria.materia}</span></h1>
-                                <h4>Ser Piero Da Vinci</h4>
-                                <h5>Curso<span>${smateria.curso}</span></h5>
+                                <c:if test ="${role== 'PADRE'}">
+					                <h2>Alumno ${alumno}</h2>
+               					</c:if>
+                                <h5>Curso <span>${smateria.curso}</span></h5>
                                 <h6>Docente ${smateria.docente}</h6>      
                             </div>
                         </div>
@@ -107,45 +113,47 @@
                 </div>
             </div>  
         </header>
-        <section id="clases" class="sections">
-        <div class="heading-content text-center">
-            <div class="heading-title">
-                <h3>Clases</h3>
-                <div class="separator"></div>
-            </div>
-            <div class="heading-separator"></div>
-            <div class="heading-details">
-                <h3>En esta seccion se agregaran notas y documentacion correspondientes a las clases</h3>
-            </div>
-        </div>
-        <div id="cd-timeline" class="cd-container">
-        	
-        	<c:forEach items="${documentos}" var="doc" varStatus="counter">	
-	        	<div class="cd-timeline-block">
-	                <div class="cd-timeline-img cd-location">
-	                </div>
-	                <div class="cd-timeline-content">
-	                	<p>${doc.fecha}</p>
-	                    <h2>${doc.descripcion}</h2>
-	                	<table class="table table-hover">
-				    		<thead>
-					      		<tr>
-							        <th>${doc.name}</th>
-							        <th width="100"></th>
-								</tr>
-					    	</thead>
-				    		<tbody>
-								<tr>
-									<td><a href="<c:url value='download/document/${doc.id}' />" class="btn btn-success custom-width">Descargar</a></td>
-								</tr>
-				    		</tbody>
-			    		</table>
-			    		<span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
-	                </div>
+        <c:if test ="${role!= 'PADRE'}">
+	        <section id="clases" class="sections">
+	        <div class="heading-content text-center">
+	            <div class="heading-title">
+	                <h3>Clases</h3>
+	                <div class="separator"></div>
 	            </div>
-            </c:forEach>
-        </div>
-    </section>
+	            <div class="heading-separator"></div>
+	            <div class="heading-details">
+	                <h3>En esta seccion se agregaran notas y documentacion correspondientes a las clases</h3>
+	            </div>
+	        </div>
+	        <div id="cd-timeline" class="cd-container">
+	        	
+	        	<c:forEach items="${documentos}" var="doc" varStatus="counter">	
+		        	<div class="cd-timeline-block">
+		                <div class="cd-timeline-img cd-location">
+		                </div>
+		                <div class="cd-timeline-content">
+		                	<p>${doc.fecha}</p>
+		                    <h2>${doc.descripcion}</h2>
+		                	<table class="table table-hover">
+					    		<thead>
+						      		<tr>
+								        <th>${doc.name}</th>
+								        <th width="100"></th>
+									</tr>
+						    	</thead>
+					    		<tbody>
+									<tr>
+										<td><a href="<c:url value='download/document/${doc.id}' />" class="btn btn-success custom-width">Descargar</a></td>
+									</tr>
+					    		</tbody>
+				    		</table>
+				    		<span class="cd-date"><img src='<c:url value="/resources/assets/images/timeline/timeline.png" />' alt="timeline" /></span>
+		                </div>
+		            </div>
+	            </c:forEach>
+	        </div>
+	    </section>
+    </c:if>
 <!--     <section id="foro" class="sections different-bg"> -->
 <!--         <div class="container text-center"> -->
 <!--             <div class="row"> -->
@@ -266,30 +274,30 @@
                     </div>
             <div class="row">
                <div class="panel-heading"><span class="lead">Lista de notas del Alumno </span></div>
-		  	<div class="tablecontainer">
-				<table class="table table-hover">
-		    		<thead>
-			      		<tr>
-					        <th>Trimestre</th>
-					        <th>Tipo</th>
-					        <th>Fecha</th>
-					        <th>Descripcion</th>
-					        <th>Valor</th>
-						</tr>
-			    	</thead>
-		    		<tbody>
-					<c:forEach items="${notas}" var="nota" varStatus="counter">
-						<tr>
-							<td>${nota.trimestre}</td>
-							<td>${nota.tipo}</td>
-							<td>${nota.fecha}</td>
-							<td>${nota.descripcion}</td>
-							<td>${nota.valor}</td>
-						</tr>
-					</c:forEach>
-		    		</tbody>
-		    	</table>
-		    </div>
+		  		<div class="tablecontainer">
+					<table class="table table-hover">
+			    		<thead>
+				      		<tr>
+						        <th>Trimestre</th>
+						        <th>Tipo</th>
+						        <th>Fecha</th>
+						        <th>Descripcion</th>
+						        <th>Valor</th>
+							</tr>
+				    	</thead>
+			    		<tbody>
+						<c:forEach items="${notas}" var="nota" varStatus="counter">
+							<tr>
+								<td>${nota.trimestre}</td>
+								<td>${nota.tipo}</td>
+								<td>${nota.fecha}</td>
+								<td>${nota.descripcion}</td>
+								<td>${nota.valor}</td>
+							</tr>
+						</c:forEach>
+			    		</tbody>
+		    		</table>
+		    	</div>
             </div>
         </div>      
     </section>

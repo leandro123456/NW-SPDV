@@ -96,7 +96,8 @@ public class MateriaController {
     	System.out.println("SALIO");
     	//return new ModelAndView("redirect:/home/documentos", model);
     	//return "redirect:/"+usuario+"/"+role+"/"+materia+"/informaciongeneral";
-    	loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+    	SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
+    	loadPageAlumno(model,smateria,usuario.replaceAll("\\.", " "));
     	return "home";
 	}
 	
@@ -105,51 +106,68 @@ public class MateriaController {
 			Model model, @PathVariable("role") String role){
 		System.out.println("entro al POST");
 		SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
-		loadPagePadreAlumno(model,smateria.getMateria(),usuario.replaceAll("\\.", " "));
+		loadPageAlumno(model,smateria,usuario.replaceAll("\\.", " "));
+		model.addAttribute("role", role);
 		return "home";
 	}
 	
 	
-    @GetMapping("/{usuario}/{role}/{materia}/informaciongeneral")
-    public String  provisioning(Model model,@PathVariable String usuario,@PathVariable String materia){
-    	loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
-        return "home";
-    }
+	@PostMapping("/usuario/{usuario}/role/{role}/alumno/{alumno}/materias/{materia}")
+	public String testHomePadre(@PathVariable String usuario,@PathVariable String materia,
+			Model model, @PathVariable("role") String role, @PathVariable String alumno){
+		
+		
+		System.out.println("entro al POST PADRE");
+		System.out.println("usuario (padre): "+ usuario);
+		System.out.println("alumno: "+ alumno);
+		SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
+		loadPagePadre(model,usuario.replaceAll("\\.", " "),smateria,alumno.replaceAll("\\.", " "));
+		model.addAttribute("role", role);
+		return "home";
+	}
+	
+	
+	
+//    @GetMapping("/{usuario}/{role}/{materia}/informaciongeneral")
+//    public String  provisioning(Model model,@PathVariable String usuario,@PathVariable String materia){
+//    	loadPagePadreAlumno(model,materia,usuario.replaceAll("\\.", " "));
+//        return "home";
+//    }
     
 	
-	@RequestMapping("/home22")
-	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
-		if(role.equals("PADRE")){
-	    	Padre padre =padredao.retrieveByName(usuario);
-	    	List<SimpleAlumno> infoHijoMateria  = new ArrayList<SimpleAlumno>();
-	    	List<SimpleAlumnoFilter> estudent= new ArrayList<SimpleAlumnoFilter>();
-	    	for (String hijo : padre.getAlumno()) {
-	    		SimpleAlumnoFilter student = new SimpleAlumnoFilter(hijo);
-	    		estudent.add(student);
-				Alumno alumno = alumdao.retrieveByName(hijo);
-				//asociacionMAt
-				List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
-				for(Materia.materia mate :mat){
-					SimpleAlumno estudiante = new SimpleAlumno(alumno.getName(), mate.getName());
-					infoHijoMateria.add(estudiante);
-				}
-			}
-	    	model.addAttribute("hijoMateria", infoHijoMateria);
-	    	model.addAttribute("hijos", estudent);
-	    }else{ 
-	    	Alumno alumno = alumdao.retrieveByName(usuario);
-	    	List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
-	    	List<String> materias = new ArrayList<>();
-	    	for(Materia.materia mate :mat){
-	    		materias.add( mate.getName());
-	    	}
-	    	model.addAttribute("materias", materias);
-	    }
-		model.addAttribute("usuario", usuario);
-	    model.addAttribute("role", role);
-	    
-	    return "home";
-	}
+//	@RequestMapping("/home22")
+//	public String books(@RequestParam("role") String role,@RequestParam("usuario") String usuario, Model model){
+//		if(role.equals("PADRE")){
+//	    	Padre padre =padredao.retrieveByName(usuario);
+//	    	List<SimpleAlumno> infoHijoMateria  = new ArrayList<SimpleAlumno>();
+//	    	List<SimpleAlumnoFilter> estudent= new ArrayList<SimpleAlumnoFilter>();
+//	    	for (String hijo : padre.getAlumno()) {
+//	    		SimpleAlumnoFilter student = new SimpleAlumnoFilter(hijo);
+//	    		estudent.add(student);
+//				Alumno alumno = alumdao.retrieveByName(hijo);
+//				//asociacionMAt
+//				List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
+//				for(Materia.materia mate :mat){
+//					SimpleAlumno estudiante = new SimpleAlumno(alumno.getName(), mate.getName());
+//					infoHijoMateria.add(estudiante);
+//				}
+//			}
+//	    	model.addAttribute("hijoMateria", infoHijoMateria);
+//	    	model.addAttribute("hijos", estudent);
+//	    }else{ 
+//	    	Alumno alumno = alumdao.retrieveByName(usuario);
+//	    	List<Materia.materia> mat= alumno.getCiclolectivo().getMaterias().getMateria();
+//	    	List<String> materias = new ArrayList<>();
+//	    	for(Materia.materia mate :mat){
+//	    		materias.add( mate.getName());
+//	    	}
+//	    	model.addAttribute("materias", materias);
+//	    }
+//		model.addAttribute("usuario", usuario);
+//	    model.addAttribute("role", role);
+//	    
+//	    return "home";
+//	}
 	
 	@PostMapping("home22/")
 	public String sendMail(Model model, String Mensaje) {
@@ -224,21 +242,19 @@ public class MateriaController {
 	}
 	
 	
-	private void loadPageAlumno(Model model, String materia) {
-		List<Documento> documentos = docdao.retrieveByMateria(materia);
-		model.addAttribute("documentos", documentos);
-	}
+//	private void loadPageAlumno(Model model, String materia) {
+//		List<Documento> documentos = docdao.retrieveByMateria(materia);
+//		model.addAttribute("documentos", documentos);
+//	}
 	
-	private void loadPagePadreAlumno(Model model, String materia, String alumnoName) {
+	private void loadPageAlumno(Model model, SimpleMateria materia, String alumnoName) {
 		try {
 		Alumno alumno = alumdao.retrieveByName(alumnoName);
-		Materia.materia materiaComplete = alumno.getCiclolectivo().getMaterias().getMateria(materia);
-		SimpleMateria smateria = smateriadao.retrieveByMatterForFilter(materia);
+		System.out.println("NOMBRE DE LA MATERIA: "+ materia);
 		try {
-			System.out.println("INFO DE LA MATERIA");
-			System.out.println("1: "+materiaComplete);
-			System.out.println("1: "+materiaComplete.getName());
 			System.out.println("INFO DE LA MATERIA SIMPLE");
+			System.out.println(materia.getCurso());
+			
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -253,8 +269,8 @@ public class MateriaController {
 		Integer asistenciaFaltas = promedioAsistencia(asistencias);
 		Integer asistenciaPresente = promedioAsistencia(asistencias);
 		
-		model.addAttribute("smateria", smateria);
-		model.addAttribute("materia", materia);
+		model.addAttribute("smateria", materia);
+		model.addAttribute("materia", materia.getMateria());
 		model.addAttribute("promediotareas", promediotareas*10);
 		model.addAttribute("promediotp", promediotp*10);
 		model.addAttribute("promedioev", promedioev*10);
@@ -271,6 +287,50 @@ public class MateriaController {
 		
 	}
 
+	private void loadPagePadre(Model model,String padre, SimpleMateria materia, String alumnoName) {
+		try {
+		Alumno alumno = alumdao.retrieveByName(alumnoName);
+		System.out.println("NOMBRE DE LA MATERIA: "+ materia+ "padre:" +padre);
+		
+		try {
+			System.out.println("INFO DE LA MATERIA SIMPLE");
+			System.out.println(materia.getCurso());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		List<Nota2> notas = notasdao.retrieveByAlumnoMateria(alumnoName,materia.getMateria(),anioActual);
+		List<Asistencia2> asistencias = asistenciadao.retrieveByAlumno(alumno.getId());
+		Double promediotareas = promedio(notas,Nota.ACTIVIDADES);
+		Double promediotp = promedio(notas,Nota.TRABAJO_PRACTICO);
+		Double promedioev = promedio(notas,Nota.EVALUACION);
+		Double promediotrimestre = promedio(notas,"trimestre");
+		List<Nota2> trimestreCerrado = notasdao.retrieveByAlumnoMateriaTrimestres(alumnoName,materia.getMateria(),anioActual);
+		Integer asistenciaFaltas = promedioAsistencia(asistencias);
+		Integer asistenciaPresente = promedioAsistencia(asistencias);
+		
+		if(trimestreCerrado!= null)
+			model.addAttribute("trimestrecerrado", trimestreCerrado);
+		model.addAttribute("smateria", materia);
+		model.addAttribute("materia", materia.getMateria());
+		model.addAttribute("promediotareas", promediotareas*10);
+		model.addAttribute("promediotp", promediotp*10);
+		model.addAttribute("promedioev", promedioev*10);
+		model.addAttribute("promediotrimestre", promediotrimestre*10);
+		model.addAttribute("usuario", padre);
+		model.addAttribute("alumno", alumnoName);
+		
+		model.addAttribute("notas", notas);
+		model.addAttribute("asistencias", asistencias);
+		model.addAttribute("asistenciaFaltas",asistenciaFaltas);
+		model.addAttribute("asistenciaPresente",asistenciaPresente);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+	
 	private Integer promedioAsistencia(List<Asistencia2> asistencia) {
 		Integer asistenciaTotal = 0;
 		if(asistencia!= null) {

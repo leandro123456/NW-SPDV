@@ -31,6 +31,34 @@ public class NotaDAO extends JPADAO<Nota2>{
 		}
 		return null;
 	}
+	@SuppressWarnings("unchecked")
+	public List<Nota2> retrieveByAlumnoMateria(String idalumno, String materia, Integer anio) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.idalumno = :idalumno and u.idmateria LIKE :idmateria and  u.fecha LIKE :anio ";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("idalumno", idalumno);
+		query.setParameter("idmateria", materia);
+		query.setParameter("anio", "%" + anio + "%");
+		List<Nota2> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<Nota2> retrieveByAlumnoMateriaTrimestres(String idalumno, String materia, Integer anio) {
+		String sql = "SELECT u FROM Nota2 u WHERE u.idalumno = :idalumno and u.idmateria LIKE :idmateria and  u.fecha LIKE :anio and u.tipo = 'trimestral'";
+		Query query = getEntityManager().createQuery(sql);
+		query.setParameter("idalumno", idalumno);
+		query.setParameter("idmateria", materia);
+		query.setParameter("anio", "%" + anio + "%");
+		List<Nota2> list = query.getResultList();
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Nota2> retrieveByAlumno(String idalumno) {

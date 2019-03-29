@@ -26,6 +26,15 @@ public class SimpleMateria {
 	@Field (name = "image")
 	private String image;
 	
+	@Field (name = "anio")
+	private Integer anio;
+	
+	@Field (name = "curso")
+	private String curso;
+	
+	@Field (name = "docente")
+	private String docente;
+	
 	public SimpleMateria(){
 		//no se usa
 	}
@@ -34,6 +43,7 @@ public class SimpleMateria {
 		this.materia = materia;
 		this.matterforfilter = materia.replaceAll(" ", "");
 		this.image = image;
+		
 	}
 
 	public String getMateria() {
@@ -66,6 +76,30 @@ public class SimpleMateria {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Integer getAnio() {
+		return anio;
+	}
+
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
+	}
+
+	public String getDocente() {
+		return docente;
+	}
+
+	public void setDocente(String docente) {
+		this.docente = docente;
 	}
 	
 	

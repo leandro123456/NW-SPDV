@@ -222,7 +222,7 @@
 				                <div class="add-actions text-center">
 				                  <div class="project-dec">
 				                    <form role="form"
-										action="<c:url value="/usuario/${hijoMateria.nameforfilter}/role/${roleComplete}/materias/${hijoMateria.matterforfilter}" />"
+										action="<c:url value="/usuario/${usuario}/role/${roleComplete}/alumno/${hijoMateria.nameforfilter}/materias/${hijoMateria.matterforfilter}" />"
 										method="post" enctype="multipart/form-data">
 			                    		<a class="venobox" data-gall="myGallery" href="javascript:;" onclick="parentNode.submit();">
 				                      	<h4>${hijoMateria.materia}</h4>
